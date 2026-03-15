@@ -77,7 +77,14 @@
     '.about-text-col',
     '.project-card',
     '.footer-cta',
-    '.footer-links'
+    '.footer-links',
+    '.proj-overview-text',
+    '.proj-sidebar',
+    '.proj-gallery-item',
+    '.process-step',
+    '.takeaway-card',
+    '.proj-nav-link',
+    '.specs-table'
   ];
 
   revealSelectors.forEach(function (sel) {
@@ -124,6 +131,57 @@
       }
       lastScroll = scrollY;
     }, { passive: true });
+  }
+
+
+  /* ---------- Lightbox for project gallery images ---------- */
+  var lightbox    = document.getElementById('lightbox');
+  var lbImg       = lightbox ? lightbox.querySelector('.lightbox-img') : null;
+  var lbCaption   = lightbox ? lightbox.querySelector('.lightbox-caption') : null;
+  var lbClose     = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+
+  if (lightbox && lbImg) {
+    // Clicking any .gallery-img opens the lightbox
+    document.querySelectorAll('.gallery-img').forEach(function (img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function () {
+        lbImg.src = this.src;
+        lbImg.alt = this.alt;
+
+        // Try to find a figcaption sibling for caption text
+        var fig = this.closest('figure');
+        var cap = fig ? fig.querySelector('figcaption') : null;
+        if (lbCaption) {
+          lbCaption.textContent = cap ? cap.textContent : '';
+        }
+
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close lightbox
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      // Close if clicking the backdrop (not the image itself)
+      if (e.target === lightbox || e.target === lbClose) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
   }
 
 })();
