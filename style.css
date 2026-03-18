@@ -1840,3 +1840,61 @@ details[open] .cp-details-icon::after,
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0);    }
 }
+
+
+/* ==========================================================================
+   COMING SOON / UNDER CONSTRUCTION STYLES
+   ========================================================================== */
+
+.coming-soon-card {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--sp-xl) var(--sp-md);
+  border: 1px dashed var(--color-border-lite);
+  border-radius: 6px;
+  background: var(--color-bg-card);
+}
+
+.coming-soon-icon {
+  font-size: 3rem;
+  margin-bottom: var(--sp-sm);
+  opacity: 0.4;
+  animation: coming-soon-spin 8s linear infinite;
+}
+
+@keyframes coming-soon-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.coming-soon-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-xs);
+}
+
+.coming-soon-text {
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.under-construction-note {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-top: var(--sp-sm);
+  padding-top: var(--sp-xs);
+  border-top: 1px dashed var(--color-border-lite);
+}
+
+/* "View All Projects" button wrapper */
+.projects-view-all {
+  text-align: center;
+  margin-top: var(--sp-lg);
+}
+

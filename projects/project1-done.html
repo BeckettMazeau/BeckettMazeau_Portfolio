@@ -12,6 +12,14 @@
   <meta property="og:url" content="https://beckettmazeau.com/projects/project-1.html">
   <meta property="og:type" content="article">
 
+  <!-- Card metadata — used by script.js to build cards on index and all-projects pages -->
+  <meta name="card-title"   content="Composite Rocket Body Curing Oven">
+  <meta name="card-excerpt" content="A custom 120VAC curing oven built for Rice Eclipse rocketry — Arduino-controlled thermal system with nichrome heating, dual thermocouples, and automated tube rotation.">
+  <meta name="card-image"   content="../images/InternalWideShot.JPG">
+  <meta name="card-tag"     content="Mechatronics &amp; Systems Design">
+  <meta name="card-date"    content="2025-12-15">
+  <meta name="card-techs"   content="Arduino (C++),Nichrome Heating,Thermal Control,Custom UI">
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +45,7 @@
         <ul>
           <li><a href="../index.html#about" class="nav-link">About</a></li>
           <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
           <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -521,9 +530,7 @@
             Have an interesting project, collaboration, or opportunity?
             I'd love to hear about it.
           </p>
-          <a href="/cdn-cgi/l/email-protection#82eae7eeeeedc2e0e7e1e9e7f6f6efe3f8e7e3f7ace1edef" class="btn btn--primary">
-            <span class="__cf_email__" data-cfemail="9bf3fef7f7f4dbf9fef8f0feefeff6fae1fefaeeb5f8f4f6">[email&#160;protected]</span>
-          </a>
+          <a href="mailto:beckettmazeau.inquiries@gmail.com" class="btn btn--primary">beckettmazeau.inquiries@gmail.com</a>
         </div>
         <div class="footer-links">
           <h3>Elsewhere</h3>
@@ -544,4 +551,10 @@
   <!-- Lightbox overlay -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img
+    <img class="lightbox-img" src="" alt="">
+    <p class="lightbox-caption"></p>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

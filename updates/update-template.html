@@ -9,7 +9,18 @@
   <meta name="description" content="Project update from Beckett Mazeau — Mechatronics Engineer.">
   <meta name="author" content="Beckett Mazeau">
 
-  <!-- Favicon (same as main site) -->
+  <!--
+    CARD METADATA — used by script.js to build cards on the home page.
+    Update these for every new update file.
+    File naming: this file should be saved as update#-done.html
+    (e.g., update1-done.html, update2-done.html)
+    Higher numbers appear first (most recent).
+  -->
+  <meta name="card-title"   content="Update Title Goes Here">
+  <meta name="card-excerpt" content="A short 1–2 sentence summary of this update for the card.">
+  <meta name="card-date"    content="2026-01-01">
+
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
 
   <!-- Fonts -->
@@ -64,8 +75,7 @@
       <!-- Body -->
       <div class="update-page-body">
         <!-- TODO: Write your update content below. Use <p>, <h2>, <h3>,
-             <ul>, <ol>, <blockquote>, <figure> etc. as needed.
-             Keep it concise — these are workbench dispatches, not essays. -->
+             <ul>, <ol>, <blockquote>, <figure> etc. as needed. -->
 
         <p>
           Write your update here. Describe what changed, what you built,
@@ -79,9 +89,7 @@
 
         <!-- Image placeholder -->
         <figure class="update-page-figure">
-          <!-- TODO: Replace src with your own image.
-               Path is relative to /updates/, so use ../images/your-image.jpg
-               for images stored in the project root's images/ folder. -->
+          <!-- TODO: Replace src with your own image. -->
           <img
             src="https://placehold.co/960x540/111/333?text=Update+Image"
             alt="Descriptive alt text for the image"
@@ -89,7 +97,6 @@
             class="update-page-img"
           >
           <figcaption>
-            <!-- TODO: Optional caption describing the image -->
             Caption describing this image — e.g., "Revised bracket after FEA."
           </figcaption>
         </figure>
@@ -98,7 +105,7 @@
           Continue writing below the image if needed. You can add more
           images by duplicating the <code>&lt;figure&gt;</code> block above.
         </p>
-      </div><!-- /update-page-body -->
+      </div>
 
     </div>
   </article>
@@ -114,13 +121,11 @@
             Have an interesting project, collaboration, or opportunity?
             I'd love to hear about it.
           </p>
-          <!-- TODO: Replace with your actual email address -->
-          <a href="mailto:hello@beckettmazeau.com" class="btn btn--primary">hello@beckettmazeau.com</a>
+          <a href="mailto:beckettmazeau.inquiries@gmail.com" class="btn btn--primary">beckettmazeau.inquiries@gmail.com</a>
         </div>
         <div class="footer-links">
           <h3>Elsewhere</h3>
           <ul>
-            <!-- TODO: Replace # with your real profile URLs -->
             <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="#" target="_blank" rel="noopener noreferrer">GrabCAD</a></li>
@@ -134,7 +139,6 @@
     </div>
   </footer>
 
-  <!-- Shared scripts — one level up -->
   <script src="../script.js"></script>
 </body>
 </html>
