@@ -115,7 +115,6 @@
     }
   }
 
-  // Initial pass
   initRevealObserver();
 
 
@@ -182,56 +181,58 @@
 
   /* ==========================================================================
      DYNAMIC CONTENT LOADING — Projects & Updates
-     ========================================================================== */
+     ==========================================================================
 
-  /*
-   * File naming conventions:
-   *
-   * UPDATES (in /updates/ folder):
-   *   update1-done.html, update2-done.html, update3-done.html, ...
-   *   Higher number = more recent. Only files matching "update#-done" are shown.
-   *
-   * PROJECTS (in /projects/ folder):
-   *   For the "Selected Work" grid (up to 4 cards on the home page):
-   *     project1-selected1-done.html  (project#=recency, selected#=grid position 1–4)
-   *     project2-selected3-done.html
-   *   For the "All Projects" page:
-   *     project1-done.html, project2-done.html, ...
-   *     Higher number = more recently completed.
-   *
-   * Each HTML file must contain these <meta> tags in its <head> for metadata:
-   *   <meta name="card-title"   content="Project or Update Title">
-   *   <meta name="card-excerpt" content="Short description for the card.">
-   *   <meta name="card-image"   content="../images/your-image.jpg">
-   *   <meta name="card-tag"     content="Mechatronics">
-   *   <meta name="card-date"    content="2026-03-17">
-   *   <meta name="card-techs"   content="Arduino,KiCad,C++">  (projects only, comma-separated)
-   */
+     Reads site-manifest.json from the project root. The manifest is just
+     arrays of filenames — the order in each array is the display order.
 
-  var MAX_PROBE = 50; // max number to probe for each type
+     MANIFEST FORMAT (site-manifest.json):
+     {
+       "selectedProjects": ["project-1.html", "cool-robot.html"],
+       "allProjects":      ["project-1.html", "cool-robot.html", "old-thing.html"],
+       "updates":          ["week-5-pcb-arrived.html", "week-3-first-prototype.html"]
+     }
+
+     - selectedProjects → shown in the "Selected Work" grid on the home page
+     - allProjects      → shown on the all-projects.html page
+     - updates          → shown in the "Updates" feed on the home page
+
+     Files can be named anything. The same file can appear in multiple arrays.
+     Project files live in /projects/, update files live in /updates/.
+
+     Each file needs these <meta> tags in its <head> for card content:
+       <meta name="card-title"   content="Title">
+       <meta name="card-excerpt" content="Short description.">
+       <meta name="card-image"   content="../images/photo.jpg">    (projects)
+       <meta name="card-tag"     content="Mechatronics">            (projects)
+       <meta name="card-date"    content="2026-03-17">              (updates)
+       <meta name="card-techs"   content="Arduino,KiCad,C++">      (projects, comma-sep)
+  */
+
 
   /**
-   * Check if a file exists at the given URL using a HEAD request.
-   * Returns a promise that resolves to true/false.
+   * Determine the base path to the site root from the current page.
    */
-  function fileExists(url) {
-    return fetch(url, { method: 'HEAD' })
-      .then(function (res) { return res.ok; })
-      .catch(function () { return false; });
+  function getBasePath() {
+    var path = window.location.pathname;
+    if (path.indexOf('/projects/') !== -1 || path.indexOf('/updates/') !== -1) {
+      return '../';
+    }
+    return '';
   }
+
+  var BASE = getBasePath();
 
   /**
    * Fetch an HTML page and extract <meta name="card-*"> values.
-   * Returns a promise that resolves to an object of metadata, or null on failure.
    */
   function fetchMeta(url) {
     return fetch(url)
       .then(function (res) {
-        if (!res.ok) return null;
+        if (!res.ok) throw new Error('Not found');
         return res.text();
       })
       .then(function (html) {
-        if (!html) return null;
         var parser = new DOMParser();
         var doc = parser.parseFromString(html, 'text/html');
         var meta = {};
@@ -250,292 +251,156 @@
    */
   function comingSoonHTML(message) {
     return '<div class="coming-soon-card">' +
-      '<div class="coming-soon-icon" aria-hidden="true">⚙</div>' +
+      '<div class="coming-soon-icon" aria-hidden="true">\u2699</div>' +
       '<h3 class="coming-soon-title">More Coming Soon</h3>' +
       '<p class="coming-soon-text">' + message + '</p>' +
     '</div>';
   }
 
   /**
-   * Format a date string (YYYY-MM-DD) into a readable form.
+   * Format YYYY-MM-DD into readable form.
    */
   function formatDate(dateStr) {
     if (!dateStr) return '';
     var parts = dateStr.split('-');
     if (parts.length !== 3) return dateStr;
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var m = parseInt(parts[1], 10);
-    var d = parseInt(parts[2], 10);
-    return months[m - 1] + ' ' + d + ', ' + parts[0];
+    return months[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+  }
+
+  /**
+   * Build a project card from metadata.
+   */
+  function projectCardHTML(meta) {
+    var title   = meta.title   || 'Untitled Project';
+    var excerpt = meta.excerpt || '';
+    var image   = meta.image   || 'https://placehold.co/720x480/111/333?text=Project';
+    var tag     = meta.tag     || '';
+    var techs   = meta.techs   ? meta.techs.split(',') : [];
+
+    return '<article class="project-card">' +
+      '<a href="' + meta._url + '" class="project-card-link">' +
+        '<div class="project-image">' +
+          '<img src="' + image + '" alt="' + title + '" width="720" height="480" loading="lazy">' +
+          (tag ? '<span class="project-tag">' + tag + '</span>' : '') +
+        '</div>' +
+        '<div class="project-info">' +
+          '<h3>' + title + '</h3>' +
+          (excerpt ? '<p>' + excerpt + '</p>' : '') +
+          (techs.length ? '<ul class="project-tech">' + techs.map(function (t) { return '<li>' + t.trim() + '</li>'; }).join('') + '</ul>' : '') +
+          '<span class="project-link">View Case Study &rarr;</span>' +
+        '</div>' +
+      '</a>' +
+    '</article>';
+  }
+
+  /**
+   * Build an update card from metadata.
+   */
+  function updateCardHTML(meta) {
+    var title   = meta.title   || 'Untitled Update';
+    var excerpt = meta.excerpt || '';
+    var date    = meta.date    || '';
+
+    return '<article class="update-card">' +
+      '<a href="' + meta._url + '" class="update-card-link">' +
+        (date ? '<time class="update-date" datetime="' + date + '">' + formatDate(date) + '</time>' : '') +
+        '<h3 class="update-title">' + title + '</h3>' +
+        (excerpt ? '<p class="update-excerpt">' + excerpt + '</p>' : '') +
+        '<span class="update-read-more">Read more &rarr;</span>' +
+      '</a>' +
+    '</article>';
   }
 
 
-  /* ---------- Load Updates ---------- */
-  function loadUpdates() {
-    var container = document.getElementById('updates-feed');
+  /**
+   * Generic loader: takes a list of filenames, a folder prefix, a card
+   * builder function, a container element, and a fallback message.
+   * Fetches metadata for each file, builds cards, injects into container.
+   */
+  function loadSection(filenames, folder, cardBuilder, container, fallbackMsg, onSuccess) {
     if (!container) return;
 
-    // Probe for update files: update1-done.html, update2-done.html, ...
-    var probes = [];
-    for (var i = 1; i <= MAX_PROBE; i++) {
-      probes.push({ num: i, url: 'updates/update' + i + '-done.html' });
+    if (!filenames || filenames.length === 0) {
+      container.innerHTML = comingSoonHTML(fallbackMsg);
+      initRevealObserver();
+      return;
     }
 
-    // Check existence of all probes in parallel
     Promise.all(
-      probes.map(function (p) {
-        return fileExists(p.url).then(function (exists) {
-          return exists ? p : null;
-        });
+      filenames.map(function (file) {
+        return fetchMeta(BASE + folder + file);
       })
-    ).then(function (results) {
-      // Filter to found files
-      var found = results.filter(function (r) { return r !== null; });
+    ).then(function (metas) {
+      var valid = metas.filter(function (m) { return m !== null; });
 
-      if (found.length === 0) {
-        // No updates found — show coming soon
-        container.innerHTML = comingSoonHTML(
-          'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
-        );
+      if (valid.length === 0) {
+        container.innerHTML = comingSoonHTML(fallbackMsg);
         initRevealObserver();
         return;
       }
 
-      // Sort by number descending (higher = more recent first)
-      found.sort(function (a, b) { return b.num - a.num; });
-
-      // Fetch metadata for each
-      return Promise.all(
-        found.map(function (p) {
-          return fetchMeta(p.url).then(function (meta) {
-            if (meta) meta._num = p.num;
-            return meta;
-          });
-        })
-      );
-    }).then(function (metas) {
-      if (!metas) return; // already handled (coming soon)
-
-      var validMetas = metas.filter(function (m) { return m !== null; });
-
-      if (validMetas.length === 0) {
-        container.innerHTML = comingSoonHTML(
-          'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
-        );
-        initRevealObserver();
-        return;
-      }
-
-      // Build update cards
-      var html = '';
-      validMetas.forEach(function (meta) {
-        var title   = meta.title   || 'Update #' + meta._num;
-        var excerpt = meta.excerpt || '';
-        var date    = meta.date    || '';
-        var dateDisplay = formatDate(date);
-
-        html += '<article class="update-card">' +
-          '<a href="' + meta._url + '" class="update-card-link">' +
-            (date ? '<time class="update-date" datetime="' + date + '">' + dateDisplay + '</time>' : '') +
-            '<h3 class="update-title">' + title + '</h3>' +
-            (excerpt ? '<p class="update-excerpt">' + excerpt + '</p>' : '') +
-            '<span class="update-read-more">Read more &rarr;</span>' +
-          '</a>' +
-        '</article>';
-      });
-
-      container.innerHTML = html;
+      container.innerHTML = valid.map(cardBuilder).join('');
+      if (onSuccess) onSuccess();
       initRevealObserver();
     });
   }
 
 
-  /* ---------- Load Selected Projects (home page) ---------- */
-  function loadSelectedProjects() {
-    var container = document.getElementById('selected-projects-grid');
-    var viewAllBtn = document.getElementById('projects-view-all');
-    if (!container) return;
+  /* ---------- Load manifest and populate all sections ---------- */
+  fetch(BASE + 'site-manifest.json')
+    .then(function (res) {
+      if (!res.ok) throw new Error('Manifest not found');
+      return res.json();
+    })
+    .then(function (manifest) {
 
-    // Probe for selected project files:
-    // project{P}-selected{S}-done.html where P=1..MAX, S=1..4
-    var probes = [];
-    for (var p = 1; p <= MAX_PROBE; p++) {
-      for (var s = 1; s <= 4; s++) {
-        probes.push({
-          projectNum: p,
-          selectedNum: s,
-          url: 'projects/project' + p + '-selected' + s + '-done.html'
-        });
-      }
-    }
-
-    Promise.all(
-      probes.map(function (probe) {
-        return fileExists(probe.url).then(function (exists) {
-          return exists ? probe : null;
-        });
-      })
-    ).then(function (results) {
-      var found = results.filter(function (r) { return r !== null; });
-
-      if (found.length === 0) {
-        container.innerHTML = comingSoonHTML(
-          'Project case studies are currently being documented. Check back soon to see detailed breakdowns of engineering work.'
-        );
-        initRevealObserver();
-        return;
-      }
-
-      // Sort by selectedNum (grid position: 1=top-left, 4=bottom-right)
-      found.sort(function (a, b) { return a.selectedNum - b.selectedNum; });
-
-      // Fetch metadata for each
-      return Promise.all(
-        found.map(function (probe) {
-          return fetchMeta(probe.url).then(function (meta) {
-            if (meta) {
-              meta._projectNum  = probe.projectNum;
-              meta._selectedNum = probe.selectedNum;
-            }
-            return meta;
-          });
-        })
+      // Selected Projects (home page grid)
+      loadSection(
+        manifest.selectedProjects,
+        'projects/',
+        projectCardHTML,
+        document.getElementById('selected-projects-grid'),
+        'Project case studies are currently being documented. Check back soon to see detailed breakdowns of engineering work.',
+        function () {
+          var btn = document.getElementById('projects-view-all');
+          if (btn) btn.style.display = '';
+        }
       );
-    }).then(function (metas) {
-      if (!metas) return; // already handled (coming soon)
 
-      var validMetas = metas.filter(function (m) { return m !== null; });
+      // All Projects (all-projects.html page)
+      loadSection(
+        manifest.allProjects,
+        'projects/',
+        projectCardHTML,
+        document.getElementById('all-projects-grid'),
+        'Project case studies are being prepared. Check back soon for detailed engineering breakdowns.'
+      );
 
-      if (validMetas.length === 0) {
-        container.innerHTML = comingSoonHTML(
-          'Project case studies are currently being documented. Check back soon to see detailed breakdowns of engineering work.'
-        );
-        initRevealObserver();
-        return;
-      }
+      // Updates (home page feed)
+      loadSection(
+        manifest.updates,
+        'updates/',
+        updateCardHTML,
+        document.getElementById('updates-feed'),
+        'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
+      );
 
-      // Re-sort by selectedNum
-      validMetas.sort(function (a, b) { return a._selectedNum - b._selectedNum; });
+    })
+    .catch(function (err) {
+      console.warn('site-manifest.json not found or invalid:', err);
 
-      // Build project cards
-      var html = '';
-      validMetas.forEach(function (meta) {
-        var title   = meta.title   || 'Project #' + meta._projectNum;
-        var excerpt = meta.excerpt || '';
-        var image   = meta.image   || 'https://placehold.co/720x480/111/333?text=Project';
-        var tag     = meta.tag     || '';
-        var techs   = meta.techs   ? meta.techs.split(',') : [];
+      var projMsg = comingSoonHTML('Project case studies are currently being documented. Check back soon.');
+      var updMsg  = comingSoonHTML('Updates are on the way. Check back soon.');
 
-        html += '<article class="project-card">' +
-          '<a href="' + meta._url + '" class="project-card-link">' +
-            '<div class="project-image">' +
-              '<img src="' + image + '" alt="' + title + '" width="720" height="480" loading="lazy">' +
-              (tag ? '<span class="project-tag">' + tag + '</span>' : '') +
-            '</div>' +
-            '<div class="project-info">' +
-              '<h3>' + title + '</h3>' +
-              (excerpt ? '<p>' + excerpt + '</p>' : '') +
-              (techs.length ? '<ul class="project-tech">' + techs.map(function(t){ return '<li>' + t.trim() + '</li>'; }).join('') + '</ul>' : '') +
-              '<span class="project-link">View Case Study &rarr;</span>' +
-            '</div>' +
-          '</a>' +
-        '</article>';
-      });
+      var selGrid = document.getElementById('selected-projects-grid');
+      var allGrid = document.getElementById('all-projects-grid');
+      var updFeed = document.getElementById('updates-feed');
 
-      container.innerHTML = html;
-
-      // Show the "View All Projects" button
-      if (viewAllBtn) viewAllBtn.style.display = '';
+      if (selGrid) selGrid.innerHTML = projMsg;
+      if (allGrid) allGrid.innerHTML = projMsg;
+      if (updFeed) updFeed.innerHTML = updMsg;
       initRevealObserver();
     });
-  }
-
-
-  /* ---------- Load All Projects (all-projects.html page) ---------- */
-  function loadAllProjects() {
-    var container = document.getElementById('all-projects-grid');
-    if (!container) return;
-
-    // Probe for project files: project1-done.html, project2-done.html, ...
-    var probes = [];
-    for (var i = 1; i <= MAX_PROBE; i++) {
-      probes.push({ num: i, url: 'projects/project' + i + '-done.html' });
-    }
-
-    Promise.all(
-      probes.map(function (p) {
-        return fileExists(p.url).then(function (exists) {
-          return exists ? p : null;
-        });
-      })
-    ).then(function (results) {
-      var found = results.filter(function (r) { return r !== null; });
-
-      if (found.length === 0) {
-        container.innerHTML = comingSoonHTML(
-          'Project case studies are being prepared. Check back soon for detailed engineering breakdowns.'
-        );
-        initRevealObserver();
-        return;
-      }
-
-      // Sort descending (higher number = more recent)
-      found.sort(function (a, b) { return b.num - a.num; });
-
-      return Promise.all(
-        found.map(function (p) {
-          return fetchMeta(p.url).then(function (meta) {
-            if (meta) meta._num = p.num;
-            return meta;
-          });
-        })
-      );
-    }).then(function (metas) {
-      if (!metas) return;
-
-      var validMetas = metas.filter(function (m) { return m !== null; });
-
-      if (validMetas.length === 0) {
-        container.innerHTML = comingSoonHTML(
-          'Project case studies are being prepared. Check back soon for detailed engineering breakdowns.'
-        );
-        initRevealObserver();
-        return;
-      }
-
-      var html = '';
-      validMetas.forEach(function (meta) {
-        var title   = meta.title   || 'Project #' + meta._num;
-        var excerpt = meta.excerpt || '';
-        var image   = meta.image   || 'https://placehold.co/720x480/111/333?text=Project';
-        var tag     = meta.tag     || '';
-        var techs   = meta.techs   ? meta.techs.split(',') : [];
-
-        html += '<article class="project-card">' +
-          '<a href="' + meta._url + '" class="project-card-link">' +
-            '<div class="project-image">' +
-              '<img src="' + image + '" alt="' + title + '" width="720" height="480" loading="lazy">' +
-              (tag ? '<span class="project-tag">' + tag + '</span>' : '') +
-            '</div>' +
-            '<div class="project-info">' +
-              '<h3>' + title + '</h3>' +
-              (excerpt ? '<p>' + excerpt + '</p>' : '') +
-              (techs.length ? '<ul class="project-tech">' + techs.map(function(t){ return '<li>' + t.trim() + '</li>'; }).join('') + '</ul>' : '') +
-              '<span class="project-link">View Case Study &rarr;</span>' +
-            '</div>' +
-          '</a>' +
-        '</article>';
-      });
-
-      container.innerHTML = html;
-      initRevealObserver();
-    });
-  }
-
-
-  /* ---------- Initialize dynamic content ---------- */
-  loadUpdates();
-  loadSelectedProjects();
-  loadAllProjects();
 
 })();
