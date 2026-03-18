@@ -1191,3 +1191,647 @@ a:hover {
     font-size: clamp(2rem, 9vw, 3.5rem);
   }
 }
+
+
+/* ==========================================================================
+   CURRENT PROJECT — Spotlight Section
+   ========================================================================== */
+.current-project {
+  padding: var(--sp-2xl) 0;
+  background: var(--color-bg-raised);
+}
+
+.current-project-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Pulsing status indicator */
+.current-project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 var(--color-accent-glow); }
+  50%      { opacity: 1;   box-shadow: 0 0 8px 3px var(--color-accent-glow); }
+}
+
+.status-text {
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+}
+
+.current-project-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+}
+
+.current-project-image {
+  overflow: hidden;
+  border-right: 1px solid var(--color-border);
+}
+.current-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.current-project-text {
+  padding: var(--sp-lg) var(--sp-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.current-project-summary {
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-md);
+}
+
+.current-project-text .project-tech {
+  margin-bottom: var(--sp-md);
+}
+
+.current-project-updated {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-top: auto;
+}
+.current-project-updated time {
+  color: var(--color-text);
+}
+
+@media (max-width: 900px) {
+  .current-project-body {
+    grid-template-columns: 1fr;
+  }
+  .current-project-image {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+
+/* ==========================================================================
+   UPDATES FEED — Horizontally Scrolling Cards
+   ========================================================================== */
+.updates {
+  padding: var(--sp-2xl) 0;
+  background: var(--color-bg);
+}
+
+.updates-intro {
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin-bottom: var(--sp-lg);
+}
+
+.updates-feed {
+  display: flex;
+  gap: var(--sp-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-lite) transparent;
+
+  /* Extend to edge for bleed effect, pad inside */
+  padding-bottom: var(--sp-sm);
+}
+.updates-feed::-webkit-scrollbar {
+  height: 4px;
+}
+.updates-feed::-webkit-scrollbar-track {
+  background: transparent;
+}
+.updates-feed::-webkit-scrollbar-thumb {
+  background: var(--color-border-lite);
+  border-radius: 2px;
+}
+
+.update-card {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.update-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.update-card-link {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-md);
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.update-card-link:hover {
+  color: inherit;
+}
+
+.update-date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-xs);
+}
+
+.update-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--color-text-bright);
+  line-height: 1.25;
+  margin-bottom: var(--sp-xs);
+}
+
+.update-excerpt {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--sp-sm);
+  /* Clamp to ~3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.update-read-more {
+  margin-top: auto;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  transition: color 0.25s var(--ease-out);
+}
+.update-card:hover .update-read-more {
+  color: var(--color-text-bright);
+}
+
+@media (max-width: 640px) {
+  .update-card {
+    flex: 0 0 280px;
+  }
+}
+
+
+/* ==========================================================================
+   UPDATE DETAIL PAGE
+   ========================================================================== */
+.update-page {
+  padding: calc(var(--header-h) + var(--sp-xl)) 0 var(--sp-xl);
+  background: var(--color-bg);
+  min-height: 60vh;
+}
+
+.update-page .section-container {
+  max-width: 760px;
+}
+
+.update-page-meta {
+  margin-bottom: var(--sp-sm);
+}
+
+.update-page-date {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.update-page-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-text-bright);
+  line-height: 1.15;
+  margin-bottom: var(--sp-lg);
+}
+
+.update-page-body p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-md);
+  line-height: 1.8;
+}
+
+.update-page-body h2,
+.update-page-body h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-text-bright);
+  margin-top: var(--sp-lg);
+  margin-bottom: var(--sp-sm);
+}
+.update-page-body h2 { font-size: 1.5rem; }
+.update-page-body h3 { font-size: 1.25rem; }
+
+.update-page-figure {
+  margin: var(--sp-lg) 0;
+}
+
+.update-page-img {
+  width: 100%;
+  border: 1px solid var(--color-border);
+}
+
+.update-page-figure figcaption {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  padding: var(--sp-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+
+/* ==========================================================================
+   STIK-eNote Current Project — Extended Styles
+   ========================================================================== */
+
+/* ── tagline ── */
+.current-project-tagline {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-sm);
+}
+
+/* ── Feature highlights grid ── */
+.current-project-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-md);
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.cp-feature {
+  padding: var(--sp-md);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+}
+
+.cp-feature h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-xs);
+}
+
+.cp-feature p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Schematic block ── */
+.current-project-schematic {
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.cp-subheading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-md);
+}
+
+.cp-schematic-fig {
+  margin-bottom: var(--sp-md);
+}
+
+.cp-schematic-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-raised);
+}
+
+.cp-schematic-caption {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  padding: var(--sp-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-top: 0.5rem;
+}
+
+.wire { font-weight: 700; }
+.wire--red    { color: #e05555; }
+.wire--black  { color: #888; }
+.wire--orange { color: #e08030; }
+.wire--green  { color: #58a85e; }
+.wire--purple { color: #9b72cf; }
+
+.cp-subsystems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-md);
+  margin-top: var(--sp-md);
+}
+
+.cp-subsystem {
+  padding: var(--sp-md);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+}
+
+.cp-subsystem h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-bright);
+  margin-bottom: var(--sp-xs);
+}
+
+.cp-subsystem p {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* ── Bill of Materials ── */
+.current-project-bom {
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.bom-source {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.bom-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  margin-top: var(--sp-md);
+}
+
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.bom-table thead th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  text-align: left;
+  padding: 0.6rem 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.bom-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+
+.bom-table tbody tr:last-child { border-bottom: none; }
+
+.bom-table tbody tr:hover { background: var(--color-bg-raised); }
+
+.bom-table td {
+  padding: 0.55rem 0.875rem;
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+.bom-pn {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+}
+
+.bom-qty,
+.bom-price {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bom-table tfoot td {
+  padding: 0.6rem 0.875rem;
+  font-weight: 700;
+}
+
+.bom-total-label {
+  color: var(--color-text-muted);
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.bom-total {
+  color: var(--color-accent);
+  text-align: right;
+  border-top: 1px solid var(--color-border);
+}
+
+.bom-shipping {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  text-align: right;
+  padding-top: 0.4rem !important;
+  font-weight: 400;
+}
+
+/* ── Extra components list ── */
+.bom-extras {
+  margin-top: var(--sp-md);
+  padding: var(--sp-md);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+}
+
+.bom-extras h4 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-sm);
+}
+
+.bom-extras-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.5rem var(--sp-md);
+}
+
+.bom-extras-list li {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.bom-extras-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.bom-extras-list strong {
+  color: var(--color-text);
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 640px) {
+  .current-project-features { grid-template-columns: 1fr; }
+  .cp-subsystems             { grid-template-columns: 1fr; }
+  .bom-extras-list           { grid-template-columns: 1fr; }
+}
+
+
+/* ── Collapsible project details ── */
+.cp-details {
+  margin-top: var(--sp-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.cp-details-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-md) 0;
+  cursor: pointer;
+  list-style: none;       /* hide default marker in Firefox */
+  gap: var(--sp-sm);
+  user-select: none;
+}
+
+/* Hide the default disclosure triangle in all browsers */
+.cp-details-toggle::-webkit-details-marker { display: none; }
+.cp-details-toggle::marker               { display: none; }
+
+.cp-details-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 0.2s var(--ease-out);
+}
+
+/* Custom +/− icon */
+.cp-details-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.cp-details-icon::before,
+.cp-details-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: var(--color-text-muted);
+  transition: background 0.2s var(--ease-out), transform 0.25s var(--ease-out), opacity 0.2s;
+}
+
+/* Horizontal bar (always visible) */
+.cp-details-icon::before {
+  width: 8px;
+  height: 1.5px;
+}
+
+/* Vertical bar (hidden when open) */
+.cp-details-icon::after {
+  width: 1.5px;
+  height: 8px;
+}
+
+/* Open state */
+details[open] .cp-details-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+details[open] .cp-details-label,
+.cp-details-toggle:hover .cp-details-label {
+  color: var(--color-accent);
+}
+
+details[open] .cp-details-icon,
+.cp-details-toggle:hover .cp-details-icon {
+  border-color: var(--color-accent);
+}
+
+details[open] .cp-details-icon::before,
+details[open] .cp-details-icon::after,
+.cp-details-toggle:hover .cp-details-icon::before,
+.cp-details-toggle:hover .cp-details-icon::after {
+  background: var(--color-accent);
+}
+
+/* Smooth-ish reveal via padding animation (no JS required) */
+.cp-details > :not(summary) {
+  animation: cp-reveal 0.25s var(--ease-out) both;
+}
+
+@keyframes cp-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
