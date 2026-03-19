@@ -1,9 +1,9 @@
 {
   "selectedProjects": [
-    "project-1.html"
+    "project-1.html", "project-2.html", "project-3.html"
   ],
   "allProjects": [
-    "project-1.html"
+    "project-1.html", "project-2.html", "project-3.html"
   ],
   "updates": []
 }
