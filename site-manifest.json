@@ -5,5 +5,5 @@
   "allProjects": [
     "project-1.html", "project-2.html", "project-3.html"
   ],
-  "updates": []
+  "updates": ["update-1.html"]
 }
