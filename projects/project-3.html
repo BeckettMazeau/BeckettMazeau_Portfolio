@@ -15,7 +15,7 @@
   <!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
   <meta name="card-title"   content="Java Ray Tracer">
   <meta name="card-excerpt" content="A Java ray tracer with interactive Swing GUI — Phong shading, mirror reflections, anti-aliasing, shadow casting, and multi-threaded rendering for building and exporting 3D scenes.">
-  <meta name="card-image"   content="../Images/TestScene1.png">
+  <meta name="card-image"   content="../Images/TestScene3_EyeOfSauron_.png">
   <meta name="card-tag"     content="Software Engineering">
   <meta name="card-date"    content="2025-03-01">
   <meta name="card-techs"   content="Java,Swing GUI,Ray Tracing,Multi-threading,3D Graphics,OOP">
@@ -29,12 +29,10 @@
   <link rel="stylesheet" href="../style.css">
 
   <style>
-    /* Wide-aspect GUI screenshot — constrain height so it doesn't overwhelm the page */
+    /* Hero render output — display at natural aspect ratio */
     .gui-screenshot {
       width: 100%;
-      max-height: 340px;
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
       border-radius: 4px;
     }
     .gui-screenshot-figure {
@@ -93,15 +91,15 @@
     <div class="section-container">
       <figure class="gui-screenshot-figure">
         <img
-          src="../Images/TestScene2.png"
-          alt="Ray-traced scene showing a reflective purple sphere and two green spheres on a mirror floor with accurate shadow casting"
+          src="../Images/TestScene3_EyeOfSauron_.png"
+          alt="Ray-traced Eye of Sauron scene — nested spheres producing intricate black-and-white interference patterns on a sky-blue background"
           class="gui-screenshot gallery-img"
-          width="1280"
+          width="1456"
           loading="eager"
         >
         <figcaption>
-          A rendered scene demonstrating Phong shading, mirror-floor reflections, and accurate
-          shadow casting across multiple spheres — produced at full resolution by the multi-threaded rendering engine.
+          The "Eye of Sauron" test scene — nested intersecting spheres producing
+          intricate interference patterns, used to identify a normalization bug in the specular term.
         </figcaption>
       </figure>
     </div>
@@ -178,7 +176,7 @@
 
         <figure class="proj-gallery-item">
           <img
-            src="../Images/TestScene3(EyeOfSauron).png"
+            src="../Images/TestScene3_EyeOfSauron_.png"
             alt="Abstract render dubbed Eye of Sauron — a perfect-mirror sphere reflecting nested circles of colored light on a sky-blue background"
             loading="lazy" class="gallery-img"
           >
