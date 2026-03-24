@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstrator of Phenomena at Lightspeed — Beckett Mazeau</title>
+  <meta name="description" content="Case study: A Processing simulation demonstrating length contraction and relativistic Doppler shift as a rocket approaches the speed of light.">
+  <link rel="canonical" href="https://beckettmazeau.com/projects/project-5.html">
+
+  <meta property="og:title" content="Demonstrator of Phenomena at Lightspeed — Beckett Mazeau">
+  <meta property="og:description" content="A Processing simulation demonstrating length contraction and the relativistic Doppler effect as a rocket approaches the speed of light — featuring a 2.5D star field and interactive GUI.">
+  <meta property="og:url" content="https://beckettmazeau.com/projects/project-5.html">
+  <meta property="og:type" content="article">
+
+  <!-- Card metadata -->
+  <meta name="card-title"   content="Demonstrator of Phenomena at Lightspeed">
+  <meta name="card-excerpt" content="A Processing simulation demonstrating length contraction and relativistic Doppler shift as a rocket approaches lightspeed — with a 2.5D parallax star field and real-time interactive controls.">
+  <meta name="card-image"   content="../Images/lightspeed_high_v.png">
+  <meta name="card-tag"     content="Astrophysics Simulation">
+  <meta name="card-date"    content="2025-01-15">
+  <meta name="card-techs"   content="Java,Processing,Special Relativity,LazyGui,2.5D Rendering">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .gui-screenshot {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .gui-screenshot-figure {
+      margin: 0;
+    }
+    .gui-screenshot-figure figcaption {
+      font-size: 0.8rem;
+      color: var(--color-muted, #888);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a href="../index.html" class="logo" aria-label="Home">
+        <span class="logo-mark">BM</span>
+        <span class="logo-divider"></span>
+        <span class="logo-label">Mechatronics</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" role="navigation">
+        <ul>
+          <li><a href="../index.html#about" class="nav-link">About</a></li>
+          <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
+          <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== PROJECT HERO ========== -->
+  <section class="proj-hero">
+    <div class="section-container">
+      <a href="../index.html#projects" class="proj-back">&larr; All Projects</a>
+      <div class="proj-hero-meta">
+        <span class="proj-date">January 2025</span>
+      </div>
+      <h1 class="proj-hero-title">Demonstrator of Phenomena at Lightspeed</h1>
+      <p class="proj-hero-subtitle">
+        A Processing simulation that visualizes the relativistic effects of approaching
+        lightspeed — including Lorentz–FitzGerald length contraction and the relativistic
+        Doppler shift — through an interactive 2.5D star field viewed from a rocket's reference frame.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== HERO IMAGE ========== -->
+  <div class="proj-hero-image">
+    <div class="section-container">
+      <figure class="gui-screenshot-figure">
+        <img
+          src="../Images/lightspeed_high_v.png"
+          alt="Simulation at high velocity — stars squished along the horizontal axis, with blue-shifted stars ahead and red-shifted stars behind"
+          class="gui-screenshot gallery-img"
+          width="1456"
+          loading="eager"
+        >
+        <figcaption>
+          As V approaches c, stars become squished along the x dimension. Stars far
+          ahead are blue-shifted as they approach the rocket; stars to the rear are
+          red-shifted as they recede. Stars in line with the rocket experience little
+          to no shift.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ========== OVERVIEW ========== -->
+  <section class="proj-overview">
+    <div class="section-container">
+      <div class="proj-overview-grid">
+        <div class="proj-overview-text">
+          <div class="section-label" aria-hidden="true">Overview</div>
+          <h2 class="section-heading">The Challenge</h2>
+          <p>
+            Lightspeed travel is far beyond the reach of our current society — the energy
+            needed to reach it is literally infinite, and thus theoretically impossible.
+            We can, however, theoretically achieve significant fractions of lightspeed. It
+            is at these significant fractions that our expectations of what reality should
+            look like breaks down. Stars would become squished along the axis of motion,
+            the Doppler effect would shift the colors we see them emit, and space itself
+            would contract — producing a perceived increase in speed that would not be
+            observable otherwise.
+          </p>
+          <p>
+            Talking about such concepts in the abstract does not accurately convey how we
+            would experience near-lightspeed travel. This demonstrator aims to aid in
+            visualizing the ways the universe's appearance and physics change as we
+            approach c — specifically length contraction and the relativistic Doppler
+            shift — through a real-time, interactive simulation.
+          </p>
+          <p>
+            While the libraries used to create this demonstration and the computer that runs
+            it are extremely modern inventions, the equations that power it are much older:
+            the Lorentz–FitzGerald contraction equation and the Doppler shift equation
+            first described by Christian Doppler in 1842 (and extended to light by
+            Hippolyte Fizeau).
+          </p>
+        </div>
+        <aside class="proj-sidebar">
+          <div class="proj-sidebar-block">
+            <h3>Course</h3>
+            <p>Advanced Astrophysics in Simulation<br>
+               taught by Benjamin Farrar,<br>
+               Poly Prep Country Day School</p>
+          </div>
+          <div class="proj-sidebar-block">
+            <h3>Timeline</h3>
+            <p>January 15, 2025</p>
+          </div>
+          <div class="proj-sidebar-block">
+            <h3>Tools &amp; Tech</h3>
+            <ul class="proj-tools-list">
+              <li>Java / Processing (P3D)</li>
+              <li>LazyGui (KrabCode)</li>
+              <li>Lorentz–FitzGerald Contraction</li>
+              <li>Relativistic Doppler Shift</li>
+              <li>HSB–Wavelength Color Mapping</li>
+              <li>2.5D Parallax Rendering</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
+  <section class="proj-gallery">
+    <div class="section-container">
+      <div class="section-label" aria-hidden="true">Gallery</div>
+      <h2 class="section-heading">Simulation States</h2>
+      <p class="proj-gallery-intro">
+        The simulation responds in real time to the speed slider. Click any image for a closer look.
+      </p>
+
+      <div class="proj-gallery-grid">
+
+        <figure class="proj-gallery-item">
+          <img
+            src="../Images/lightspeed_zero_v.png"
+            alt="Simulation at V = 0c — stars are round, uniformly colored orange, with no length contraction or Doppler shift"
+            class="gui-screenshot gallery-img"
+          >
+          <figcaption>
+            At V = 0c, there is no observed shift in wavelength nor length contraction.
+          </figcaption>
+        </figure>
+
+        <figure class="proj-gallery-item">
+          <img
+            src="../Images/lightspeed_high_v.png"
+            alt="Simulation at high velocity approaching c — stars are squished ellipses, blue-shifted ahead and red-shifted behind"
+            class="gui-screenshot gallery-img"
+          >
+          <figcaption>
+            At V approaching c, stars become squished along the x dimension and shift
+            in color according to their position relative to the rocket's heading.
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESS ========== -->
+  <section class="proj-process">
+    <div class="section-container">
+      <div class="section-label" aria-hidden="true">How It Works</div>
+      <h2 class="section-heading">Simulation Design</h2>
+
+      <div class="proj-process-steps">
+
+        <article class="process-step">
+          <div class="process-step-num">01</div>
+          <div class="process-step-content">
+            <h3>2.5D Rendering Approach</h3>
+            <p>
+              While Processing's P3D engine was used to render the rocket itself, a 2.5D
+              approach was used for the star field. To simulate forward motion from the
+              reference frame of the rocket, a background of simulated stars moves across
+              the screen rather than the rocket itself. Parallax was accounted for by
+              decreasing each star's speed and displayed radius in proportion to its
+              distance. This avoided the bulk and complexity of a full 3D engine while
+              preserving the essential visual effects.
+            </p>
+          </div>
+        </article>
+
+        <article class="process-step">
+          <div class="process-step-num">02</div>
+          <div class="process-step-content">
+            <h3>Length Contraction</h3>
+            <p>
+              Length contraction is modeled using the Lorentz–FitzGerald equation:
+              <em>L = L₀ √(1 − v²/c²)</em>. Because the simulation preserves constant
+              time for the user, length contraction manifests as a perceived increase in
+              speed — space contracts, stars appear closer, and parallax becomes more
+              extreme. Stars are also visually squished along the horizontal axis, as
+              contraction only acts in the direction of motion. The same contraction
+              factor is applied to the x-component of each star's distance before it
+              is used in Doppler calculations.
+            </p>
+          </div>
+        </article>
+
+        <article class="process-step">
+          <div class="process-step-num">03</div>
+          <div class="process-step-content">
+            <h3>Relativistic Doppler Shift</h3>
+            <p>
+              Because screens cannot reproduce all spectral wavelengths in RGB, star colors
+              are first converted to HSB. The hue is mapped to a wavelength using
+              <em>λ = 650 − ((250/270) × hue)</em> (hue capped at 270 to avoid the
+              ambiguous purple region). The wavelength is then shifted using the
+              relativistic Doppler equation:
+              <em>λ<sub>obs</sub> = λ<sub>s</sub> √((1 + v/c) / (1 − v/c))</em>.
+              The shifted wavelength is converted back to an RGB value, preserving
+              the original saturation and brilliance of the star.
+            </p>
+          </div>
+        </article>
+
+        <article class="process-step">
+          <div class="process-step-num">04</div>
+          <div class="process-step-content">
+            <h3>Relative Star Velocity</h3>
+            <p>
+              Because the Doppler effect depends on the rate of change in distance —
+              not simply speed along the x-axis — a full 3D relative velocity is
+              calculated as the derivative of the distance formula with respect to time.
+              The x-component of each star's distance is passed through the
+              Lorentz contraction before being squared, ensuring the Doppler calculation
+              is consistent with length contraction.
+            </p>
+          </div>
+        </article>
+
+        <article class="process-step">
+          <div class="process-step-num">05</div>
+          <div class="process-step-content">
+            <h3>Interactive GUI Controls</h3>
+            <p>
+              The simulation is controlled via a LazyGui overlay. The primary user-facing
+              controls are: <strong>speed/dX</strong> — the rocket's speed as a fraction
+              of c; <strong>speed/timeScalar</strong> — simulation speed from 0 to 60
+              frames per second; <strong>speed/SimulatedRocketLocation</strong> — shifts
+              the simulated location to better expose redshifting; and
+              <strong>Fake Rocket Contraction</strong> — toggles a display of how the
+              rocket would appear contracted from a stationary observer's reference frame
+              (with an accuracy warning, as this situation cannot be faithfully represented
+              in the simulation).
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== KEY TAKEAWAYS ========== -->
+  <section class="proj-takeaways">
+    <div class="section-container">
+      <div class="section-label" aria-hidden="true">Reflection</div>
+      <h2 class="section-heading">Key Takeaways</h2>
+      <div class="proj-takeaways-grid">
+        <div class="takeaway-card">
+          <span class="takeaway-num">01</span>
+          <h3>Classical Equations Produce Surprising Visuals</h3>
+          <p>
+            The Lorentz–FitzGerald and relativistic Doppler equations are decades old,
+            but applying them in real time to a moving star field produces genuinely
+            counterintuitive results — stars compress into ellipses, the sky turns blue
+            ahead and red behind, and the apparent speed of travel increases nonlinearly
+            as v approaches c. The simulation makes the math visceral in a way that
+            prose cannot.
+          </p>
+        </div>
+        <div class="takeaway-card">
+          <span class="takeaway-num">02</span>
+          <h3>Color Reproduction Has Hard Physical Limits</h3>
+          <p>
+            RGB screens cannot faithfully reproduce all spectral colors, which required
+            an indirect HSB-to-wavelength mapping rather than a direct physics-to-pixel
+            pipeline. The hue cap at 270 and the approximate conversion formula are
+            principled workarounds, not oversights — and understanding why they are
+            necessary deepens the physics of both light and display technology.
+          </p>
+        </div>
+        <div class="takeaway-card">
+          <span class="takeaway-num">03</span>
+          <h3>Acknowledge Known Inaccuracies Explicitly</h3>
+          <p>
+            The simulation has a documented inaccuracy: stars grow unexpectedly large
+            as the rocket approaches them, because the simulated coordinate space is
+            small and the x-component dominates the distance calculation. Rather than
+            paper over it, the simulation acknowledges it directly in the write-up.
+            Transparent documentation of known limitations is as important as the
+            accuracy of what is correctly modeled.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARCHIVE NOTE ========== -->
+  <section class="proj-process">
+    <div class="section-container">
+      <p style="font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;">
+        <strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have
+        corrupted the original source code for this simulation. The write-up and screenshots
+        above represent the full available documentation of the project.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV NAVIGATION ========== -->
+  <nav class="proj-nav">
+    <div class="section-container">
+      <div class="proj-nav-grid">
+        <a href="project-4.html" class="proj-nav-link proj-nav-link--prev">
+          <span class="proj-nav-dir">&larr; Previous</span>
+          <span class="proj-nav-title">Solar Energy N-Body Simulation</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" id="contact">
+    <div class="section-container">
+      <div class="footer-grid">
+        <div class="footer-cta">
+          <h2 class="section-heading">Let's Build Something</h2>
+          <p>
+            Have an interesting project, collaboration, or opportunity?
+            I'd love to hear about it.
+          </p>
+          <a href="/cdn-cgi/l/email-protection#026067616967767642606761696776766f63786763772c616d6f" class="btn btn--primary">Get in Touch</a>
+        </div>
+        <div class="footer-links">
+          <h3>Elsewhere</h3>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/BeckettMazeau" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
+        <p class="footer-colophon">Designed &amp; built by hand.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <img class="lightbox-img" src="" alt="">
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.querySelector('.main-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        nav.classList.toggle('is-open', !open);
+      });
+    }
+
+    const lightbox    = document.getElementById('lightbox');
+    const lightboxImg = lightbox && lightbox.querySelector('.lightbox-img');
+    const galleryImgs = document.querySelectorAll('.gallery-img');
+
+    galleryImgs.forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.setAttribute('aria-hidden', 'false');
+        lightbox.classList.add('is-open');
+      });
+    });
+
+    if (lightbox) {
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+          lightbox.setAttribute('aria-hidden', 'true');
+          lightbox.classList.remove('is-open');
+          lightboxImg.src = '';
+        }
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          lightbox.setAttribute('aria-hidden', 'true');
+          lightbox.classList.remove('is-open');
+          lightboxImg.src = '';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
