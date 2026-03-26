@@ -1,34 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar Energy N-Body Simulation — Beckett Mazeau</title>
-  <meta name="description" content="Case study: A 3D N-Body simulation analyzing how orbital tilt affects solar energy collection by satellites, using ray-traced sun visibility and Newton's law of gravitation.">
-  <link rel="canonical" href="https://beckettmazeau.com/projects/project-4.html">
-
-  <meta property="og:title" content="Solar Energy N-Body Simulation — Beckett Mazeau">
-  <meta property="og:description" content="A 3D N-Body simulation demonstrating exponentially greater solar energy gained by satellites in polar orbits — using ray-traced sun visibility and gravitational physics.">
-  <meta property="og:url" content="https://beckettmazeau.com/projects/project-4.html">
-  <meta property="og:type" content="article">
-
-  <!-- Card metadata -->
-  <meta name="card-title"   content="Solar Energy N-Body Simulation">
-  <meta name="card-excerpt" content="A 3D N-Body simulation analyzing how orbital tilt affects satellite solar energy collection — featuring ray-traced sun visibility, gravitational physics, and full solar system modeling.">
-  <meta name="card-image"   content="../Images/solar_nbody_simulation.png">
-  <meta name="card-tag"     content="Astrophysics Simulation">
-  <meta name="card-date"    content="2024-10-21">
-  <meta name="card-techs"   content="Java,N-Body Simulation,Ray Tracing,Orbital Mechanics,Processing">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰</text></svg>">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../style.css">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Solar Energy N-Body Simulation — Beckett Mazeau</title>
+<meta content="Case study: A 3D N-Body simulation analyzing how orbital tilt affects solar energy collection by satellites, using ray-traced sun visibility and Newton's law of gravitation." name="description"/>
+<link href="https://beckettmazeau.com/projects/project-4.html" rel="canonical"/>
+<meta content="Solar Energy N-Body Simulation — Beckett Mazeau" property="og:title"/>
+<meta content="A 3D N-Body simulation demonstrating exponentially greater solar energy gained by satellites in polar orbits — using ray-traced sun visibility and gravitational physics." property="og:description"/>
+<meta content="https://beckettmazeau.com/projects/project-4.html" property="og:url"/>
+<meta content="article" property="og:type"/>
+<!-- Card metadata -->
+<meta content="Solar Energy N-Body Simulation" name="card-title"/>
+<meta content="A 3D N-Body simulation analyzing how orbital tilt affects satellite solar energy collection — featuring ray-traced sun visibility, gravitational physics, and full solar system modeling." name="card-excerpt"/>
+<meta content="../Images/solar_nbody_simulation.png" name="card-image"/>
+<meta content="Astrophysics Simulation" name="card-tag"/>
+<meta content="2024-10-21" name="card-date"/>
+<meta content="Java,N-Body Simulation,Ray Tracing,Orbital Mechanics,Processing" name="card-techs"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🛰&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<style>
     .gui-screenshot {
       width: 100%;
       height: auto;
@@ -46,73 +41,63 @@
   </style>
 </head>
 <body>
-
-  <!-- ========== HEADER ========== -->
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a href="../index.html" class="logo" aria-label="Home">
-        <span class="logo-mark">BM</span>
-        <span class="logo-divider"></span>
-        <span class="logo-label">Mechatronics</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" role="navigation">
-        <ul>
-          <li><a href="../index.html#about" class="nav-link">About</a></li>
-          <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
-          <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ========== PROJECT HERO ========== -->
-  <section class="proj-hero">
-    <div class="section-container">
-      <a href="../index.html#projects" class="proj-back">&larr; All Projects</a>
-      <div class="proj-hero-meta">
-        <span class="proj-date">Fall 2024</span>
-      </div>
-      <h1 class="proj-hero-title">Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits</h1>
-      <p class="proj-hero-subtitle">
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="top">
+<div class="header-inner">
+<a aria-label="Home" class="logo" href="../index.html">
+<span class="logo-mark">BM</span>
+<span class="logo-divider"></span>
+<span class="logo-label">Mechatronics</span>
+</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle">
+<span></span><span></span><span></span>
+</button>
+<nav class="main-nav" role="navigation">
+<ul>
+<li><a class="nav-link" href="../index.html#about">About</a></li>
+<li><a class="nav-link" href="../index.html#projects">Projects</a></li>
+<li><a class="nav-link" href="../index.html#updates">Updates</a></li>
+<li><a class="nav-link" href="../index.html#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- ========== PROJECT HERO ========== -->
+<section class="proj-hero">
+<div class="section-container">
+<a class="proj-back" href="../index.html#projects">← All Projects</a>
+<div class="proj-hero-meta">
+<span class="proj-date">Fall 2024</span>
+</div>
+<h1 class="proj-hero-title">Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits</h1>
+<p class="proj-hero-subtitle">
         A 3-dimensional N-Body simulation of the solar system used to analyze how orbital tilt
         affects solar energy collection — using ray-traced sun visibility, Newton's law of
         universal gravitation, and Stefan-Boltzmann radiation modeling.
       </p>
-    </div>
-  </section>
-
-  <!-- ========== HERO IMAGE ========== -->
-  <div class="proj-hero-image">
-    <div class="section-container">
-      <figure class="gui-screenshot-figure">
-        <img
-          src="../Images/solar_nbody_simulation.png"
-          alt="A frame of the 2D N-Body simulation showing planets orbiting the sun"
-          class="gui-screenshot gallery-img"
-          width="1456"
-          loading="eager"
-        >
-        <figcaption>
+</div>
+</section>
+<!-- ========== HERO IMAGE ========== -->
+<div class="proj-hero-image">
+<div class="section-container">
+<figure class="gui-screenshot-figure">
+<img alt="A frame of the 2D N-Body simulation showing planets orbiting the sun" class="gui-screenshot gallery-img" loading="eager" src="../Images/solar_nbody_simulation.png" width="1456"/>
+<figcaption>
           A frame of the 2D visual component of the N-Body simulation. The visual represents
           the x and z axes of the celestial bodies; the y-axis is omitted as it does not
           contribute to the results.
         </figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <!-- ========== OVERVIEW ========== -->
-  <section class="proj-overview">
-    <div class="section-container">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-text">
-          <div class="section-label" aria-hidden="true">Overview</div>
-          <h2 class="section-heading">The Challenge</h2>
-          <p>
+</figure>
+</div>
+</div>
+<!-- ========== OVERVIEW ========== -->
+<section class="proj-overview">
+<div class="section-container">
+<div class="proj-overview-grid">
+<div class="proj-overview-text">
+<div aria-hidden="true" class="section-label">Overview</div>
+<h2 class="section-heading">The Challenge</h2>
+<p>
             Solar energy has proven itself the most effective choice for powering the ever-growing
             number of satellites we use. The energy captured by a craft is dependent on the
             frequency, duration, and intensity of sunlight shining on it. To determine the most
@@ -120,7 +105,7 @@
             simulation to analyze the effects of different orbital tilts on energy collection,
             and thus determine the optimal angle for maximum energy capture.
           </p>
-          <p>
+<p>
             The core challenge was determining not simply whether the sun was visible from
             the satellite at any given moment, but <em>what percentage</em> of the sun was
             visible — accounting for full and partial eclipses as well as the incremental
@@ -128,119 +113,93 @@
             a ray-tracing based approach built on top of a full gravitational N-Body simulation
             incorporating all major bodies in the solar system.
           </p>
-          <p>
+<p>
             The simulation was run across orbital tilts from 0° (ecliptic) to 90° (polar),
             with results recorded and analyzed in Excel. The finding: a clear exponential
             relationship between orbital polarity and total energy collected, with polar
             orbits capturing significantly more energy.
           </p>
-        </div>
-        <aside class="proj-sidebar">
-          <div class="proj-sidebar-block">
-            <h3>Course</h3>
-            <p>Advanced Astrophysics in Simulation<br>
-               taught by Benjamin Farrar,<br>
+</div>
+<aside class="proj-sidebar">
+<div class="proj-sidebar-block">
+<h3>Course</h3>
+<p>Advanced Astrophysics in Simulation<br/>
+               taught by Benjamin Farrar,<br/>
                Poly Prep Country Day School</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Timeline</h3>
-            <p>Fall 2024 — October 21, 2024</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Tools &amp; Tech</h3>
-            <ul class="proj-tools-list">
-              <li>Java / Processing</li>
-              <li>3D N-Body Simulation</li>
-              <li>Ray Tracing (Sun Visibility)</li>
-              <li>Newton's Law of Gravitation</li>
-              <li>Stefan-Boltzmann Radiation</li>
-              <li>Excel (Graphical Analysis)</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== GALLERY ========== -->
-  <section class="proj-gallery">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Gallery</div>
-      <h2 class="section-heading">Simulation &amp; Results</h2>
-      <p class="proj-gallery-intro">
+</div>
+<div class="proj-sidebar-block">
+<h3>Timeline</h3>
+<p>Fall 2024 — October 21, 2024</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Tools &amp; Tech</h3>
+<ul class="proj-tools-list">
+<li>Java / Processing</li>
+<li>3D N-Body Simulation</li>
+<li>Ray Tracing (Sun Visibility)</li>
+<li>Newton's Law of Gravitation</li>
+<li>Stefan-Boltzmann Radiation</li>
+<li>Excel (Graphical Analysis)</li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<!-- ========== GALLERY ========== -->
+<section class="proj-gallery">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Gallery</div>
+<h2 class="section-heading">Simulation &amp; Results</h2>
+<p class="proj-gallery-intro">
         Figures below include the ray-visibility model, results graphs, and a frame
         of the 2D visual component of the N-Body simulation. Click any image for a closer look.
       </p>
-
-      <div class="proj-gallery-grid">
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/solar_ray_visibility_diagram.png"
-            alt="Diagram showing ray tracing from a satellite to points on the sun's surface, with a red sphere representing Earth occluding some rays"
-            class="gui-screenshot gallery-img"
-          >
-          <figcaption>
+<div class="proj-gallery-grid">
+<figure class="proj-gallery-item">
+<img alt="Diagram showing ray tracing from a satellite to points on the sun's surface, with a red sphere representing Earth occluding some rays" class="gui-screenshot gallery-img" src="../Images/solar_ray_visibility_diagram.png"/>
+<figcaption>
             Figure 1: A visual model illustrating sun visibility calculation. Rays are traced
             from the satellite to points distributed across the sun's surface; any ray
             intercepted by an occluding body reduces the visible-point count.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/solar_energy_vs_tilt_graph.png"
-            alt="Graph showing total joules collected over 2 years versus orbital tilt angle, with an exponential curve peaking at 90 degrees polar orbit"
-            class="gui-screenshot gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Graph showing total joules collected over 2 years versus orbital tilt angle, with an exponential curve peaking at 90 degrees polar orbit" class="gui-screenshot gallery-img" src="../Images/solar_energy_vs_tilt_graph.png"/>
+<figcaption>
             Figure 2: Total energy collected (joules) vs. orbital tilt relative to the
             ecliptic plane. 90° is a polar orbit above the north pole. Orange points are
             from a separate comparable test, added for increased precision.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/solar_watts_vs_tilt_graph.png"
-            alt="Graph showing average watts collected versus orbital tilt angle, with an exponential curve peaking at 90 degrees"
-            class="gui-screenshot gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Graph showing average watts collected versus orbital tilt angle, with an exponential curve peaking at 90 degrees" class="gui-screenshot gallery-img" src="../Images/solar_watts_vs_tilt_graph.png"/>
+<figcaption>
             Figure 3: Average watts collected vs. orbital tilt. Maximum of 782.3 W at 90°;
             minimum of 680.8 W at 0°, a difference of 101.5 W.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/solar_nbody_simulation.png"
-            alt="A frame of the 2D N-Body simulation showing orbiting planets"
-            class="gui-screenshot gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="A frame of the 2D N-Body simulation showing orbiting planets" class="gui-screenshot gallery-img" src="../Images/solar_nbody_simulation.png"/>
+<figcaption>
             Figure 4: A frame of the 2D N-Body simulation. The visual component is for
             demonstration only, rendering the x and z axes of all major solar system bodies.
           </figcaption>
-        </figure>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROCESS ========== -->
-  <section class="proj-process">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">How It Works</div>
-      <h2 class="section-heading">Methodology</h2>
-
-      <div class="proj-process-steps">
-
-        <article class="process-step">
-          <div class="process-step-num">01</div>
-          <div class="process-step-content">
-            <h3>3D N-Body Gravitational Simulation</h3>
-            <p>
+</figure>
+</div>
+</div>
+</section>
+<!-- ========== PROCESS ========== -->
+<section class="proj-process">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">How It Works</div>
+<h2 class="section-heading">Methodology</h2>
+<div class="proj-process-steps">
+<article class="process-step">
+<div class="process-step-num">01</div>
+<div class="process-step-content">
+<h3>3D N-Body Gravitational Simulation</h3>
+<p>
               An N-Body system modeling all major celestial bodies in the solar system was
               built using a time-step approach, with gravity calculated every 1 simulated
               second via Newton's Law of Universal Gravitation:
@@ -248,28 +207,26 @@
               A full solar system model (rather than just Earth and inner planets) was used
               to capture unique orbital resonances induced by planetary interactions.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">02</div>
-          <div class="process-step-content">
-            <h3>Ray-Traced Sun Visibility</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">02</div>
+<div class="process-step-content">
+<h3>Ray-Traced Sun Visibility</h3>
+<p>
               To accurately determine how much of the sun was visible to the satellite at
               any moment, 60,000 points were evenly distributed across the sun's surface
               using a golden-angle spiral. A ray was then traced from the satellite to each
               point, checking for body intersections. The fraction of unobstructed rays
               directly determined the effective solar exposure used in energy calculations.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">03</div>
-          <div class="process-step-content">
-            <h3>Power Density Formula</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">03</div>
+<div class="process-step-content">
+<h3>Power Density Formula</h3>
+<p>
               Radiation density at the satellite was calculated using
               <em>H₀ = (R²<sub>sun</sub> / D²) × H<sub>sun</sub></em>, where
               D is the distance from the sun, R<sub>sun</sub> is 695×10⁶ m, and
@@ -277,14 +234,13 @@
               multiplied by the satellite's 4.5 m² panel area, a 20% panel efficiency
               factor, and the visible-point fraction to yield instantaneous power.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">04</div>
-          <div class="process-step-content">
-            <h3>Experimental Design</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">04</div>
+<div class="process-step-content">
+<h3>Experimental Design</h3>
+<p>
               Simulations were run at orbital tilts from 0° to 90° at 70 km altitude
               for 2 simulated years each. To simplify setup, all planets were initialized
               in alignment — a physically unrealistic but experimentally neutral condition,
@@ -292,36 +248,33 @@
               difference within the dataset. Maximum watts, minimum watts, orbital tilt,
               time elapsed, and total joules were recorded and analyzed in Excel.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">05</div>
-          <div class="process-step-content">
-            <h3>2D Visual Component</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">05</div>
+<div class="process-step-content">
+<h3>2D Visual Component</h3>
+<p>
               The visual component of the simulation is for demonstration purposes only,
               rendered in 2D to reduce computational overhead. It represents only the x and
               z axes of each body. The satellite itself is not rendered, as at any
               meaningful simulation speed it would move too quickly to display usefully.
             </p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== KEY TAKEAWAYS ========== -->
-  <section class="proj-takeaways">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Reflection</div>
-      <h2 class="section-heading">Key Takeaways</h2>
-      <div class="proj-takeaways-grid">
-        <div class="takeaway-card">
-          <span class="takeaway-num">01</span>
-          <h3>Polar Orbits Are Exponentially Superior</h3>
-          <p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ========== KEY TAKEAWAYS ========== -->
+<section class="proj-takeaways">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Reflection</div>
+<h2 class="section-heading">Key Takeaways</h2>
+<div class="proj-takeaways-grid">
+<div class="takeaway-card">
+<span class="takeaway-num">01</span>
+<h3>Polar Orbits Are Exponentially Superior</h3>
+<p>
             The maximum energy collected was at 90° (polar), totaling 4.93×10¹⁰ joules,
             versus 4.29×10¹⁰ joules at 0° (ecliptic) — a difference of 6.4×10⁹ joules,
             or 101.5 W on average. The relationship is best modeled by a third-order polynomial,
@@ -329,21 +282,21 @@
             high power — astronomical observation, terrestrial mapping — should use a
             perfectly polar orbit.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">02</span>
-          <h3>Ray Tracing Enables Accurate Partial Eclipses</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">02</span>
+<h3>Ray Tracing Enables Accurate Partial Eclipses</h3>
+<p>
             A point-sampling ray-trace approach across 60,000 surface points gave a
             continuous, physically grounded measure of solar exposure — capturing not just
             total eclipses but the gradual onset and exit of partial ones. This level
             of fidelity would be impossible with a simple line-of-sight boolean check.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">03</span>
-          <h3>Simplifications Must Be Justified, Not Hidden</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">03</span>
+<h3>Simplifications Must Be Justified, Not Hidden</h3>
+<p>
             Several deliberate simplifications were made: modeling the satellite as a point,
             initializing planets in alignment, and omitting the y-axis from the visual.
             Each was explicitly reasoned through — the simulation's scale makes satellite
@@ -351,72 +304,64 @@
             across all test cases. Naming and justifying simplifications is as important
             as the physics itself.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ARCHIVE NOTE ========== -->
-  <section class="proj-process">
-    <div class="section-container">
-      <p style="font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;">
-        <strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have
+</div>
+</div>
+</div>
+</section>
+<!-- ========== ARCHIVE NOTE ========== -->
+<section class="proj-process">
+<div class="section-container">
+<p style="font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;">
+<strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have
         corrupted the original source code for this simulation. The paper and results above
         represent the full available documentation of the project.
       </p>
-    </div>
-  </section>
+</div>
+</section>
+<!-- ========== NEXT / PREV NAVIGATION ========== -->
+<nav class="proj-nav">
+<div class="section-container">
+<div class="proj-nav-grid">
+<a class="proj-nav-link proj-nav-link--prev" href="project-3.html">
+<span class="proj-nav-dir">← Previous</span>
+<span class="proj-nav-title">Java Ray Tracer</span>
+</a>
+<a class="proj-nav-link proj-nav-link--next" href="project-5.html">
+<span class="proj-nav-dir">Next →</span>
+<span class="proj-nav-title">Demonstrator of Phenomena at Lightspeed</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer" id="contact">
+<div class="section-container">
+<div class="footer-grid">
+<div class="footer-cta">
+<h2 class="section-heading">Let's Build Something</h2>
+<p>Have an interesting project, collaboration, or opportunity? Reach out to me on LinkedIn.</p>
+<a class="btn btn--primary" href="https://www.linkedin.com/in/beckett-mazeau/">Connect on LinkedIn</a>
+</div>
+<div class="footer-links">
+<h3>Elsewhere</h3>
+<ul>
 
-  <!-- ========== NEXT / PREV NAVIGATION ========== -->
-  <nav class="proj-nav">
-    <div class="section-container">
-      <div class="proj-nav-grid">
-        <a href="project-3.html" class="proj-nav-link proj-nav-link--prev">
-          <span class="proj-nav-dir">&larr; Previous</span>
-          <span class="proj-nav-title">Java Ray Tracer</span>
-        </a>
-        <a href="project-5.html" class="proj-nav-link proj-nav-link--next">
-          <span class="proj-nav-dir">Next &rarr;</span>
-          <span class="proj-nav-title">Demonstrator of Phenomena at Lightspeed</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer" id="contact">
-    <div class="section-container">
-      <div class="footer-grid">
-        <div class="footer-cta">
-          <h2 class="section-heading">Let's Build Something</h2>
-          <p>
-            Have an interesting project, collaboration, or opportunity?
-            I'd love to hear about it.
-          </p>
-          <a href="/cdn-cgi/l/email-protection#026067616967767642606761696776766f63786763772c616d6f" class="btn btn--primary">Get in Touch</a>
-        </div>
-        <div class="footer-links">
-          <h3>Elsewhere</h3>
-          <ul>
-            <li><a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/BeckettMazeau" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
-        <p class="footer-colophon">Designed &amp; built by hand.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox overlay -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img class="lightbox-img" src="" alt="">
-  </div>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<li><a href="https://github.com/BeckettMazeau" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+<li><a href="https://grabcad.com/beckett.mazeau-1" rel="noopener noreferrer" target="_blank">GrabCAD</a></li></ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
+<p class="footer-colophon">Designed &amp; built by hand.</p>
+</div>
+</div>
+</footer>
+<!-- Lightbox overlay -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<button aria-label="Close lightbox" class="lightbox-close">×</button>
+<img alt="" class="lightbox-img" src=""/>
+</div>
+<script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const toggle = document.querySelector('.nav-toggle');
@@ -460,6 +405,5 @@
       });
     }
   </script>
-
 </body>
 </html>

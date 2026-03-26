@@ -1,34 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Image Processing Application — Beckett Mazeau</title>
-  <meta name="description" content="Case study: A custom Java image processing application with Swing GUI — pixel-level filters, edge detection, chroma keying, and geometric transformations built from scratch.">
-  <link rel="canonical" href="https://beckettmazeau.com/projects/project-2.html">
-
-  <meta property="og:title" content="Java Image Processing Application — Beckett Mazeau">
-  <meta property="og:description" content="A custom-built image processing application in Java featuring pixel-manipulation filters, chroma keying, edge detection, and geometric transformations via an interactive Swing GUI.">
-  <meta property="og:url" content="https://beckettmazeau.com/projects/project-2.html">
-  <meta property="og:type" content="article">
-
-  <!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
-  <meta name="card-title"   content="Java Image Processing Application">
-  <meta name="card-excerpt" content="A custom Java photo editor built from scratch — pixel-level color filters, edge detection, chroma keying, and geometric transforms behind an interactive Swing GUI.">
-  <meta name="card-image"   content="../images/beautifulCowBWEdgeDetect.jpg">
-  <meta name="card-tag"     content="Software Engineering">
-  <meta name="card-date"    content="2024-06-01">
-  <meta name="card-techs"   content="Java,Swing GUI,OOP,Image Processing,Pixel Manipulation">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../style.css">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Java Image Processing Application — Beckett Mazeau</title>
+<meta content="Case study: A custom Java image processing application with Swing GUI — pixel-level filters, edge detection, chroma keying, and geometric transformations built from scratch." name="description"/>
+<link href="https://beckettmazeau.com/projects/project-2.html" rel="canonical"/>
+<meta content="Java Image Processing Application — Beckett Mazeau" property="og:title"/>
+<meta content="A custom-built image processing application in Java featuring pixel-manipulation filters, chroma keying, edge detection, and geometric transformations via an interactive Swing GUI." property="og:description"/>
+<meta content="https://beckettmazeau.com/projects/project-2.html" property="og:url"/>
+<meta content="article" property="og:type"/>
+<!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
+<meta content="Java Image Processing Application" name="card-title"/>
+<meta content="A custom Java photo editor built from scratch — pixel-level color filters, edge detection, chroma keying, and geometric transforms behind an interactive Swing GUI." name="card-excerpt"/>
+<meta content="../images/beautifulCowBWEdgeDetect.jpg" name="card-image"/>
+<meta content="Software Engineering" name="card-tag"/>
+<meta content="2024-06-01" name="card-date"/>
+<meta content="Java,Swing GUI,OOP,Image Processing,Pixel Manipulation" name="card-techs"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;⚙&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<style>
     /* Wide-aspect GUI screenshot — constrain height so it doesn't overwhelm the page */
     .gui-screenshot {
       width: 100%;
@@ -49,74 +44,64 @@
   </style>
 </head>
 <body>
-
-  <!-- ========== HEADER ========== -->
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a href="../index.html" class="logo" aria-label="Home">
-        <span class="logo-mark">BM</span>
-        <span class="logo-divider"></span>
-        <span class="logo-label">Mechatronics</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" role="navigation">
-        <ul>
-          <li><a href="../index.html#about" class="nav-link">About</a></li>
-          <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
-          <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ========== PROJECT HERO ========== -->
-  <section class="proj-hero">
-    <div class="section-container">
-      <a href="../index.html#projects" class="proj-back">&larr; All Projects</a>
-      <div class="proj-hero-meta">
-        <span class="proj-date">Spring 2024</span>
-      </div>
-      <h1 class="proj-hero-title">Java Image Processing Application</h1>
-      <p class="proj-hero-subtitle">
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="top">
+<div class="header-inner">
+<a aria-label="Home" class="logo" href="../index.html">
+<span class="logo-mark">BM</span>
+<span class="logo-divider"></span>
+<span class="logo-label">Mechatronics</span>
+</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle">
+<span></span><span></span><span></span>
+</button>
+<nav class="main-nav" role="navigation">
+<ul>
+<li><a class="nav-link" href="../index.html#about">About</a></li>
+<li><a class="nav-link" href="../index.html#projects">Projects</a></li>
+<li><a class="nav-link" href="../index.html#updates">Updates</a></li>
+<li><a class="nav-link" href="../index.html#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- ========== PROJECT HERO ========== -->
+<section class="proj-hero">
+<div class="section-container">
+<a class="proj-back" href="../index.html#projects">← All Projects</a>
+<div class="proj-hero-meta">
+<span class="proj-date">Spring 2024</span>
+</div>
+<h1 class="proj-hero-title">Java Image Processing Application</h1>
+<p class="proj-hero-subtitle">
         A custom-built photo editor written entirely in Java — featuring a
         pixel-manipulation engine, interactive Swing GUI, and a full suite of
         color filters, computer-vision effects, and geometric transformations
         engineered from the ground up.
       </p>
-    </div>
-  </section>
-
-  <!-- ========== HERO IMAGE — GUI screenshot (very wide, handled gracefully) ========== -->
-  <div class="proj-hero-image">
-    <div class="section-container">
-      <figure class="gui-screenshot-figure">
-        <img
-          src="../images/GUICAPTURE.png"
-          alt="Full-width capture of the Java Swing GUI showing the image preview panel, filter dropdown, and parameter input field"
-          class="gui-screenshot gallery-img"
-          width="2000"
-          loading="eager"
-        >
-        <figcaption>
+</div>
+</section>
+<!-- ========== HERO IMAGE — GUI screenshot (very wide, handled gracefully) ========== -->
+<div class="proj-hero-image">
+<div class="section-container">
+<figure class="gui-screenshot-figure">
+<img alt="Full-width capture of the Java Swing GUI showing the image preview panel, filter dropdown, and parameter input field" class="gui-screenshot gallery-img" loading="eager" src="../images/GUICAPTURE.png" width="2000"/>
+<figcaption>
           The application's Swing interface — source image selector (left dropdown),
           filter selector and optional parameter field (center), and live image preview.
           Defaults to a preview of <em>beautifulCow.jpg</em> on launch.
         </figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <!-- ========== OVERVIEW ========== -->
-  <section class="proj-overview">
-    <div class="section-container">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-text">
-          <div class="section-label" aria-hidden="true">Overview</div>
-          <h2 class="section-heading">The Challenge</h2>
-          <p>
+</figure>
+</div>
+</div>
+<!-- ========== OVERVIEW ========== -->
+<section class="proj-overview">
+<div class="section-container">
+<div class="proj-overview-grid">
+<div class="proj-overview-text">
+<div aria-hidden="true" class="section-label">Overview</div>
+<h2 class="section-heading">The Challenge</h2>
+<p>
             Most image editing tools are black boxes — you apply a filter and
             something happens, but the underlying pixel math is hidden behind
             library calls. The goal of this project was to break that abstraction
@@ -124,7 +109,7 @@
             transformation, and color operation is implemented from first principles
             at the individual pixel level.
           </p>
-          <p>
+<p>
             Rather than importing image processing libraries, the application
             models each pixel as a custom <code>Color</code> object carrying raw
             RGB data and color arithmetic methods. A 2D array of these objects
@@ -133,152 +118,134 @@
             the relationship between algorithm and visual output concrete and
             immediately testable.
           </p>
-          <p>
+<p>
             The full filter suite — sepia, monochrome, blur, contrast, edge
             detection, chroma keying, color-average smearing, and several
             geometric transforms — was designed to be accessible through an
             interactive Swing GUI, requiring no prior knowledge of image processing
             from the user.
           </p>
-        </div>
-        <aside class="proj-sidebar">
-          <div class="proj-sidebar-block">
-            <h3>Course</h3>
-            <p>Advanced Object-Oriented Programming II<br>
-               taught by Benjamin Farrar,<br>
+</div>
+<aside class="proj-sidebar">
+<div class="proj-sidebar-block">
+<h3>Course</h3>
+<p>Advanced Object-Oriented Programming II<br/>
+               taught by Benjamin Farrar,<br/>
                Poly Prep Country Day School</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Timeline</h3>
-            <p>Spring 2024</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Tools &amp; Tech</h3>
-            <ul class="proj-tools-list">
-              <li>Java (JDK 8+)</li>
-              <li>Java Swing GUI</li>
-              <li>BufferedImage I/O</li>
-              <li>Object-Oriented Design</li>
-              <li>Pixel-Level Color Math</li>
-              <li>Computer Vision Algorithms</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== GALLERY ========== -->
-  <section class="proj-gallery">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Gallery</div>
-      <h2 class="section-heading">Filter Results</h2>
-      <p class="proj-gallery-intro">
+</div>
+<div class="proj-sidebar-block">
+<h3>Timeline</h3>
+<p>Spring 2024</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Tools &amp; Tech</h3>
+<ul class="proj-tools-list">
+<li>Java (JDK 8+)</li>
+<li>Java Swing GUI</li>
+<li>BufferedImage I/O</li>
+<li>Object-Oriented Design</li>
+<li>Pixel-Level Color Math</li>
+<li>Computer Vision Algorithms</li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<!-- ========== GALLERY ========== -->
+<section class="proj-gallery">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Gallery</div>
+<h2 class="section-heading">Filter Results</h2>
+<p class="proj-gallery-intro">
         All effects shown below are produced by the custom pixel-manipulation
         engine — no external imaging libraries involved. Click any image for a
         closer look.
       </p>
-
-      <div class="proj-gallery-grid">
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/beautifulCowBWEdgeDetect.jpg"
-            alt="Edge detection applied to the Beautiful Cow photo — sharp color boundaries highlighted in white on a black background"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+<div class="proj-gallery-grid">
+<figure class="proj-gallery-item">
+<img alt="Edge detection applied to the Beautiful Cow photo — sharp color boundaries highlighted in white on a black background" class="gallery-img" loading="lazy" src="../images/beautifulCowBWEdgeDetect.jpg"/>
+<figcaption>
             Edge detection on <em>beautifulCow.jpg</em> — sharp color transitions
             are identified using a per-pixel color-distance formula and rendered
             in white against a black field.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/beautifulCowBlurred.jpg"
-            alt="3×3 box blur applied to the Beautiful Cow photo — image appears softened and smoothed"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="3×3 box blur applied to the Beautiful Cow photo — image appears softened and smoothed" class="gallery-img" loading="lazy" src="../images/beautifulCowBlurred.jpg"/>
+<figcaption>
             3×3 box blur on <em>beautifulCow.jpg</em> — each pixel is replaced with
             the average of itself and its eight neighbors, smoothing sharp detail
             across the image.
           </figcaption>
-        </figure>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== TECHNICAL DETAILS ========== -->
-  <section class="proj-specs">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Specifications</div>
-      <h2 class="section-heading">Technical Details</h2>
-
-      <div class="proj-specs-grid">
-        <table class="specs-table">
-          <tbody>
-            <tr>
-              <th>Language</th>
-              <td>Java (JDK 8 or higher)</td>
-            </tr>
-            <tr>
-              <th>GUI Framework</th>
-              <td>Java Swing — dropdown selectors, text input fields, Apply/Save controls</td>
-            </tr>
-            <tr>
-              <th>Core Data Structure</th>
-              <td>2D array of custom <code>Color</code> objects (RGB wrapper with color math)</td>
-            </tr>
-            <tr>
-              <th>File I/O</th>
-              <td>Reads/writes <code>.jpg</code> / <code>.jpeg</code> via <code>BufferedImage</code> conversion</td>
-            </tr>
-            <tr>
-              <th>Color Filters</th>
-              <td>Sepia, Monochrome (grayscale), Contrast (user-defined factor), 3×3 Box Blur</td>
-            </tr>
-            <tr>
-              <th>Computer Vision</th>
-              <td>Edge Detection (color-distance formula), Chroma Key (tolerance-based BG swap), Color Average Shift (directional smear)</td>
-            </tr>
-            <tr>
-              <th>Geometric Transforms</th>
-              <td>90° CW / CCW Rotation, LR / RL / TD / DU Mirroring, Crop (T, B, R, L pixel cuts)</td>
-            </tr>
-            <tr>
-              <th>Input Format</th>
-              <td>Single values (<code>1.5</code>), RGB+Tolerance (<code>R,G,B,T</code>), Crop offsets (<code>T,B,R,L</code>)</td>
-            </tr>
-            <tr>
-              <th>Source Files</th>
-              <td><code>Color.java</code>, <code>ColorImage.java</code>, <code>GUI.java</code>, <code>PhotoshopDriver.java</code></td>
-            </tr>
-            <tr>
-              <th>Image Directory</th>
-              <td><code>./Images/</code> — source and output files stored here</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROCESS ========== -->
-  <section class="proj-process">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Process</div>
-      <h2 class="section-heading">Design &amp; Implementation</h2>
-
-      <div class="proj-process-steps">
-
-        <article class="process-step">
-          <div class="process-step-num">01</div>
-          <div class="process-step-content">
-            <h3>Pixel-Level Architecture</h3>
-            <p>
+</figure>
+</div>
+</div>
+</section>
+<!-- ========== TECHNICAL DETAILS ========== -->
+<section class="proj-specs">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Specifications</div>
+<h2 class="section-heading">Technical Details</h2>
+<div class="proj-specs-grid">
+<table class="specs-table">
+<tbody>
+<tr>
+<th>Language</th>
+<td>Java (JDK 8 or higher)</td>
+</tr>
+<tr>
+<th>GUI Framework</th>
+<td>Java Swing — dropdown selectors, text input fields, Apply/Save controls</td>
+</tr>
+<tr>
+<th>Core Data Structure</th>
+<td>2D array of custom <code>Color</code> objects (RGB wrapper with color math)</td>
+</tr>
+<tr>
+<th>File I/O</th>
+<td>Reads/writes <code>.jpg</code> / <code>.jpeg</code> via <code>BufferedImage</code> conversion</td>
+</tr>
+<tr>
+<th>Color Filters</th>
+<td>Sepia, Monochrome (grayscale), Contrast (user-defined factor), 3×3 Box Blur</td>
+</tr>
+<tr>
+<th>Computer Vision</th>
+<td>Edge Detection (color-distance formula), Chroma Key (tolerance-based BG swap), Color Average Shift (directional smear)</td>
+</tr>
+<tr>
+<th>Geometric Transforms</th>
+<td>90° CW / CCW Rotation, LR / RL / TD / DU Mirroring, Crop (T, B, R, L pixel cuts)</td>
+</tr>
+<tr>
+<th>Input Format</th>
+<td>Single values (<code>1.5</code>), RGB+Tolerance (<code>R,G,B,T</code>), Crop offsets (<code>T,B,R,L</code>)</td>
+</tr>
+<tr>
+<th>Source Files</th>
+<td><code>Color.java</code>, <code>ColorImage.java</code>, <code>GUI.java</code>, <code>PhotoshopDriver.java</code></td>
+</tr>
+<tr>
+<th>Image Directory</th>
+<td><code>./Images/</code> — source and output files stored here</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ========== PROCESS ========== -->
+<section class="proj-process">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Process</div>
+<h2 class="section-heading">Design &amp; Implementation</h2>
+<div class="proj-process-steps">
+<article class="process-step">
+<div class="process-step-num">01</div>
+<div class="process-step-content">
+<h3>Pixel-Level Architecture</h3>
+<p>
               Rather than delegating color operations to a standard library, the
               project introduces <code>Color.java</code> — a custom RGB wrapper
               class that owns color data and exposes arithmetic for channel
@@ -287,21 +254,20 @@
               underlying color math rather than a series of bit-shifting operations
               on raw integers.
             </p>
-            <p>
-              <code>ColorImage.java</code> builds on this by representing an
+<p>
+<code>ColorImage.java</code> builds on this by representing an
               entire image as a 2D <code>Color</code> array. Every filter method
               lives here, iterating over the grid and writing new color values
               based only on the class's own pixel data and the rules of the
               specific algorithm — no external state, no side effects.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">02</div>
-          <div class="process-step-content">
-            <h3>Color &amp; Artistic Filters</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">02</div>
+<div class="process-step-content">
+<h3>Color &amp; Artistic Filters</h3>
+<p>
               The foundational filter set covers the most common photographic
               adjustments. <strong>Sepia</strong> applies a classic warm tone
               through a fixed RGB weighting formula on each pixel. <strong>Monochrome</strong>
@@ -313,14 +279,13 @@
               foundational convolution operation implemented without any matrix
               library.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">03</div>
-          <div class="process-step-content">
-            <h3>Advanced Computer Vision</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">03</div>
+<div class="process-step-content">
+<h3>Advanced Computer Vision</h3>
+<p>
               Edge detection uses a color-distance formula to compare each pixel
               against its neighbors — when the distance exceeds a threshold, the
               pixel is classified as an edge. The filter offers two output modes:
@@ -328,7 +293,7 @@
               original image. Both modes required careful handling of border pixels
               where the full 3×3 neighborhood is unavailable.
             </p>
-            <p>
+<p>
               Chroma keying accepts a target background color and user-defined
               tolerance as <code>R,G,B,T</code> input. Any source pixel within
               that tolerance range is replaced with the corresponding pixel from
@@ -338,14 +303,13 @@
               computing a weighted blend of a pixel and a neighbor in a specified
               direction, producing a motion-blur-like artifact.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">04</div>
-          <div class="process-step-content">
-            <h3>Geometric Transformations &amp; I/O</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">04</div>
+<div class="process-step-content">
+<h3>Geometric Transformations &amp; I/O</h3>
+<p>
               Rotation and mirroring operate by constructing a new
               <code>ColorImage</code> with remapped dimensions and populating it
               by reading source pixel coordinates through a transformation function —
@@ -354,23 +318,22 @@
               right, and left pixel offsets, producing a new image of the reduced
               dimensions.
             </p>
-            <p>
-              <code>PhotoshopDriver.java</code> handles all file I/O, converting
+<p>
+<code>PhotoshopDriver.java</code> handles all file I/O, converting
               between Java's <code>BufferedImage</code> and the internal
               <code>ColorImage</code> format on load and save. This boundary layer
               keeps image codec concerns entirely outside the processing engine,
               and means any JPEG-compatible image in the <code>./Images/</code>
               directory is immediately accessible from the GUI dropdown.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">05</div>
-          <div class="process-step-content">
-            <h3>Swing GUI &amp; User Workflow</h3>
-            <p>
-              <code>GUI.java</code> manages the complete Swing interface and
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">05</div>
+<div class="process-step-content">
+<h3>Swing GUI &amp; User Workflow</h3>
+<p>
+<code>GUI.java</code> manages the complete Swing interface and
               event-listener layer. The workflow is deliberately linear: choose a
               source image from the left dropdown, select a filter from the main
               dropdown, supply any required parameters in the text field that
@@ -380,106 +343,97 @@
               a single float, an <code>R,G,B,T</code> tuple, or crop offsets —
               without needing to consult documentation.
             </p>
-          </div>
-        </article>
-
-      </div><!-- /proj-process-steps -->
-    </div>
-  </section>
-
-  <!-- ========== KEY TAKEAWAYS ========== -->
-  <section class="proj-takeaways">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Reflection</div>
-      <h2 class="section-heading">Key Takeaways</h2>
-      <div class="proj-takeaways-grid">
-        <div class="takeaway-card">
-          <span class="takeaway-num">01</span>
-          <h3>Abstraction Through Custom Types</h3>
-          <p>
+</div>
+</article>
+</div><!-- /proj-process-steps -->
+</div>
+</section>
+<!-- ========== KEY TAKEAWAYS ========== -->
+<section class="proj-takeaways">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Reflection</div>
+<h2 class="section-heading">Key Takeaways</h2>
+<div class="proj-takeaways-grid">
+<div class="takeaway-card">
+<span class="takeaway-num">01</span>
+<h3>Abstraction Through Custom Types</h3>
+<p>
             Wrapping raw RGB integers in a dedicated <code>Color</code> class
             paid dividends throughout the project. Every algorithm could express
             its logic in terms of colors and distances rather than bitwise
             arithmetic, keeping the code readable and making bugs traceable to
             specific color operations rather than silent integer overflow.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">02</span>
-          <h3>Immutability Simplifies Filters</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">02</span>
+<h3>Immutability Simplifies Filters</h3>
+<p>
             Designing filter methods to produce new <code>ColorImage</code>
             instances rather than mutating in place eliminated an entire class
             of bugs where a filter's output pixel would contaminate the input
             for a neighboring pixel in the same pass — a subtle issue that
             would have been especially damaging in the blur and smear effects.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">03</span>
-          <h3>UI Feedback Reduces User Error</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">03</span>
+<h3>UI Feedback Reduces User Error</h3>
+<p>
             Conditional parameter fields that appear only when a filter requires
             input — and that show inline format hints — dramatically reduced
             invalid entries during testing. Coupling UI state directly to the
             selected filter in the event listener made the interaction model
             self-documenting rather than relying on a separate instruction panel.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== NEXT / PREV NAVIGATION ========== -->
+<nav class="proj-nav">
+<div class="section-container">
+<div class="proj-nav-grid">
+<a class="proj-nav-link proj-nav-link--prev" href="project-1.html">
+<span class="proj-nav-dir">← Previous</span>
+<span class="proj-nav-title">Composite Rocket Body Curing Oven</span>
+</a>
+<a class="proj-nav-link proj-nav-link--next" href="project-3.html">
+<span class="proj-nav-dir">Next →</span>
+<span class="proj-nav-title">Ray Tracer Project</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer" id="contact">
+<div class="section-container">
+<div class="footer-grid">
+<div class="footer-cta">
+<h2 class="section-heading">Let's Build Something</h2>
+<p>Have an interesting project, collaboration, or opportunity? Reach out to me on LinkedIn.</p>
+<a class="btn btn--primary" href="https://www.linkedin.com/in/beckett-mazeau/">Connect on LinkedIn</a>
+</div>
+<div class="footer-links">
+<h3>Elsewhere</h3>
+<ul>
 
-  <!-- ========== NEXT / PREV NAVIGATION ========== -->
-  <nav class="proj-nav">
-    <div class="section-container">
-      <div class="proj-nav-grid">
-        <a href="project-1.html" class="proj-nav-link proj-nav-link--prev">
-          <span class="proj-nav-dir">&larr; Previous</span>
-          <span class="proj-nav-title">Composite Rocket Body Curing Oven</span>
-        </a>
-        <a href="project-3.html" class="proj-nav-link proj-nav-link--next">
-          <span class="proj-nav-dir">Next &rarr;</span>
-          <span class="proj-nav-title">Ray Tracer Project</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer" id="contact">
-    <div class="section-container">
-      <div class="footer-grid">
-        <div class="footer-cta">
-          <h2 class="section-heading">Let's Build Something</h2>
-          <p>
-            Have an interesting project, collaboration, or opportunity?
-            I'd love to hear about it.
-          </p>
-          <a href="mailto:beckett@beckettmazeau.com" class="btn btn--primary">Get in Touch</a>
-        </div>
-        <div class="footer-links">
-          <h3>Elsewhere</h3>
-          <ul>
-            <li><a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/BeckettMazeau" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
-        <p class="footer-colophon">Designed &amp; built by hand.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox overlay -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img class="lightbox-img" src="" alt="">
-  </div>
-
-  <script>
+<li><a href="https://github.com/BeckettMazeau" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+<li><a href="https://grabcad.com/beckett.mazeau-1" rel="noopener noreferrer" target="_blank">GrabCAD</a></li></ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
+<p class="footer-colophon">Designed &amp; built by hand.</p>
+</div>
+</div>
+</footer>
+<!-- Lightbox overlay -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<button aria-label="Close lightbox" class="lightbox-close">×</button>
+<img alt="" class="lightbox-img" src=""/>
+</div>
+<script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -526,6 +480,5 @@
       });
     }
   </script>
-
 </body>
 </html>

@@ -1,34 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Ray Tracer — Beckett Mazeau</title>
-  <meta name="description" content="Case study: A Java ray tracer with advanced Swing GUI — Phong shading, reflections, anti-aliasing, shadows, multi-threaded rendering, and interactive 3D scene creation.">
-  <link rel="canonical" href="https://beckettmazeau.com/projects/project-3.html">
-
-  <meta property="og:title" content="Java Ray Tracer — Beckett Mazeau">
-  <meta property="og:description" content="A Java ray tracer with a full Swing GUI for interactive 3D scene creation — featuring Phong shading, mirror reflections, anti-aliasing, shadow casting, and multi-threaded rendering.">
-  <meta property="og:url" content="https://beckettmazeau.com/projects/project-3.html">
-  <meta property="og:type" content="article">
-
-  <!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
-  <meta name="card-title"   content="Java Ray Tracer">
-  <meta name="card-excerpt" content="A Java ray tracer with interactive Swing GUI — Phong shading, mirror reflections, anti-aliasing, shadow casting, and multi-threaded rendering for building and exporting 3D scenes.">
-  <meta name="card-image"   content="../Images/TestScene3_EyeOfSauron_.png">
-  <meta name="card-tag"     content="Software Engineering">
-  <meta name="card-date"    content="2025-03-01">
-  <meta name="card-techs"   content="Java,Swing GUI,Ray Tracing,Multi-threading,3D Graphics,OOP">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../style.css">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Java Ray Tracer — Beckett Mazeau</title>
+<meta content="Case study: A Java ray tracer with advanced Swing GUI — Phong shading, reflections, anti-aliasing, shadows, multi-threaded rendering, and interactive 3D scene creation." name="description"/>
+<link href="https://beckettmazeau.com/projects/project-3.html" rel="canonical"/>
+<meta content="Java Ray Tracer — Beckett Mazeau" property="og:title"/>
+<meta content="A Java ray tracer with a full Swing GUI for interactive 3D scene creation — featuring Phong shading, mirror reflections, anti-aliasing, shadow casting, and multi-threaded rendering." property="og:description"/>
+<meta content="https://beckettmazeau.com/projects/project-3.html" property="og:url"/>
+<meta content="article" property="og:type"/>
+<!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
+<meta content="Java Ray Tracer" name="card-title"/>
+<meta content="A Java ray tracer with interactive Swing GUI — Phong shading, mirror reflections, anti-aliasing, shadow casting, and multi-threaded rendering for building and exporting 3D scenes." name="card-excerpt"/>
+<meta content="../Images/TestScene3_EyeOfSauron_.png" name="card-image"/>
+<meta content="Software Engineering" name="card-tag"/>
+<meta content="2025-03-01" name="card-date"/>
+<meta content="Java,Swing GUI,Ray Tracing,Multi-threading,3D Graphics,OOP" name="card-techs"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;⚙&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<style>
     /* Hero render output — display at natural aspect ratio */
     .gui-screenshot {
       width: 100%;
@@ -47,79 +42,69 @@
   </style>
 </head>
 <body>
-
-  <!-- ========== HEADER ========== -->
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a href="../index.html" class="logo" aria-label="Home">
-        <span class="logo-mark">BM</span>
-        <span class="logo-divider"></span>
-        <span class="logo-label">Mechatronics</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" role="navigation">
-        <ul>
-          <li><a href="../index.html#about" class="nav-link">About</a></li>
-          <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
-          <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ========== PROJECT HERO ========== -->
-  <section class="proj-hero">
-    <div class="section-container">
-      <a href="../index.html#projects" class="proj-back">&larr; All Projects</a>
-      <div class="proj-hero-meta">
-        <span class="proj-date">Spring 2025</span>
-      </div>
-      <h1 class="proj-hero-title">Java Ray Tracer</h1>
-      <p class="proj-hero-subtitle">
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="top">
+<div class="header-inner">
+<a aria-label="Home" class="logo" href="../index.html">
+<span class="logo-mark">BM</span>
+<span class="logo-divider"></span>
+<span class="logo-label">Mechatronics</span>
+</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle">
+<span></span><span></span><span></span>
+</button>
+<nav class="main-nav" role="navigation">
+<ul>
+<li><a class="nav-link" href="../index.html#about">About</a></li>
+<li><a class="nav-link" href="../index.html#projects">Projects</a></li>
+<li><a class="nav-link" href="../index.html#updates">Updates</a></li>
+<li><a class="nav-link" href="../index.html#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- ========== PROJECT HERO ========== -->
+<section class="proj-hero">
+<div class="section-container">
+<a class="proj-back" href="../index.html#projects">← All Projects</a>
+<div class="proj-hero-meta">
+<span class="proj-date">Spring 2025</span>
+</div>
+<h1 class="proj-hero-title">Java Ray Tracer</h1>
+<p class="proj-hero-subtitle">
         A physically-based ray tracer written entirely in Java — featuring Phong shading,
         mirror reflections, anti-aliasing, accurate shadow casting, and multi-threaded
         rendering, all driven by an interactive Swing GUI for building and exporting 3D scenes.
       </p>
-    </div>
-  </section>
-
-  <!-- ========== HERO IMAGE — render output ========== -->
-  <div class="proj-hero-image">
-    <div class="section-container">
-      <figure class="gui-screenshot-figure">
-        <img
-          src="../Images/TestScene3_EyeOfSauron_.png"
-          alt="Ray-traced Eye of Sauron scene — nested spheres producing intricate black-and-white interference patterns on a sky-blue background"
-          class="gui-screenshot gallery-img"
-          width="1456"
-          loading="eager"
-        >
-        <figcaption>
+</div>
+</section>
+<!-- ========== HERO IMAGE — render output ========== -->
+<div class="proj-hero-image">
+<div class="section-container">
+<figure class="gui-screenshot-figure">
+<img alt="Ray-traced Eye of Sauron scene — nested spheres producing intricate black-and-white interference patterns on a sky-blue background" class="gui-screenshot gallery-img" loading="eager" src="../Images/TestScene3_EyeOfSauron_.png" width="1456"/>
+<figcaption>
           The "Eye of Sauron" test scene — nested intersecting spheres producing
           intricate interference patterns, used to identify a normalization bug in the specular term.
         </figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <!-- ========== OVERVIEW ========== -->
-  <section class="proj-overview">
-    <div class="section-container">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-text">
-          <div class="section-label" aria-hidden="true">Overview</div>
-          <h2 class="section-heading">The Challenge</h2>
-          <p>
+</figure>
+</div>
+</div>
+<!-- ========== OVERVIEW ========== -->
+<section class="proj-overview">
+<div class="section-container">
+<div class="proj-overview-grid">
+<div class="proj-overview-text">
+<div aria-hidden="true" class="section-label">Overview</div>
+<h2 class="section-heading">The Challenge</h2>
+<p>
             Ray tracing is one of the most direct ways to understand how light physically
             behaves — but implementing it from scratch means confronting every assumption
             that production renderers quietly paper over. The goal of this project was to
             build a complete, working ray tracer in Java where every lighting model, shadow,
             reflection, and material response is implemented from first principles.
           </p>
-          <p>
+<p>
             Rather than relying on any graphics library, the renderer casts rays per-pixel,
             evaluates intersections against scene geometry, and computes color through the
             full Phong reflection model — including diffuse, specular, and mirror-reflected
@@ -127,203 +112,165 @@
             horizontal chunks distributed across CPU threads, keeping render times practical
             even at high resolutions.
           </p>
-          <p>
+<p>
             The accompanying Swing GUI makes the system fully interactive: users can
             compose scenes from spheres, planes, triangles, and polygons; adjust material
             and lighting properties; navigate a live low-resolution preview with a
             6-DOF camera; and save full-quality renders to disk — all without touching code.
           </p>
-        </div>
-        <aside class="proj-sidebar">
-          <div class="proj-sidebar-block">
-            <h3>Course</h3>
-            <p>Advanced Object-Oriented Programming II<br>
-               taught by Benjamin Farrar,<br>
+</div>
+<aside class="proj-sidebar">
+<div class="proj-sidebar-block">
+<h3>Course</h3>
+<p>Advanced Object-Oriented Programming II<br/>
+               taught by Benjamin Farrar,<br/>
                Poly Prep Country Day School</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Timeline</h3>
-            <p>Spring 2025</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Tools &amp; Tech</h3>
-            <ul class="proj-tools-list">
-              <li>Java (JDK 8+)</li>
-              <li>Java Swing GUI</li>
-              <li>Ray Tracing / Phong Model</li>
-              <li>Multi-threaded Rendering</li>
-              <li>3D Vector Math</li>
-              <li>Object-Oriented Design</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== GALLERY ========== -->
-  <section class="proj-gallery">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Gallery</div>
-      <h2 class="section-heading">Render Results &amp; GUI</h2>
-      <p class="proj-gallery-intro">
+</div>
+<div class="proj-sidebar-block">
+<h3>Timeline</h3>
+<p>Spring 2025</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Tools &amp; Tech</h3>
+<ul class="proj-tools-list">
+<li>Java (JDK 8+)</li>
+<li>Java Swing GUI</li>
+<li>Ray Tracing / Phong Model</li>
+<li>Multi-threaded Rendering</li>
+<li>3D Vector Math</li>
+<li>Object-Oriented Design</li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<!-- ========== GALLERY ========== -->
+<section class="proj-gallery">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Gallery</div>
+<h2 class="section-heading">Render Results &amp; GUI</h2>
+<p class="proj-gallery-intro">
         All images below are produced entirely by the custom ray tracing engine — no
         external graphics libraries involved. The GUI screenshots show the three panels
         used to configure, compose, and export a scene. Click any image for a closer look.
       </p>
-
-      <div class="proj-gallery-grid">
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/TestScene3_EyeOfSauron_.png"
-            alt="Abstract render dubbed Eye of Sauron — a perfect-mirror sphere reflecting nested circles of colored light on a sky-blue background"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
-            <em>Eye of Sauron</em> — a perfect-mirror sphere reflecting concentric rings
+<div class="proj-gallery-grid">
+<figure class="proj-gallery-item">
+<img alt="Abstract render dubbed Eye of Sauron — a perfect-mirror sphere reflecting nested circles of colored light on a sky-blue background" class="gallery-img" loading="lazy" src="../Images/TestScene3_EyeOfSauron_.png"/>
+<figcaption>
+<em>Eye of Sauron</em> — a perfect-mirror sphere reflecting concentric rings
             of colored geometry. The symmetric pattern emerges entirely from recursive
             ray reflections with no hand-authored texture.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/TestScene1.png"
-            alt="Ray-traced scene with a cyan Lambert sphere inside a magenta Phong ring and a large maroon sphere on a dark background"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Ray-traced scene with a cyan Lambert sphere inside a magenta Phong ring and a large maroon sphere on a dark background" class="gallery-img" loading="lazy" src="../Images/TestScene1.png"/>
+<figcaption>
             Mixed-material scene — a Lambert cyan sphere nested inside a Phong magenta
             torus-like ring, alongside a large maroon sphere, demonstrating the visual
             difference between flat diffuse and specular shading models.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/TestScene2.png"
-            alt="Reflective purple Phong sphere with two green spheres on a mirror plane floor, accurate shadow casting visible"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Reflective purple Phong sphere with two green spheres on a mirror plane floor, accurate shadow casting visible" class="gallery-img" loading="lazy" src="../Images/TestScene2.png"/>
+<figcaption>
             Mirror-floor scene — a Mirror Phong purple sphere and two Lambert green
             spheres sit on a reflective plane. Shadow rays correctly occlude indirect
             light from each sphere's perspective.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/SettingsGUI.png"
-            alt="Settings panel of the Java Swing GUI showing resolution, aspect ratio, FOV, anti-aliasing, and multi-thread controls"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Settings panel of the Java Swing GUI showing resolution, aspect ratio, FOV, anti-aliasing, and multi-thread controls" class="gallery-img" loading="lazy" src="../Images/SettingsGUI.png"/>
+<figcaption>
             The <strong>Settings</strong> panel — users configure output resolution,
             aspect ratio, field of view, anti-aliasing sample count, and multi-threading
             before entering the scene editor.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/SceneCreatorGUI.png"
-            alt="Scene Creator panel showing dropdowns for scene and object type selection alongside Create New Object, Create New Scene, and Update Mode buttons"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Scene Creator panel showing dropdowns for scene and object type selection alongside Create New Object, Create New Scene, and Update Mode buttons" class="gallery-img" loading="lazy" src="../Images/SceneCreatorGUI.png"/>
+<figcaption>
             The <strong>Scene Creator</strong> panel — object type and scene selectors
             sit alongside controls for adding new objects, creating new scenes, and
             switching into Update Mode to edit or remove existing objects.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../Images/ViewerGUI.png"
-            alt="Viewer panel showing a filename field, Save button, keyboard control legend, and live black preview canvas for camera navigation"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="Viewer panel showing a filename field, Save button, keyboard control legend, and live black preview canvas for camera navigation" class="gallery-img" loading="lazy" src="../Images/ViewerGUI.png"/>
+<figcaption>
             The <strong>Viewer</strong> panel — a live low-resolution preview lets
             users navigate the scene with WASD and arrow keys before saving a
             full-quality render to disk.
           </figcaption>
-        </figure>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== TECHNICAL DETAILS ========== -->
-  <section class="proj-specs">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Specifications</div>
-      <h2 class="section-heading">Technical Details</h2>
-
-      <div class="proj-specs-grid">
-        <table class="specs-table">
-          <tbody>
-            <tr>
-              <th>Language</th>
-              <td>Java (JDK 8 or higher)</td>
-            </tr>
-            <tr>
-              <th>GUI Framework</th>
-              <td>Java Swing — settings panel, scene creator, interactive viewer with live preview</td>
-            </tr>
-            <tr>
-              <th>Geometry</th>
-              <td>Spheres, planes, triangles, and arbitrary convex polygons</td>
-            </tr>
-            <tr>
-              <th>Lighting Models</th>
-              <td>Lambert (diffuse), Phong (diffuse + specular), Mirror Phong (specular + reflections), Perfect Mirror</td>
-            </tr>
-            <tr>
-              <th>Shadows</th>
-              <td>Shadow rays cast from each intersection point toward each light source; occluding objects block light contribution</td>
-            </tr>
-            <tr>
-              <th>Reflections</th>
-              <td>Reflected viewing ray cast at Phong / mirror surfaces; recursive color evaluation of hit point</td>
-            </tr>
-            <tr>
-              <th>Anti-aliasing</th>
-              <td>Configurable super-sampling — pixel subdivided into N² sub-rays, colors averaged; reduces jagged edges and preserves thin geometry</td>
-            </tr>
-            <tr>
-              <th>Multi-threading</th>
-              <td>Image partitioned into horizontal strips; each strip dispatched to a <code>Runnable</code> on its own <code>Thread</code>; main thread joins before output</td>
-            </tr>
-            <tr>
-              <th>Camera</th>
-              <td>6-DOF interactive camera in viewer — WASD translation, arrow-key look direction; preview rendered at reduced quality for responsiveness</td>
-            </tr>
-            <tr>
-              <th>Output</th>
-              <td>Full-resolution PNG saved to disk; filename entered in Viewer panel (no <code>.png</code> extension required)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROCESS ========== -->
-  <section class="proj-process">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Process</div>
-      <h2 class="section-heading">Design &amp; Implementation</h2>
-
-      <div class="proj-process-steps">
-
-        <article class="process-step">
-          <div class="process-step-num">01</div>
-          <div class="process-step-content">
-            <h3>Ray–Scene Intersection Engine</h3>
-            <p>
+</figure>
+</div>
+</div>
+</section>
+<!-- ========== TECHNICAL DETAILS ========== -->
+<section class="proj-specs">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Specifications</div>
+<h2 class="section-heading">Technical Details</h2>
+<div class="proj-specs-grid">
+<table class="specs-table">
+<tbody>
+<tr>
+<th>Language</th>
+<td>Java (JDK 8 or higher)</td>
+</tr>
+<tr>
+<th>GUI Framework</th>
+<td>Java Swing — settings panel, scene creator, interactive viewer with live preview</td>
+</tr>
+<tr>
+<th>Geometry</th>
+<td>Spheres, planes, triangles, and arbitrary convex polygons</td>
+</tr>
+<tr>
+<th>Lighting Models</th>
+<td>Lambert (diffuse), Phong (diffuse + specular), Mirror Phong (specular + reflections), Perfect Mirror</td>
+</tr>
+<tr>
+<th>Shadows</th>
+<td>Shadow rays cast from each intersection point toward each light source; occluding objects block light contribution</td>
+</tr>
+<tr>
+<th>Reflections</th>
+<td>Reflected viewing ray cast at Phong / mirror surfaces; recursive color evaluation of hit point</td>
+</tr>
+<tr>
+<th>Anti-aliasing</th>
+<td>Configurable super-sampling — pixel subdivided into N² sub-rays, colors averaged; reduces jagged edges and preserves thin geometry</td>
+</tr>
+<tr>
+<th>Multi-threading</th>
+<td>Image partitioned into horizontal strips; each strip dispatched to a <code>Runnable</code> on its own <code>Thread</code>; main thread joins before output</td>
+</tr>
+<tr>
+<th>Camera</th>
+<td>6-DOF interactive camera in viewer — WASD translation, arrow-key look direction; preview rendered at reduced quality for responsiveness</td>
+</tr>
+<tr>
+<th>Output</th>
+<td>Full-resolution PNG saved to disk; filename entered in Viewer panel (no <code>.png</code> extension required)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ========== PROCESS ========== -->
+<section class="proj-process">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Process</div>
+<h2 class="section-heading">Design &amp; Implementation</h2>
+<div class="proj-process-steps">
+<article class="process-step">
+<div class="process-step-num">01</div>
+<div class="process-step-content">
+<h3>Ray–Scene Intersection Engine</h3>
+<p>
               The core of the renderer is a per-pixel ray casting loop. For each pixel,
               a viewing ray is constructed from the camera origin through the pixel's
               position on the image plane. That ray is then tested against every object
@@ -331,20 +278,19 @@
               surface point. From there, the material model at that point determines
               the returned color.
             </p>
-            <p>
+<p>
               Intersection logic is implemented separately for each geometry type —
               spheres use the quadratic ray–sphere formula, planes use the dot-product
               formulation, and triangles and polygons use barycentric coordinate tests.
               This keeps each primitive's math self-contained and independently testable.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">02</div>
-          <div class="process-step-content">
-            <h3>Lighting &amp; Material Models</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">02</div>
+<div class="process-step-content">
+<h3>Lighting &amp; Material Models</h3>
+<p>
               Four material types are supported. <strong>Lambert</strong> computes flat
               diffuse shading based on the angle between the surface normal and each
               light direction — simple, fast, and matte. <strong>Phong</strong> extends
@@ -356,35 +302,33 @@
               material's own color entirely and returns only the reflected ray's color,
               producing a true mirror surface.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">03</div>
-          <div class="process-step-content">
-            <h3>Shadows &amp; Reflections</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">03</div>
+<div class="process-step-content">
+<h3>Shadows &amp; Reflections</h3>
+<p>
               Shadow testing is performed by casting a secondary ray from the surface
               intersection point toward each light source. If any scene object lies
               between that point and the light, the light's contribution is excluded
               from the color calculation. This is repeated per light, so scenes with
               multiple lights can produce overlapping shadow regions correctly.
             </p>
-            <p>
+<p>
               Reflections follow the same mechanism: at a reflective surface, a new ray
               is constructed as the mirror of the incoming viewing ray about the surface
               normal, and the renderer evaluates what that ray hits. The returned color
               is then composited into the current pixel's result according to the
               material's reflectance weight.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">04</div>
-          <div class="process-step-content">
-            <h3>Anti-aliasing</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">04</div>
+<div class="process-step-content">
+<h3>Anti-aliasing</h3>
+<p>
               A single ray per pixel can clip just past the edge of an object, producing
               jagged staircase artifacts — especially visible on curved surfaces and thin
               geometry. Anti-aliasing addresses this by subdividing each pixel into an
@@ -394,14 +338,13 @@
               time. Even a 3×3 sample grid (9 rays per pixel) substantially smooths
               curved edges at moderate cost.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">05</div>
-          <div class="process-step-content">
-            <h3>Multi-threaded Rendering</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">05</div>
+<div class="process-step-content">
+<h3>Multi-threaded Rendering</h3>
+<p>
               Rendering a full-resolution image is computationally expensive — each
               pixel may spawn multiple rays for shadows, reflections, and anti-aliasing
               samples. To reduce wall-clock time, the image is partitioned into equal
@@ -413,14 +356,13 @@
               calls <code>join()</code> on all worker threads before writing the output
               file, ensuring a complete image.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">06</div>
-          <div class="process-step-content">
-            <h3>Interactive GUI &amp; Scene Workflow</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">06</div>
+<div class="process-step-content">
+<h3>Interactive GUI &amp; Scene Workflow</h3>
+<p>
               The GUI is organized across three panels navigable from a top dropdown.
               The <strong>Settings</strong> panel configures output resolution, aspect
               ratio, FOV, anti-aliasing, and threading before any scene work begins.
@@ -433,34 +375,32 @@
               navigable by keyboard, so users can frame their shot before committing
               to a full-resolution save.
             </p>
-          </div>
-        </article>
-
-      </div><!-- /proj-process-steps -->
-    </div>
-  </section>
-
-  <!-- ========== KEY TAKEAWAYS ========== -->
-  <section class="proj-takeaways">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Reflection</div>
-      <h2 class="section-heading">Key Takeaways</h2>
-      <div class="proj-takeaways-grid">
-        <div class="takeaway-card">
-          <span class="takeaway-num">01</span>
-          <h3>Physics First, Abstraction Second</h3>
-          <p>
+</div>
+</article>
+</div><!-- /proj-process-steps -->
+</div>
+</section>
+<!-- ========== KEY TAKEAWAYS ========== -->
+<section class="proj-takeaways">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Reflection</div>
+<h2 class="section-heading">Key Takeaways</h2>
+<div class="proj-takeaways-grid">
+<div class="takeaway-card">
+<span class="takeaway-num">01</span>
+<h3>Physics First, Abstraction Second</h3>
+<p>
             Implementing lighting and reflection from the underlying geometry — rather
             than calling library routines — made every visual artifact immediately
             traceable to a specific formula. When the Eye of Sauron scene produced
             unexpected color banding, the source was identifiable as a missing
             normalization step in the specular term, not a mystery inside a black-box shader.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">02</span>
-          <h3>Concurrency Requires Careful Data Layout</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">02</span>
+<h3>Concurrency Requires Careful Data Layout</h3>
+<p>
             Multi-threaded rendering is straightforward when threads write to
             non-overlapping memory regions. Partitioning the image by row meant
             threads never contended over the same pixel, eliminating the need for
@@ -468,68 +408,61 @@
             Designing data structures for thread safety from the start avoided
             retrofitting synchronization later.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">03</span>
-          <h3>Preview Quality as a UX Trade-off</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">03</span>
+<h3>Preview Quality as a UX Trade-off</h3>
+<p>
             Rendering the viewer preview at reduced resolution keeps the GUI
             responsive during camera navigation while still giving an accurate
             composition preview. Separating preview quality from save quality
             — and communicating that separation clearly in the UI — let the system
             feel fast without misleading users about final output.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== NEXT / PREV NAVIGATION ========== -->
+<nav class="proj-nav">
+<div class="section-container">
+<div class="proj-nav-grid">
+<a class="proj-nav-link proj-nav-link--prev" href="project-2.html">
+<span class="proj-nav-dir">← Previous</span>
+<span class="proj-nav-title">Java Image Processing Application</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer" id="contact">
+<div class="section-container">
+<div class="footer-grid">
+<div class="footer-cta">
+<h2 class="section-heading">Let's Build Something</h2>
+<p>Have an interesting project, collaboration, or opportunity? Reach out to me on LinkedIn.</p>
+<a class="btn btn--primary" href="https://www.linkedin.com/in/beckett-mazeau/">Connect on LinkedIn</a>
+</div>
+<div class="footer-links">
+<h3>Elsewhere</h3>
+<ul>
 
-  <!-- ========== NEXT / PREV NAVIGATION ========== -->
-  <nav class="proj-nav">
-    <div class="section-container">
-      <div class="proj-nav-grid">
-        <a href="project-2.html" class="proj-nav-link proj-nav-link--prev">
-          <span class="proj-nav-dir">&larr; Previous</span>
-          <span class="proj-nav-title">Java Image Processing Application</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer" id="contact">
-    <div class="section-container">
-      <div class="footer-grid">
-        <div class="footer-cta">
-          <h2 class="section-heading">Let's Build Something</h2>
-          <p>
-            Have an interesting project, collaboration, or opportunity?
-            I'd love to hear about it.
-          </p>
-          <a href="/cdn-cgi/l/email-protection#026067616967767642606761696776766f63786763772c616d6f" class="btn btn--primary">Get in Touch</a>
-        </div>
-        <div class="footer-links">
-          <h3>Elsewhere</h3>
-          <ul>
-            <li><a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/BeckettMazeau" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
-        <p class="footer-colophon">Designed &amp; built by hand.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox overlay -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img class="lightbox-img" src="" alt="">
-  </div>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<li><a href="https://github.com/BeckettMazeau" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+<li><a href="https://grabcad.com/beckett.mazeau-1" rel="noopener noreferrer" target="_blank">GrabCAD</a></li></ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
+<p class="footer-colophon">Designed &amp; built by hand.</p>
+</div>
+</div>
+</footer>
+<!-- Lightbox overlay -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<button aria-label="Close lightbox" class="lightbox-close">×</button>
+<img alt="" class="lightbox-img" src=""/>
+</div>
+<script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -576,6 +509,5 @@
       });
     }
   </script>
-
 </body>
 </html>

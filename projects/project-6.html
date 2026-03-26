@@ -1,94 +1,81 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STIK-eNote — Beckett Mazeau</title>
-  <meta name="description" content="Case study: STIK-eNote — a pocketable, clamshell-style e-Paper task tracking device built around the PocketBeagle with custom PCB, dual displays, and magnetic power gating.">
-  <link rel="canonical" href="https://beckettmazeau.com/projects/project-6.html">
-
-  <meta property="og:title" content="STIK-eNote — Beckett Mazeau">
-  <meta property="og:description" content="A pocketable e-Paper task device with dual displays, custom KiCad PCB, and hall-effect power gating. Built around the PocketBeagle for EDES 301 at Rice University.">
-  <meta property="og:url" content="https://beckettmazeau.com/projects/project-6.html">
-  <meta property="og:type" content="article">
-
-  <!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
-  <meta name="card-title"   content="STIK-eNote">
-  <meta name="card-excerpt" content="A pocketable, clamshell e-Paper task tracker with dual displays, custom KiCad PCB, and hall-effect power gating — built around the PocketBeagle.">
-  <meta name="card-image"   content="../images/stik-enote-render.png">
-  <meta name="card-tag"     content="Embedded Systems &amp; PCB Design">
-  <meta name="card-date"    content="2026-03-26">
-  <meta name="card-techs"   content="PocketBeagle,KiCad,E-Paper,TFT,C,Linux,I²C,SPI">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STIK-eNote — Beckett Mazeau</title>
+<meta content="Case study: STIK-eNote — a pocketable, clamshell-style e-Paper task tracking device built around the PocketBeagle with custom PCB, dual displays, and magnetic power gating." name="description"/>
+<link href="https://beckettmazeau.com/projects/project-6.html" rel="canonical"/>
+<meta content="STIK-eNote — Beckett Mazeau" property="og:title"/>
+<meta content="A pocketable e-Paper task device with dual displays, custom KiCad PCB, and hall-effect power gating. Built around the PocketBeagle for EDES 301 at Rice University." property="og:description"/>
+<meta content="https://beckettmazeau.com/projects/project-6.html" property="og:url"/>
+<meta content="article" property="og:type"/>
+<!-- Card metadata — used by script.js to build cards on the home and all-projects pages -->
+<meta content="STIK-eNote" name="card-title"/>
+<meta content="A pocketable, clamshell e-Paper task tracker with dual displays, custom KiCad PCB, and hall-effect power gating — built around the PocketBeagle." name="card-excerpt"/>
+<meta content="../images/stik-enote-render.png" name="card-image"/>
+<meta content="Embedded Systems &amp; PCB Design" name="card-tag"/>
+<meta content="2026-03-26" name="card-date"/>
+<meta content="PocketBeagle,KiCad,E-Paper,TFT,C,Linux,I²C,SPI" name="card-techs"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;⚙&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
 </head>
 <body>
-
-  <!-- ========== HEADER ========== -->
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a href="../index.html" class="logo" aria-label="Home">
-        <span class="logo-mark">BM</span>
-        <span class="logo-divider"></span>
-        <span class="logo-label">Mechatronics</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" role="navigation">
-        <ul>
-          <li><a href="../index.html#about" class="nav-link">About</a></li>
-          <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-          <li><a href="../index.html#updates" class="nav-link">Updates</a></li>
-          <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ========== PROJECT HERO ========== -->
-  <section class="proj-hero">
-    <div class="section-container">
-      <a href="../index.html#projects" class="proj-back">&larr; All Projects</a>
-      <div class="proj-hero-meta">
-        <span class="proj-date">Spring 2026 · In Progress</span>
-      </div>
-      <h1 class="proj-hero-title">STIK-eNote</h1>
-      <p class="proj-hero-subtitle">
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="top">
+<div class="header-inner">
+<a aria-label="Home" class="logo" href="../index.html">
+<span class="logo-mark">BM</span>
+<span class="logo-divider"></span>
+<span class="logo-label">Mechatronics</span>
+</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle">
+<span></span><span></span><span></span>
+</button>
+<nav class="main-nav" role="navigation">
+<ul>
+<li><a class="nav-link" href="../index.html#about">About</a></li>
+<li><a class="nav-link" href="../index.html#projects">Projects</a></li>
+<li><a class="nav-link" href="../index.html#updates">Updates</a></li>
+<li><a class="nav-link" href="../index.html#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- ========== PROJECT HERO ========== -->
+<section class="proj-hero">
+<div class="section-container">
+<a class="proj-back" href="../index.html#projects">← All Projects</a>
+<div class="proj-hero-meta">
+<span class="proj-date">Spring 2026 · In Progress</span>
+</div>
+<h1 class="proj-hero-title">STIK-eNote</h1>
+<p class="proj-hero-subtitle">
         A pocketable, clamshell-style task tracking device built around the
         PocketBeagle. Always-on e-Paper for your priorities at a glance, a
         color TFT and mini keyboard when you need to edit, and a custom PCB
         tying it all together.
       </p>
-    </div>
-  </section>
-
-  <!-- ========== HERO IMAGE ========== -->
-  <div class="proj-hero-image">
-    <div class="section-container">
-      <img
-        src="../images/stik-enote-render.png"
-        alt="STIK-eNote product render showing the clamshell device open with TFT display and keyboard"
-        width="960" height="540"
-        class="gallery-img"
-      >
-    </div>
-  </div>
-
-  <!-- ========== OVERVIEW ========== -->
-  <section class="proj-overview">
-    <div class="section-container">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-text">
-          <div class="section-label" aria-hidden="true">Overview</div>
-          <h2 class="section-heading">The Problem</h2>
-          <p>
+</div>
+</section>
+<!-- ========== HERO IMAGE ========== -->
+<div class="proj-hero-image">
+<div class="section-container">
+<img alt="STIK-eNote product render showing the clamshell device open with TFT display and keyboard" class="gallery-img" height="540" src="../images/stik-enote-render.png" width="960"/>
+</div>
+</div>
+<!-- ========== OVERVIEW ========== -->
+<section class="proj-overview">
+<div class="section-container">
+<div class="proj-overview-grid">
+<div class="proj-overview-text">
+<div aria-hidden="true" class="section-label">Overview</div>
+<h2 class="section-heading">The Problem</h2>
+<p>
             Phones are bad task managers. Not because the apps are lacking, but
             because every time you pull one out to check your to-do list you get
             ambushed by notifications, messages, and whatever else is competing
@@ -96,7 +83,7 @@
             device that does exactly one thing: show me what I need to do, let me
             update it, and then get out of the way.
           </p>
-          <p>
+<p>
             STIK-eNote is the answer to that. It's a clamshell device small enough
             to live in a pocket. When the lid is closed, a low-power e-Paper display
             persists your current task list at near-zero power draw. Open the lid
@@ -104,284 +91,243 @@
             and a full QWERTY mini keyboard for editing. Close it again and
             everything shuts back down except the e-Paper.
           </p>
-          <p>
+<p>
             The whole thing runs on a PocketBeagle (a stripped-down BeagleBone)
             with a custom PCB handling power gating, level shifting, and display
             driving. It's being designed for EDES 301 at Rice University.
           </p>
-        </div>
-        <aside class="proj-sidebar">
-          <div class="proj-sidebar-block">
-            <h3>Role</h3>
-            <p>Lead Engineer (Solo Project)</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Timeline</h3>
-            <p>Spring 2026 · In Progress</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Course</h3>
-            <p>EDES 301, Rice University</p>
-          </div>
-          <div class="proj-sidebar-block">
-            <h3>Tools &amp; Tech</h3>
-            <ul class="proj-tools-list">
-              <li>PocketBeagle (Linux SBC)</li>
-              <li>KiCad (Schematic &amp; PCB)</li>
-              <li>E-Paper (GDEY0213B74)</li>
-              <li>TFT (YT280S010, 240x320)</li>
-              <li>CardKB V1.1 (I²C Keyboard)</li>
-              <li>C / Linux Userspace</li>
-              <li>SPI / I²C Protocols</li>
-              <li>P-FET Power Gating</li>
-              <li>Hall Effect Sensing</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SCHEMATIC GALLERY ========== -->
-  <section class="proj-gallery">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Schematic</div>
-      <h2 class="section-heading">Circuit Schematic — V2</h2>
-      <p class="proj-gallery-intro">
+</div>
+<aside class="proj-sidebar">
+<div class="proj-sidebar-block">
+<h3>Role</h3>
+<p>Lead Engineer (Solo Project)</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Timeline</h3>
+<p>Spring 2026 · In Progress</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Course</h3>
+<p>EDES 301, Rice University</p>
+</div>
+<div class="proj-sidebar-block">
+<h3>Tools &amp; Tech</h3>
+<ul class="proj-tools-list">
+<li>PocketBeagle (Linux SBC)</li>
+<li>KiCad (Schematic &amp; PCB)</li>
+<li>E-Paper (GDEY0213B74)</li>
+<li>TFT (YT280S010, 240x320)</li>
+<li>CardKB V1.1 (I²C Keyboard)</li>
+<li>C / Linux Userspace</li>
+<li>SPI / I²C Protocols</li>
+<li>P-FET Power Gating</li>
+<li>Hall Effect Sensing</li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<!-- ========== SCHEMATIC GALLERY ========== -->
+<section class="proj-gallery">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Schematic</div>
+<h2 class="section-heading">Circuit Schematic — V2</h2>
+<p class="proj-gallery-intro">
         Six-sheet schematic organized by subsystem. Rev V2 replaces the original
         single-page rough layout with industry-standard formatting: each functional
         block gets its own sheet, and net labels replace point-to-point wiring.
         Click any sheet for a closer look.
       </p>
-
-      <div class="proj-gallery-grid">
-
-        <figure class="proj-gallery-item proj-gallery-item--wide">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0001.jpg"
-            alt="STIK-eNote V2 schematic sheet 1 of 6 — Main PocketBeagle pin assignments"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+<div class="proj-gallery-grid">
+<figure class="proj-gallery-item proj-gallery-item--wide">
+<img alt="STIK-eNote V2 schematic sheet 1 of 6 — Main PocketBeagle pin assignments" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0001.jpg"/>
+<figcaption>
             Sheet 1/6 — STIK-eNOTE. PocketBeagle pin assignments, battery thermistor,
             and top-level net routing to all peripheral subsystems.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0002.jpg"
-            alt="STIK-eNote V2 schematic sheet 2 of 6 — 3.3V to 5V Boost Converter"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="STIK-eNote V2 schematic sheet 2 of 6 — 3.3V to 5V Boost Converter" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0002.jpg"/>
+<figcaption>
             Sheet 2/6 — 3.3V to 5V Boost Converter. TPS613222ADBVR synchronous boost
             with BSS84 P-FET high-side switch.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0003.jpg"
-            alt="STIK-eNote V2 schematic sheet 3 of 6 — Hall Effect Power Switch"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="STIK-eNote V2 schematic sheet 3 of 6 — Hall Effect Power Switch" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0003.jpg"/>
+<figcaption>
             Sheet 3/6 — Hall Effect Power Switch. DRV5032FCDBZR latching hall sensor
             with signal inverter for PocketBeagle wake compatibility.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0004.jpg"
-            alt="STIK-eNote V2 schematic sheet 4 of 6 — TFT Display Connection Circuitry"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="STIK-eNote V2 schematic sheet 4 of 6 — TFT Display Connection Circuitry" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0004.jpg"/>
+<figcaption>
             Sheet 4/6 — TFT Display Connection. YT280S010 wiring with backlight
             transistor driver and P-FET power switch.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0005.jpg"
-            alt="STIK-eNote V2 schematic sheet 5 of 6 — CardKB Support Circuitry"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="STIK-eNote V2 schematic sheet 5 of 6 — CardKB Support Circuitry" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0005.jpg"/>
+<figcaption>
             Sheet 5/6 — CardKB Support Circuitry. Bidirectional I²C level shifting
             via BSS138 MOSFETs between 3.3V and 5V domains.
           </figcaption>
-        </figure>
-
-        <figure class="proj-gallery-item">
-          <img
-            src="../images/StikENote_Schematic_V2_page-0006.jpg"
-            alt="STIK-eNote V2 schematic sheet 6 of 6 — ePaper Support Circuitry"
-            loading="lazy" class="gallery-img"
-          >
-          <figcaption>
+</figure>
+<figure class="proj-gallery-item">
+<img alt="STIK-eNote V2 schematic sheet 6 of 6 — ePaper Support Circuitry" class="gallery-img" loading="lazy" src="../images/StikENote_Schematic_V2_page-0006.jpg"/>
+<figcaption>
             Sheet 6/6 — ePaper Support Circuitry. GDEY0213B74 via FPC connector with
             P-FET power gating and boost converter for PREVGH/PREVGL rails.
           </figcaption>
-        </figure>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== TECHNICAL DETAILS ========== -->
-  <section class="proj-specs">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Specifications</div>
-      <h2 class="section-heading">Technical Details</h2>
-
-      <div class="proj-specs-grid">
-        <table class="specs-table">
-          <tbody>
-            <tr>
-              <th>Processor</th>
-              <td>PocketBeagle (AM3358, 1 GHz ARM Cortex-A8, 512 MB DDR3)</td>
-            </tr>
-            <tr>
-              <th>Logic Voltage</th>
-              <td>3.3 V (PocketBeagle native)</td>
-            </tr>
-            <tr>
-              <th>E-Paper Display</th>
-              <td>GDEY0213B74 — 2.13″, SPI, via DESPI-C02 adapter board</td>
-            </tr>
-            <tr>
-              <th>TFT Display</th>
-              <td>YT280S010 — 2.8″, 240x320, SPI, 3.3 V</td>
-            </tr>
-            <tr>
-              <th>Keyboard</th>
-              <td>M5Stack CardKB V1.1 — full QWERTY, I²C at 5 V</td>
-            </tr>
-            <tr>
-              <th>Power Gating</th>
-              <td>4x BSS84 P-FET high-side switches (boost, TFT, e-Paper, hall sensor); PMF250XNEX dual N-FET for e-Paper rails</td>
-            </tr>
-            <tr>
-              <th>Boost Converter</th>
-              <td>TPS613222ADBVR — 3.3 V to 5 V synchronous boost, 2.2 µH inductor; 47 µH inductor for e-Paper PREVGH/PREVGL</td>
-            </tr>
-            <tr>
-              <th>Level Shifting</th>
-              <td>2x BSS138 N-FET bidirectional I²C shifter (SDA + SCL)</td>
-            </tr>
-            <tr>
-              <th>Lid Detection</th>
-              <td>DRV5032FCDBZR latching hall sensor + signal inverter (replaced reed switch in V2)</td>
-            </tr>
-            <tr>
-              <th>PCB Tool</th>
-              <td>KiCad 9.0.7</td>
-            </tr>
-            <tr>
-              <th>Schematic Rev</th>
-              <td>V2 — 6 sheets, separated by subsystem (Mar 26, 2026)</td>
-            </tr>
-            <tr>
-              <th>Battery</th>
-              <td>LiPo (capacity TBD), with NTC thermistor monitoring</td>
-            </tr>
-            <tr>
-              <th>Connectivity</th>
-              <td>USB 1.1 (PocketBeagle), future: WiFi via USB adapter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== BILL OF MATERIALS ========== -->
-  <section class="proj-specs">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">BOM</div>
-      <h2 class="section-heading">Bill of Materials</h2>
-      <p style="font-size:0.875rem; color:var(--color-text-muted); margin-bottom:var(--sp-md); max-width:48rem;">
+</figure>
+</div>
+</div>
+</section>
+<!-- ========== TECHNICAL DETAILS ========== -->
+<section class="proj-specs">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Specifications</div>
+<h2 class="section-heading">Technical Details</h2>
+<div class="proj-specs-grid">
+<table class="specs-table">
+<tbody>
+<tr>
+<th>Processor</th>
+<td>PocketBeagle (AM3358, 1 GHz ARM Cortex-A8, 512 MB DDR3)</td>
+</tr>
+<tr>
+<th>Logic Voltage</th>
+<td>3.3 V (PocketBeagle native)</td>
+</tr>
+<tr>
+<th>E-Paper Display</th>
+<td>GDEY0213B74 — 2.13″, SPI, via DESPI-C02 adapter board</td>
+</tr>
+<tr>
+<th>TFT Display</th>
+<td>YT280S010 — 2.8″, 240x320, SPI, 3.3 V</td>
+</tr>
+<tr>
+<th>Keyboard</th>
+<td>M5Stack CardKB V1.1 — full QWERTY, I²C at 5 V</td>
+</tr>
+<tr>
+<th>Power Gating</th>
+<td>4x BSS84 P-FET high-side switches (boost, TFT, e-Paper, hall sensor); PMF250XNEX dual N-FET for e-Paper rails</td>
+</tr>
+<tr>
+<th>Boost Converter</th>
+<td>TPS613222ADBVR — 3.3 V to 5 V synchronous boost, 2.2 µH inductor; 47 µH inductor for e-Paper PREVGH/PREVGL</td>
+</tr>
+<tr>
+<th>Level Shifting</th>
+<td>2x BSS138 N-FET bidirectional I²C shifter (SDA + SCL)</td>
+</tr>
+<tr>
+<th>Lid Detection</th>
+<td>DRV5032FCDBZR latching hall sensor + signal inverter (replaced reed switch in V2)</td>
+</tr>
+<tr>
+<th>PCB Tool</th>
+<td>KiCad 9.0.7</td>
+</tr>
+<tr>
+<th>Schematic Rev</th>
+<td>V2 — 6 sheets, separated by subsystem (Mar 26, 2026)</td>
+</tr>
+<tr>
+<th>Battery</th>
+<td>LiPo (capacity TBD), with NTC thermistor monitoring</td>
+</tr>
+<tr>
+<th>Connectivity</th>
+<td>USB 1.1 (PocketBeagle), future: WiFi via USB adapter</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ========== BILL OF MATERIALS ========== -->
+<section class="proj-specs">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">BOM</div>
+<h2 class="section-heading">Bill of Materials</h2>
+<p style="font-size:0.875rem; color:var(--color-text-muted); margin-bottom:var(--sp-md); max-width:48rem;">
         DigiKey cart as of March 26, 2026. Purchased quantities for passives
         exceed schematic requirements where higher order volumes reduce unit cost.
         Off-board components listed separately below.
       </p>
-
-      <div class="proj-specs-grid">
-        <table class="specs-table">
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Part Number</th>
-              <th>Qty</th>
-              <th>Unit $</th>
-              <th>Ext. $</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Boost Converter IC</td><td>TPS613222ADBVR</td><td>1</td><td>$0.49</td><td>$0.49</td></tr>
-            <tr><td>NPN Transistor (TFT Backlight)</td><td>SS8050-G</td><td>1</td><td>$0.24</td><td>$0.24</td></tr>
-            <tr><td>N-CH MOSFET (Level Shift)</td><td>BSS138</td><td>2</td><td>$0.28</td><td>$0.56</td></tr>
-            <tr><td>P-CH MOSFET (Power Switch)</td><td>BSS84</td><td>10</td><td>$0.031</td><td>$0.31</td></tr>
-            <tr><td>Dual N-CH MOSFET (ePaper)</td><td>PMF250XNEX</td><td>1</td><td>$0.26</td><td>$0.26</td></tr>
-            <tr><td>Schottky Diode</td><td>B0530W-7-F</td><td>4</td><td>$0.15</td><td>$0.60</td></tr>
-            <tr><td>Hall Effect Sensor</td><td>DRV5032FCDBZR</td><td>2</td><td>$0.32</td><td>$0.64</td></tr>
-            <tr><td>Cylinder Magnet 6x2.5 mm</td><td>9028</td><td>2</td><td>$0.49</td><td>$0.98</td></tr>
-            <tr><td>NTC Thermistor 10 kΩ</td><td>NXRT15XH103FA1B040</td><td>1</td><td>$0.35</td><td>$0.35</td></tr>
-            <tr><td>Inductor 2.2 µH (Boost)</td><td>VLS252012ET-2R2M</td><td>1</td><td>$0.25</td><td>$0.25</td></tr>
-            <tr><td>Inductor 47 µH (ePaper)</td><td>IFSC2020DEER470M01</td><td>1</td><td>$0.24</td><td>$0.24</td></tr>
-            <tr><td>Cap 47 µF 0805</td><td>CL21A476MQYNNNG</td><td>1</td><td>$0.29</td><td>$0.29</td></tr>
-            <tr><td>Cap 10 µF 0603</td><td>CL10A106KP8NNNC</td><td>5</td><td>$0.18</td><td>$0.90</td></tr>
-            <tr><td>Cap 4.7 µF 0603</td><td>GRM188R61E475KE11D</td><td>2</td><td>$0.08</td><td>$0.16</td></tr>
-            <tr><td>Cap 1 µF 0603</td><td>CL10B105KA8NNNC</td><td>15</td><td>$0.036</td><td>$0.54</td></tr>
-            <tr><td>Cap 0.1 µF 0603</td><td>CC0603KRX7R9BB104</td><td>10</td><td>$0.024</td><td>$0.24</td></tr>
-            <tr><td>Res 1 MΩ 0603</td><td>RC0603FR-071ML</td><td>10</td><td>$0.008</td><td>$0.08</td></tr>
-            <tr><td>Res 100 kΩ 0603</td><td>RC0603FR-07100KL</td><td>10</td><td>$0.006</td><td>$0.06</td></tr>
-            <tr><td>Res 10 kΩ 0603</td><td>RC0603FR-0710KL</td><td>10</td><td>$0.01</td><td>$0.10</td></tr>
-            <tr><td>Res 1 kΩ 0603</td><td>RC0603FR-071KL</td><td>10</td><td>$0.008</td><td>$0.08</td></tr>
-            <tr><td>Res 2.2 Ω 0603</td><td>RC0603FR-072R2L</td><td>10</td><td>$0.011</td><td>$0.11</td></tr>
-            <tr><td>FPC Connector 24-pos 0.5 mm</td><td>CF4224FH0R0-05-NH</td><td>1</td><td>$0.36</td><td>$0.36</td></tr>
-            <tr><td>FPC Connector 18-pos 0.5 mm</td><td>CF4218FH0R0-05-NH</td><td>1</td><td>$0.34</td><td>$0.34</td></tr>
-            <tr><td>FPC Connector 18-pos (board)</td><td>FH34SRJ-18S-0.5SH(50)</td><td>1</td><td>$1.05</td><td>$1.05</td></tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4"><strong>DigiKey Subtotal</strong></td>
-              <td><strong>$8.93</strong></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-
-      <div style="margin-top:var(--sp-md); max-width:48rem;">
-        <h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--sp-sm);">Off-Board Components</h3>
-        <ul style="font-size:0.875rem; color:var(--color-text-muted); list-style:none; padding:0;">
-          <li style="margin-bottom:0.5rem;"><strong>PocketBeagle (Original)</strong> — main SBC / MCU running Linux at 3.3 V logic</li>
-          <li style="margin-bottom:0.5rem;"><strong>CardKB V1.1</strong> (M5Stack) — full QWERTY mini keyboard, I²C, 5 V</li>
-          <li style="margin-bottom:0.5rem;"><strong>GDEY0213B74</strong> — 2.13″ e-Paper display, SPI, with DESPI-C02 adapter board</li>
-          <li style="margin-bottom:0.5rem;"><strong>YT280S010</strong> — 2.8″ TFT, 240×320, SPI, 3.3 V</li>
-          <li style="margin-bottom:0.5rem;"><strong>Cylinder Magnet</strong> — for hall effect lid detection (mounted in enclosure)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROCESS ========== -->
-  <section class="proj-process">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Process</div>
-      <h2 class="section-heading">Design Process</h2>
-
-      <div class="proj-process-steps">
-
-        <article class="process-step">
-          <div class="process-step-num">01</div>
-          <div class="process-step-content">
-            <h3>Concept and Architecture</h3>
-            <p>
+<div class="proj-specs-grid">
+<table class="specs-table">
+<thead>
+<tr>
+<th>Component</th>
+<th>Part Number</th>
+<th>Qty</th>
+<th>Unit $</th>
+<th>Ext. $</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Boost Converter IC</td><td>TPS613222ADBVR</td><td>1</td><td>$0.49</td><td>$0.49</td></tr>
+<tr><td>NPN Transistor (TFT Backlight)</td><td>SS8050-G</td><td>1</td><td>$0.24</td><td>$0.24</td></tr>
+<tr><td>N-CH MOSFET (Level Shift)</td><td>BSS138</td><td>2</td><td>$0.28</td><td>$0.56</td></tr>
+<tr><td>P-CH MOSFET (Power Switch)</td><td>BSS84</td><td>10</td><td>$0.031</td><td>$0.31</td></tr>
+<tr><td>Dual N-CH MOSFET (ePaper)</td><td>PMF250XNEX</td><td>1</td><td>$0.26</td><td>$0.26</td></tr>
+<tr><td>Schottky Diode</td><td>B0530W-7-F</td><td>4</td><td>$0.15</td><td>$0.60</td></tr>
+<tr><td>Hall Effect Sensor</td><td>DRV5032FCDBZR</td><td>2</td><td>$0.32</td><td>$0.64</td></tr>
+<tr><td>Cylinder Magnet 6x2.5 mm</td><td>9028</td><td>2</td><td>$0.49</td><td>$0.98</td></tr>
+<tr><td>NTC Thermistor 10 kΩ</td><td>NXRT15XH103FA1B040</td><td>1</td><td>$0.35</td><td>$0.35</td></tr>
+<tr><td>Inductor 2.2 µH (Boost)</td><td>VLS252012ET-2R2M</td><td>1</td><td>$0.25</td><td>$0.25</td></tr>
+<tr><td>Inductor 47 µH (ePaper)</td><td>IFSC2020DEER470M01</td><td>1</td><td>$0.24</td><td>$0.24</td></tr>
+<tr><td>Cap 47 µF 0805</td><td>CL21A476MQYNNNG</td><td>1</td><td>$0.29</td><td>$0.29</td></tr>
+<tr><td>Cap 10 µF 0603</td><td>CL10A106KP8NNNC</td><td>5</td><td>$0.18</td><td>$0.90</td></tr>
+<tr><td>Cap 4.7 µF 0603</td><td>GRM188R61E475KE11D</td><td>2</td><td>$0.08</td><td>$0.16</td></tr>
+<tr><td>Cap 1 µF 0603</td><td>CL10B105KA8NNNC</td><td>15</td><td>$0.036</td><td>$0.54</td></tr>
+<tr><td>Cap 0.1 µF 0603</td><td>CC0603KRX7R9BB104</td><td>10</td><td>$0.024</td><td>$0.24</td></tr>
+<tr><td>Res 1 MΩ 0603</td><td>RC0603FR-071ML</td><td>10</td><td>$0.008</td><td>$0.08</td></tr>
+<tr><td>Res 100 kΩ 0603</td><td>RC0603FR-07100KL</td><td>10</td><td>$0.006</td><td>$0.06</td></tr>
+<tr><td>Res 10 kΩ 0603</td><td>RC0603FR-0710KL</td><td>10</td><td>$0.01</td><td>$0.10</td></tr>
+<tr><td>Res 1 kΩ 0603</td><td>RC0603FR-071KL</td><td>10</td><td>$0.008</td><td>$0.08</td></tr>
+<tr><td>Res 2.2 Ω 0603</td><td>RC0603FR-072R2L</td><td>10</td><td>$0.011</td><td>$0.11</td></tr>
+<tr><td>FPC Connector 24-pos 0.5 mm</td><td>CF4224FH0R0-05-NH</td><td>1</td><td>$0.36</td><td>$0.36</td></tr>
+<tr><td>FPC Connector 18-pos 0.5 mm</td><td>CF4218FH0R0-05-NH</td><td>1</td><td>$0.34</td><td>$0.34</td></tr>
+<tr><td>FPC Connector 18-pos (board)</td><td>FH34SRJ-18S-0.5SH(50)</td><td>1</td><td>$1.05</td><td>$1.05</td></tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4"><strong>DigiKey Subtotal</strong></td>
+<td><strong>$8.93</strong></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div style="margin-top:var(--sp-md); max-width:48rem;">
+<h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--sp-sm);">Off-Board Components</h3>
+<ul style="font-size:0.875rem; color:var(--color-text-muted); list-style:none; padding:0;">
+<li style="margin-bottom:0.5rem;"><strong>PocketBeagle (Original)</strong> — main SBC / MCU running Linux at 3.3 V logic</li>
+<li style="margin-bottom:0.5rem;"><strong>CardKB V1.1</strong> (M5Stack) — full QWERTY mini keyboard, I²C, 5 V</li>
+<li style="margin-bottom:0.5rem;"><strong>GDEY0213B74</strong> — 2.13″ e-Paper display, SPI, with DESPI-C02 adapter board</li>
+<li style="margin-bottom:0.5rem;"><strong>YT280S010</strong> — 2.8″ TFT, 240×320, SPI, 3.3 V</li>
+<li style="margin-bottom:0.5rem;"><strong>Cylinder Magnet</strong> — for hall effect lid detection (mounted in enclosure)</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ========== PROCESS ========== -->
+<section class="proj-process">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Process</div>
+<h2 class="section-heading">Design Process</h2>
+<div class="proj-process-steps">
+<article class="process-step">
+<div class="process-step-num">01</div>
+<div class="process-step-content">
+<h3>Concept and Architecture</h3>
+<p>
               The starting point was a clear use case: a device that lives in your
               pocket, shows your tasks without powering up, and lets you edit them
               quickly when needed. That drove the clamshell form factor, the dual
@@ -389,7 +335,7 @@
               on the inside), and the magnetic lid-detect mechanism that controls
               the power state.
             </p>
-            <p>
+<p>
               The PocketBeagle was chosen for its small footprint, Linux support,
               and rich peripheral set (SPI, I²C, GPIO, PRU) without the overhead
               of a full BeagleBone. Early work focused on mapping every peripheral
@@ -397,14 +343,13 @@
               could handle simultaneous SPI traffic to both displays plus I²C to
               the keyboard.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">02</div>
-          <div class="process-step-content">
-            <h3>Schematic V1 — Roughing It Out</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">02</div>
+<div class="process-step-content">
+<h3>Schematic V1 — Roughing It Out</h3>
+<p>
               The first schematic revision was about getting every component onto a
               single page so I could see the full picture. It served its purpose
               for validating the circuit topology and confirming that the power
@@ -413,26 +358,25 @@
               separation between subsystems, and not something I could hand to
               anyone else and expect them to follow.
             </p>
-            <p>
+<p>
               More importantly, it wasn't structured in a way that would translate
               cleanly to a PCB layout. Routing from a single tangled sheet is a
               recipe for mistakes.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">03</div>
-          <div class="process-step-content">
-            <h3>Schematic V2 — Industry Standard Formatting</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">03</div>
+<div class="process-step-content">
+<h3>Schematic V2 — Industry Standard Formatting</h3>
+<p>
               V2 was a ground-up reformatting of the schematic into six sheets,
               each focused on a single functional block. Sheet 1 covers the
               PocketBeagle's pin assignments and top-level net routing. Sheets 2
               through 6 handle the boost converter, hall effect power switch, TFT
               display, CardKB keyboard, and e-Paper display respectively.
             </p>
-            <p>
+<p>
               The big change beyond formatting was the lid detection circuit. The
               original design used a reed switch, which worked but had issues with
               contact bounce causing occasional false wake/sleep transitions. V2
@@ -442,122 +386,112 @@
               logic level directly. The hall sensor is smaller, fully solid-state,
               and eliminates bounce entirely.
             </p>
-            <p>
+<p>
               Pin labels now replace point-to-point wires between sheets, which
               makes the schematic readable for review (thanks to Erik Walsh for the
               review on this revision) and sets things up properly for PCB layout.
             </p>
-          </div>
-        </article>
-
-        <article class="process-step">
-          <div class="process-step-num">04</div>
-          <div class="process-step-content">
-            <h3>PCB Layout — Up Next</h3>
-            <p>
+</div>
+</article>
+<article class="process-step">
+<div class="process-step-num">04</div>
+<div class="process-step-content">
+<h3>PCB Layout — Up Next</h3>
+<p>
               With the schematic properly organized, the next step is PCB layout in
               KiCad. The subsystem-per-sheet structure should make component
               placement and routing more manageable. Constraints are tight on board
               area since the whole thing needs to fit in a pocketable enclosure, so
               careful placement and probably a four-layer stackup will be necessary.
             </p>
-            <p>
+<p>
               This section will be updated as the layout progresses.
             </p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== STATUS ========== -->
-  <section class="proj-takeaways">
-    <div class="section-container">
-      <div class="section-label" aria-hidden="true">Status</div>
-      <h2 class="section-heading">Where Things Stand</h2>
-      <div class="proj-takeaways-grid">
-        <div class="takeaway-card">
-          <span class="takeaway-num">Done</span>
-          <h3>Schematic V2 Complete</h3>
-          <p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ========== STATUS ========== -->
+<section class="proj-takeaways">
+<div class="section-container">
+<div aria-hidden="true" class="section-label">Status</div>
+<h2 class="section-heading">Where Things Stand</h2>
+<div class="proj-takeaways-grid">
+<div class="takeaway-card">
+<span class="takeaway-num">Done</span>
+<h3>Schematic V2 Complete</h3>
+<p>
             Six-sheet schematic with industry-standard formatting, subsystem
             separation, and net labeling. Reviewed and ready for layout. Hall
             effect sensor replaces reed switch for lid detection.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">Next</span>
-          <h3>PCB Layout</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">Next</span>
+<h3>PCB Layout</h3>
+<p>
             Component placement and routing in KiCad. Targeting a compact board
             that fits the clamshell enclosure. Four-layer stackup likely needed
             for signal integrity and space constraints.
           </p>
-        </div>
-        <div class="takeaway-card">
-          <span class="takeaway-num">Later</span>
-          <h3>Firmware and Enclosure</h3>
-          <p>
+</div>
+<div class="takeaway-card">
+<span class="takeaway-num">Later</span>
+<h3>Firmware and Enclosure</h3>
+<p>
             Linux userspace drivers for both displays and the keyboard. Mechanical
             design for the clamshell housing, hinge mechanism, and magnet
             placement for the hall sensor. Assembly and integration testing.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== NEXT / PREV NAVIGATION ========== -->
+<nav class="proj-nav">
+<div class="section-container">
+<div class="proj-nav-grid">
+<a class="proj-nav-link proj-nav-link--prev" href="project-5.html">
+<span class="proj-nav-dir">← Previous</span>
+<span class="proj-nav-title">Project Five</span>
+</a>
+<a class="proj-nav-link proj-nav-link--next" href="project-7.html">
+<span class="proj-nav-dir">Next →</span>
+<span class="proj-nav-title">Project Seven</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer" id="contact">
+<div class="section-container">
+<div class="footer-grid">
+<div class="footer-cta">
+<h2 class="section-heading">Let's Build Something</h2>
+<p>Have an interesting project, collaboration, or opportunity? Reach out to me on LinkedIn.</p>
+<a class="btn btn--primary" href="https://www.linkedin.com/in/beckett-mazeau/">Connect on LinkedIn</a>
+</div>
+<div class="footer-links">
+<h3>Elsewhere</h3>
+<ul>
 
-  <!-- ========== NEXT / PREV NAVIGATION ========== -->
-  <nav class="proj-nav">
-    <div class="section-container">
-      <div class="proj-nav-grid">
-        <a href="project-5.html" class="proj-nav-link proj-nav-link--prev">
-          <span class="proj-nav-dir">&larr; Previous</span>
-          <span class="proj-nav-title">Project Five</span>
-        </a>
-        <a href="project-7.html" class="proj-nav-link proj-nav-link--next">
-          <span class="proj-nav-dir">Next &rarr;</span>
-          <span class="proj-nav-title">Project Seven</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer" id="contact">
-    <div class="section-container">
-      <div class="footer-grid">
-        <div class="footer-cta">
-          <h2 class="section-heading">Let's Build Something</h2>
-          <p>
-            Have an interesting project, collaboration, or opportunity?
-            I'd love to hear about it.
-          </p>
-          <a href="mailto:beckettmazeau.inquiries@gmail.com" class="btn btn--primary">beckettmazeau.inquiries@gmail.com</a>
-        </div>
-        <div class="footer-links">
-          <h3>Elsewhere</h3>
-          <ul>
-            <li><a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/BeckettMazeau" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
-        <p class="footer-colophon">Designed &amp; built by hand.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox overlay -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img class="lightbox-img" src="" alt="">
-    <div class="lightbox-caption"></div>
-  </div>
-
-  <script src="../script.js"></script>
+<li><a href="https://github.com/BeckettMazeau" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+<li><a href="https://grabcad.com/beckett.mazeau-1" rel="noopener noreferrer" target="_blank">GrabCAD</a></li></ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
+<p class="footer-colophon">Designed &amp; built by hand.</p>
+</div>
+</div>
+</footer>
+<!-- Lightbox overlay -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<button aria-label="Close lightbox" class="lightbox-close">×</button>
+<img alt="" class="lightbox-img" src=""/>
+<div class="lightbox-caption"></div>
+</div>
+<script src="../script.js"></script>
 </body>
 </html>
