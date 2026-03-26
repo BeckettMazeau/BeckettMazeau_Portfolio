@@ -188,7 +188,7 @@
               <li>C / Linux</li>
             </ul>
             <p class="current-project-updated">
-              Last updated: <time datetime="2026-03-17">Mar 17, 2026</time>
+              Last updated: <time datetime="2026-03-26">Mar 26, 2026</time>
             </p>
           </div>
         </div>
@@ -229,38 +229,103 @@
           </div>
 
           <div class="current-project-schematic">
-            <h3 class="cp-subheading">Circuit Schematic — V0.1</h3>
-            <figure class="cp-schematic-fig">
-              <img
-                src="images/stik-enote-schematic.jpg"
-                alt="STIK-eNote V0.1 full circuit schematic"
-                width="1200" height="750" loading="lazy"
-                class="cp-schematic-img"
-              >
-              <figcaption class="cp-schematic-caption">
-                <strong>Wire colour key —</strong>
-                <span class="wire wire--red">Red: 5 V</span> ·
-                <span class="wire wire--black">Black: GND</span> ·
-                <span class="wire wire--orange">Orange: 3.3 V</span> ·
-                <span class="wire wire--green">Green: Control / GPIO</span> ·
-                <span class="wire wire--purple">Purple: Data (SPI / I²C)</span>
-              </figcaption>
-            </figure>
+            <h3 class="cp-subheading">Circuit Schematic — V2</h3>
+            <p class="cp-schematic-intro">
+              Six-sheet schematic organized by subsystem. Rev V2 moves from a single crowded page
+              to industry-standard separation by functional block, with labeled net names replacing
+              point-to-point wiring. Made for EDES 301, Rice University. Click any sheet for a closer look.
+            </p>
+
+            <div class="cp-schematic-grid">
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0001.jpg"
+                  alt="STIK-eNote V2 schematic sheet 1 of 6 — Main PocketBeagle pin assignments and peripheral connections"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 1/6 — STIK-eNOTE</strong> · PocketBeagle pin assignments, battery thermistor, and top-level net routing to all peripheral subsystems.
+                </figcaption>
+              </figure>
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0002.jpg"
+                  alt="STIK-eNote V2 schematic sheet 2 of 6 — 3.3V to 5V Boost Converter"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 2/6 — 3.3V to 5V Boost Converter</strong> · TPS613222ADBVR synchronous boost with BSS84 P-FET high-side switch for power gating.
+                </figcaption>
+              </figure>
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0003.jpg"
+                  alt="STIK-eNote V2 schematic sheet 3 of 6 — Hall Effect Power Switch"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 3/6 — Hall Effect Power Switch</strong> · DRV5032FCDBZR latching hall sensor with signal inverter for lid-open/close detection and PocketBeagle wake.
+                </figcaption>
+              </figure>
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0004.jpg"
+                  alt="STIK-eNote V2 schematic sheet 4 of 6 — TFT Display Connection Circuitry"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 4/6 — TFT Display Connection</strong> · YT280S010 TFT wiring with backlight transistor driver and P-FET power switch.
+                </figcaption>
+              </figure>
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0005.jpg"
+                  alt="STIK-eNote V2 schematic sheet 5 of 6 — CardKB Support Circuitry"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 5/6 — CardKB Support Circuitry</strong> · Bidirectional I²C level shifting (BSS138 MOSFETs) between 3.3V PocketBeagle and 5V CardKB keyboard.
+                </figcaption>
+              </figure>
+
+              <figure class="cp-schematic-fig">
+                <img
+                  src="images/StikENote_Schematic_V2_page-0006.jpg"
+                  alt="STIK-eNote V2 schematic sheet 6 of 6 — ePaper Support Circuitry"
+                  width="1200" height="927" loading="lazy"
+                  class="cp-schematic-img gallery-img"
+                >
+                <figcaption class="cp-schematic-caption">
+                  <strong>Sheet 6/6 — ePaper Support Circuitry</strong> · GDEY0213B74 e-Paper display via FPC connector with P-FET power gating and boost converter for PREVGH/PREVGL rails.
+                </figcaption>
+              </figure>
+
+            </div>
 
             <div class="cp-subsystems">
               <div class="cp-subsystem">
                 <h4>5 V Boost Converter</h4>
                 <p>The TPS613222ADBVR is a synchronous boost converter stepping the PocketBeagle's
                 3.3 V rail to a stable 5 V for the keyboard. A 2.2 µH inductor (VLS252012ET-2R2M)
-                stores energy each switching cycle; one 10 µF input cap and three 10 µF output
-                caps (all CL10A106KP8NNNC) minimise ripple — critical for reliable I²C.</p>
+                stores energy each switching cycle; 10 µF input and output caps (CL10A106KP8NNNC)
+                minimise ripple. A BSS84 P-FET gates the entire 5 V rail on/off from GPIO.</p>
               </div>
               <div class="cp-subsystem">
                 <h4>P-FET Power Switches</h4>
-                <p>Each switchable rail uses a BSS84 P-channel MOSFET as a high-side switch. The
-                gate defaults HIGH (off) via a 100 kΩ pull-up (RC0603FR-07100KL); a 0.1 µF cap
-                (CC0603KRX7R9BB104) across gate-source slows the turn-on edge to limit inrush.
-                Three instances cover the 5 V boost, the TFT, and the e-Paper adapter.</p>
+                <p>Four BSS84 P-channel MOSFETs act as high-side switches across the design.
+                Each gate defaults HIGH (off) via a 100 kΩ pull-up; a 0.1 µF cap across
+                gate-source slows the turn-on edge to limit inrush. Instances cover the 5 V
+                boost, the TFT, the e-Paper adapter, and the hall sensor output.</p>
               </div>
               <div class="cp-subsystem">
                 <h4>Bidirectional I²C Level Shifter</h4>
@@ -270,16 +335,24 @@
                 minimal propagation delay and no dedicated IC.</p>
               </div>
               <div class="cp-subsystem">
-                <h4>Magnetic State Detection</h4>
-                <p>The design has migrated from a PMC-1401S1520 reed switch to a DRV5032FCDBZR
-                omnipolar Hall-effect sensor paired with a 9028 cylindrical magnet. The solid-state
-                sensor is smaller, more robust, and eliminates contact bounce entirely.</p>
+                <h4>Magnetic Lid Detection</h4>
+                <p>A DRV5032FCDBZR latching Hall-effect sensor detects a cylindrical magnet in the
+                lid. A signal inverter flips the output polarity to match the PocketBeagle's
+                wake-on-GPIO logic level. The solid-state sensor replaces the original reed switch,
+                eliminating contact bounce and false wake/sleep transitions.</p>
+              </div>
+              <div class="cp-subsystem">
+                <h4>E-Paper Support</h4>
+                <p>The GDEY0213B74 e-Paper display connects through a 24-pin FPC (FH12-24S-0.5SH55).
+                A PMF250XNEX dual N-channel MOSFET and four B0530W-7-F Schottky diodes generate the
+                PREVGH and PREVGL rails the display requires. A 47 µH inductor (IFSC2020DEER470M01)
+                and associated capacitors form the boost circuitry for these higher-voltage rails.</p>
               </div>
             </div>
           </div>
 
           <div class="current-project-bom">
-            <h3 class="cp-subheading">Bill of Materials <span class="bom-source">(DigiKey, updated Mar 17 2026)</span></h3>
+            <h3 class="cp-subheading">Bill of Materials <span class="bom-source">(DigiKey cart, Mar 26 2026)</span></h3>
             <div class="bom-table-wrap">
               <table class="bom-table">
                 <thead>
@@ -293,40 +366,49 @@
                 </thead>
                 <tbody>
                   <tr><td>Boost Converter IC</td><td class="bom-pn">TPS613222ADBVR</td><td class="bom-qty">1</td><td class="bom-price">$0.49</td><td class="bom-price">$0.49</td></tr>
-                  <tr><td>NPN Transistor</td><td class="bom-pn">SS8050-G</td><td class="bom-qty">1</td><td class="bom-price">$0.24</td><td class="bom-price">$0.24</td></tr>
+                  <tr><td>NPN Transistor (TFT Backlight)</td><td class="bom-pn">SS8050-G</td><td class="bom-qty">1</td><td class="bom-price">$0.24</td><td class="bom-price">$0.24</td></tr>
                   <tr><td>N-CH MOSFET (Level Shift)</td><td class="bom-pn">BSS138</td><td class="bom-qty">2</td><td class="bom-price">$0.28</td><td class="bom-price">$0.56</td></tr>
-                  <tr><td>P-CH MOSFET (Power Switch)</td><td class="bom-pn">BSS84</td><td class="bom-qty">10</td><td class="bom-price">$0.03</td><td class="bom-price">$0.31</td></tr>
-                  <tr><td>Inductor 2.2 µH</td><td class="bom-pn">VLS252012ET-2R2M</td><td class="bom-qty">1</td><td class="bom-price">$0.25</td><td class="bom-price">$0.25</td></tr>
-                  <tr><td>Cap 47 µF 0805</td><td class="bom-pn">CL21A476MQYNNNG</td><td class="bom-qty">2</td><td class="bom-price">$0.29</td><td class="bom-price">$0.58</td></tr>
-                  <tr><td>Cap 0.1 µF 0603</td><td class="bom-pn">CC0603KRX7R9BB104</td><td class="bom-qty">10</td><td class="bom-price">$0.02</td><td class="bom-price">$0.24</td></tr>
-                  <tr><td>Res 100 kΩ 0603</td><td class="bom-pn">RC0603FR-07100KL</td><td class="bom-qty">10</td><td class="bom-price">$0.01</td><td class="bom-price">$0.06</td></tr>
-                  <tr><td>Res 1 kΩ 0603</td><td class="bom-pn">RC0603FR-071KL</td><td class="bom-qty">10</td><td class="bom-price">$0.01</td><td class="bom-price">$0.08</td></tr>
-                  <tr><td>Res 10 kΩ 0603</td><td class="bom-pn">RC0603FR-0710KL</td><td class="bom-qty">10</td><td class="bom-price">$0.01</td><td class="bom-price">$0.10</td></tr>
+                  <tr><td>P-CH MOSFET (Power Switch)</td><td class="bom-pn">BSS84</td><td class="bom-qty">10</td><td class="bom-price">$0.031</td><td class="bom-price">$0.31</td></tr>
+                  <tr><td>Dual N-CH MOSFET (ePaper)</td><td class="bom-pn">PMF250XNEX</td><td class="bom-qty">1</td><td class="bom-price">$0.26</td><td class="bom-price">$0.26</td></tr>
+                  <tr><td>Schottky Diode</td><td class="bom-pn">B0530W-7-F</td><td class="bom-qty">4</td><td class="bom-price">$0.15</td><td class="bom-price">$0.60</td></tr>
+                  <tr><td>Hall Effect Sensor</td><td class="bom-pn">DRV5032FCDBZR</td><td class="bom-qty">2</td><td class="bom-price">$0.32</td><td class="bom-price">$0.64</td></tr>
+                  <tr><td>Cylinder Magnet 6x2.5 mm</td><td class="bom-pn">9028</td><td class="bom-qty">2</td><td class="bom-price">$0.49</td><td class="bom-price">$0.98</td></tr>
+                  <tr><td>NTC Thermistor 10 kΩ</td><td class="bom-pn">NXRT15XH103FA1B040</td><td class="bom-qty">1</td><td class="bom-price">$0.35</td><td class="bom-price">$0.35</td></tr>
+                  <tr><td>Inductor 2.2 µH (Boost)</td><td class="bom-pn">VLS252012ET-2R2M</td><td class="bom-qty">1</td><td class="bom-price">$0.25</td><td class="bom-price">$0.25</td></tr>
+                  <tr><td>Inductor 47 µH (ePaper)</td><td class="bom-pn">IFSC2020DEER470M01</td><td class="bom-qty">1</td><td class="bom-price">$0.24</td><td class="bom-price">$0.24</td></tr>
+                  <tr><td>Cap 47 µF 0805</td><td class="bom-pn">CL21A476MQYNNNG</td><td class="bom-qty">1</td><td class="bom-price">$0.29</td><td class="bom-price">$0.29</td></tr>
                   <tr><td>Cap 10 µF 0603</td><td class="bom-pn">CL10A106KP8NNNC</td><td class="bom-qty">5</td><td class="bom-price">$0.18</td><td class="bom-price">$0.90</td></tr>
-                  <tr><td>Omnipolar Hall Sensor</td><td class="bom-pn">DRV5032FCDBZR</td><td class="bom-qty">2</td><td class="bom-price">$0.32</td><td class="bom-price">$0.64</td></tr>
-                  <tr><td>Cylinder Magnet 6×2.5 mm</td><td class="bom-pn">9028</td><td class="bom-qty">2</td><td class="bom-price">$0.49</td><td class="bom-price">$0.98</td></tr>
-                  <tr><td>Cap 1 µF 0603</td><td class="bom-pn">CL10B105KA8NNNC</td><td class="bom-qty">15</td><td class="bom-price">$0.04</td><td class="bom-price">$0.54</td></tr>
-                  <tr><td>FFC/FPC Connector 18-pos 0.5 mm</td><td class="bom-pn">5034801800</td><td class="bom-qty">1</td><td class="bom-price">$1.50</td><td class="bom-price">$1.50</td></tr>
+                  <tr><td>Cap 4.7 µF 0603</td><td class="bom-pn">GRM188R61E475KE11D</td><td class="bom-qty">2</td><td class="bom-price">$0.08</td><td class="bom-price">$0.16</td></tr>
+                  <tr><td>Cap 1 µF 0603</td><td class="bom-pn">CL10B105KA8NNNC</td><td class="bom-qty">15</td><td class="bom-price">$0.036</td><td class="bom-price">$0.54</td></tr>
+                  <tr><td>Cap 0.1 µF 0603</td><td class="bom-pn">CC0603KRX7R9BB104</td><td class="bom-qty">10</td><td class="bom-price">$0.024</td><td class="bom-price">$0.24</td></tr>
+                  <tr><td>Res 1 MΩ 0603</td><td class="bom-pn">RC0603FR-071ML</td><td class="bom-qty">10</td><td class="bom-price">$0.008</td><td class="bom-price">$0.08</td></tr>
+                  <tr><td>Res 100 kΩ 0603</td><td class="bom-pn">RC0603FR-07100KL</td><td class="bom-qty">10</td><td class="bom-price">$0.006</td><td class="bom-price">$0.06</td></tr>
+                  <tr><td>Res 10 kΩ 0603</td><td class="bom-pn">RC0603FR-0710KL</td><td class="bom-qty">10</td><td class="bom-price">$0.01</td><td class="bom-price">$0.10</td></tr>
+                  <tr><td>Res 1 kΩ 0603</td><td class="bom-pn">RC0603FR-071KL</td><td class="bom-qty">10</td><td class="bom-price">$0.008</td><td class="bom-price">$0.08</td></tr>
+                  <tr><td>Res 2.2 Ω 0603</td><td class="bom-pn">RC0603FR-072R2L</td><td class="bom-qty">10</td><td class="bom-price">$0.011</td><td class="bom-price">$0.11</td></tr>
+                  <tr><td>FPC Connector 24-pos 0.5 mm</td><td class="bom-pn">CF4224FH0R0-05-NH</td><td class="bom-qty">1</td><td class="bom-price">$0.36</td><td class="bom-price">$0.36</td></tr>
+                  <tr><td>FPC Connector 18-pos 0.5 mm</td><td class="bom-pn">CF4218FH0R0-05-NH</td><td class="bom-qty">1</td><td class="bom-price">$0.34</td><td class="bom-price">$0.34</td></tr>
+                  <tr><td>FPC Connector 18-pos (board)</td><td class="bom-pn">FH34SRJ-18S-0.5SH(50)</td><td class="bom-qty">1</td><td class="bom-price">$1.05</td><td class="bom-price">$1.05</td></tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <td colspan="4" class="bom-total-label">DigiKey Subtotal</td>
-                    <td class="bom-price bom-total">$7.47</td>
-                  </tr>
-                  <tr>
-                    <td colspan="5" class="bom-shipping">+ $4.99 shipping · All items in stock</td>
+                    <td class="bom-price bom-total">$8.93</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
             <div class="bom-extras">
-              <h4>Additional Components (not in DigiKey order)</h4>
+              <h4>Additional Components (off-board)</h4>
               <ul class="bom-extras-list">
                 <li><strong>PocketBeagle (Original)</strong> — main SBC / MCU running Linux at 3.3 V logic</li>
                 <li><strong>CardKB V1.1</strong> (M5Stack) — full QWERTY mini keyboard, I²C, 5 V</li>
                 <li><strong>GDEY0213B74</strong> — 2.13″ e-Paper display, SPI, with DESPI-C02 adapter board</li>
                 <li><strong>YT280S010</strong> — 2.8″ TFT, 240×320, SPI, 3.3 V</li>
               </ul>
+              <p class="bom-note" style="font-size:0.75rem; color:var(--color-text-muted); margin-top:var(--sp-sm);">
+                Purchased quantities for passives exceed BOM requirements due to lower unit pricing at higher order volumes.
+              </p>
             </div>
           </div>
 
@@ -386,7 +468,7 @@
             Have an interesting project, collaboration, or opportunity?
             I'd love to hear about it.
           </p>
-          <a href="mailto:beckettmazeau.inquiries@gmail.com" class="btn btn--primary">beckettmazeau.inquiries@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#472522242c2233332a263d222632692e2936322e352e223407202a262e2b6924282a" class="btn btn--primary"><span class="__cf_email__" data-cfemail="87e5e2e4ece2f3f3eae6fde2e6f2a9eee9f6f2eef5eee2f4c7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></a>
         </div>
         <div class="footer-links">
           <h3>Elsewhere</h3>
@@ -397,12 +479,4 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights reserved.</p>
-        <p class="footer-colophon">Crafted with precision.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <p>&copy; <span id="year"></span> Beckett Mazeau. All rights res

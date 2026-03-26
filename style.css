@@ -1540,6 +1540,32 @@ a:hover {
   margin-bottom: var(--sp-md);
 }
 
+.cp-schematic-intro {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-md);
+  max-width: 48rem;
+}
+
+.cp-schematic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--sp-md);
+}
+
+.cp-schematic-grid .cp-schematic-fig {
+  margin-bottom: 0;
+}
+
+.cp-schematic-grid .cp-schematic-img {
+  cursor: zoom-in;
+  transition: border-color 0.2s ease;
+}
+
+.cp-schematic-grid .cp-schematic-img:hover {
+  border-color: var(--color-accent);
+}
+
 .cp-schematic-fig {
   margin-bottom: var(--sp-md);
 }
@@ -1742,6 +1768,7 @@ a:hover {
   .current-project-features { grid-template-columns: 1fr; }
   .cp-subsystems             { grid-template-columns: 1fr; }
   .bom-extras-list           { grid-template-columns: 1fr; }
+  .cp-schematic-grid         { grid-template-columns: 1fr; }
 }
 
 
