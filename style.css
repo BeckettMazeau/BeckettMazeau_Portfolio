@@ -1718,6 +1718,12 @@ a:hover {
   font-weight: 400;
 }
 
+.bom-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: var(--sp-sm);
+}
+
 /* ── Extra components list ── */
 .bom-extras {
   margin-top: var(--sp-md);

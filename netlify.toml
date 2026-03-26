@@ -27,7 +27,11 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 
     # Content Security Policy — adjust if you add external scripts/fonts
-    Content-Security-Policy = "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data:; script-src 'self'"
+    # NOTE: 'unsafe-inline' on script-src is needed because Netlify's
+    #        Cloudflare proxy injects an inline email-obfuscation script.
+    #        If you disable email obfuscation in Netlify settings, you can
+    #        remove 'unsafe-inline' from script-src.
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data:; script-src 'self' 'unsafe-inline'"
 
     # HSTS — enforce HTTPS (uncomment after confirming HTTPS works)
     # Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
