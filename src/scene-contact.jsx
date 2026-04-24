@@ -1,174 +1,125 @@
-const { useState, useEffect, useRef } = React;
-const THREE = window.THREE;
+/* global React, localOf, clamp */
 
-const SceneContact = ({ progress }) => {
-  const p = window.clamp(progress - 5, -1, 1);
-  const opacity = 1 - Math.abs(p);
-  const translateY = p * 100;
+const { useEffect, useRef, useState } = React;
 
-  const mountRef = useRef(null);
-  const [isSending, setIsSending] = useState(false);
-  const cartridgeRef = useRef(null);
-  const gaugeNeedleRef = useRef(null);
-
-  useEffect(() => {
-    if (!mountRef.current) return;
-
-    const w = mountRef.current.clientWidth;
-    const h = mountRef.current.clientHeight;
-
-    const renderer = window.makeRenderer(document.createElement('canvas'), { w, h });
-    mountRef.current.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-    window.makeStandardRig(scene);
-
-    const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
-    camera.position.set(0, 0, 4);
-    camera.lookAt(0, 0, 0);
-
-    // Tube
-    const tubeGeom = new THREE.CylinderGeometry(0.3, 0.3, 3, 32, 1, true);
-    const tubeMat = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      transmission: 0.9,
-      opacity: 1,
-      metalness: 0,
-      roughness: 0.1,
-      ior: 1.5,
-      thickness: 0.1,
-      transparent: true,
-      side: THREE.DoubleSide
-    });
-    const tube = new THREE.Mesh(tubeGeom, tubeMat);
-    scene.add(tube);
-
-    // Fittings
-    const fittingGeom = new THREE.CylinderGeometry(0.32, 0.32, 0.2, 32);
-    const topFitting = new THREE.Mesh(fittingGeom, window.MAT.brassDark);
-    topFitting.position.y = 1.4;
-    scene.add(topFitting);
-
-    const bottomFitting = new THREE.Mesh(fittingGeom, window.MAT.brassDark);
-    bottomFitting.position.y = -1.4;
-    scene.add(bottomFitting);
-
-    // Cartridge
-    const cartridgeGeom = new THREE.CylinderGeometry(0.28, 0.28, 0.8, 32);
-    const cartridge = new THREE.Mesh(cartridgeGeom, window.MAT.steel);
-    cartridge.position.y = -1; // Starting resting position
-    scene.add(cartridge);
-    cartridgeRef.current = cartridge;
-
-    // Red bands on cartridge
-    const bandGeom = new THREE.CylinderGeometry(0.285, 0.285, 0.05, 32);
-    const bandMat = new THREE.MeshStandardMaterial({ color: 0xFF2D2D });
-    const band1 = new THREE.Mesh(bandGeom, bandMat);
-    band1.position.y = 0.3;
-    cartridge.add(band1);
-    const band2 = new THREE.Mesh(bandGeom, bandMat);
-    band2.position.y = -0.3;
-    cartridge.add(band2);
-
-    let reqId;
-    let animStart = 0;
-
-    const animate = (time) => {
-      // Logic for sending animation
-      if (isSending) {
-        if (!animStart) animStart = time;
-        const dt = (time - animStart) / 1000;
-
-        // Shoot up at ~4 m/s (approx 4 units per second)
-        cartridgeRef.current.position.y = -1 + (dt * 4);
-
-        if (dt > 1.6) {
-          // Reset and drop a new one
-          cartridgeRef.current.position.y = -1;
-          animStart = 0;
-          setIsSending(false);
-        }
-      }
-
-      renderer.render(scene, camera);
-      reqId = requestAnimationFrame(animate);
-    };
-
-    reqId = requestAnimationFrame(animate);
-
-    const handleResize = () => {
-      if (!mountRef.current) return;
-      const nw = mountRef.current.clientWidth;
-      const nh = mountRef.current.clientHeight;
-      camera.aspect = nw / nh;
-      camera.updateProjectionMatrix();
-      renderer.setSize(nw, nh);
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(reqId);
-      if (mountRef.current && mountRef.current.firstChild) {
-        mountRef.current.removeChild(mountRef.current.firstChild);
-      }
-      renderer.dispose();
-    };
-  }, [isSending]);
-
-  const handleSend = () => {
-    if (isSending) return;
-    setIsSending(true);
-  };
+/* Contact: a lever you can press, which pulls a cable over a pulley,
+   which raises a flag with "HELLO". Also serves as the CTA. */
+function PulleyLever({ progress, pressed }) {
+  // lever angle: 0 idle, 1 pressed
+  const [hover, setHover] = useState(0);
+  const engage = Math.max(pressed ? 1 : 0, hover);
+  const ang = -engage * 22;
+  const cable = 120 - engage * 60;
 
   return (
-    <section className="scene" id="scene-05" style={{ opacity, transform: `translate3d(0, ${translateY}vh, 0)` }}>
-      <div style={{ position: 'absolute', top: '20%', width: '100%', textAlign: 'center', zIndex: 10 }}>
-        <h1 style={{ fontFamily: 'var(--f-disp)', fontSize: 160, lineHeight: 0.9 }}>
-          SEND A <span style={{ color: 'var(--red)' }}>SIGNAL</span>
-        </h1>
-        <p style={{ marginTop: 24, fontSize: 16, color: 'var(--ink-dim)' }}>
-          Got a project that needs a mind? Drop an address, pull the lever.
-        </p>
+    <svg viewBox="0 0 520 260" preserveAspectRatio="xMidYMid meet"
+         style={{width:'100%', maxWidth:520, height:'auto'}}
+         onMouseMove={(e) => {
+           const r = e.currentTarget.getBoundingClientRect();
+           const x = (e.clientX - r.left) / r.width;
+           if (x < .3) setHover(.4);
+         }}
+         onMouseLeave={() => setHover(0)}>
+      <g className="mech-soft"><rect x="10" y="10" width="500" height="240" /></g>
 
-        <div style={{ marginTop: 40, display: 'inline-flex', alignItems: 'center' }}>
-          <div className="s-steel" style={{ padding: '0 16px', display: 'flex', alignItems: 'center', height: 48, width: 520, borderRadius: '4px 0 0 4px' }}>
-            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 12, color: 'var(--ink-mute)', marginRight: 16 }}>ADDRESS</span>
-            <input type="text" placeholder="..." style={{ background: 'transparent', border: 'none', color: 'var(--ink)', fontFamily: 'var(--f-body)', fontSize: 16, width: '100%', outline: 'none' }} />
+      {/* lever fulcrum */}
+      <g transform="translate(110 180)">
+        <circle r="6" fill="var(--ink)" />
+        <g transform={`rotate(${ang})`}>
+          <line x1="-60" y1="0" x2="80" y2="0" stroke="var(--ink)" strokeWidth="3" />
+          <rect x="-70" y="-8" width="14" height="16" fill="var(--accent)" />
+          <circle cx="80" cy="0" r="4" fill="var(--ink)" />
+        </g>
+      </g>
+
+      {/* pulley */}
+      <g transform="translate(330 70)">
+        <circle r="22" fill="none" stroke="var(--ink)" strokeWidth="1.25" />
+        <g transform={`rotate(${engage * 120})`}>
+          <line x1="0" y1="-22" x2="0" y2="-14" stroke="var(--ink)" strokeWidth="1.25" />
+          <line x1="0" y1="22" x2="0" y2="14" stroke="var(--ink)" strokeWidth="1.25" />
+          <circle r="3" fill="var(--accent)" />
+        </g>
+      </g>
+
+      {/* cable from lever tip up over pulley down to flag */}
+      <path d={`M 190 180 Q 260 140 330 70 L 330 ${70 + cable}`} className="mech-stroke" strokeDasharray="2 3" />
+
+      {/* flag mast */}
+      <line x1="440" y1="200" x2="440" y2={70 + cable + 20} className="mech-stroke" strokeWidth="2" />
+      {/* flag */}
+      <g transform={`translate(440 ${70 + cable + 20})`}>
+        <rect x="0" y="-24" width="60" height="24" fill="var(--accent)" />
+        <text x="30" y="-8" fontFamily="var(--f-dot)" fontSize="12" fill="var(--paper)" textAnchor="middle">HELLO</text>
+      </g>
+      <line x1="440" y1="70" x2="440" y2="200" className="mech-soft" />
+
+      <text x="20" y="250" fontFamily="var(--f-mono)" fontSize="10" fill="var(--ink-3)" letterSpacing="2">
+        FIG-06 · LEVER + PULLEY · GO AHEAD, PULL IT
+      </text>
+    </svg>
+  );
+}
+
+function SceneContact({ progress }) {
+  const [pressed, setPressed] = useState(false);
+  useEffect(() => {
+    if (!pressed) return;
+    const t = setTimeout(() => setPressed(false), 1400);
+    return () => clearTimeout(t);
+  }, [pressed]);
+  return (
+    <section className="scene contact">
+      <div className="sect-label">05 · CONTACT</div>
+      <div className="frame">
+        <div className="big">
+          <div className="eyebrow" style={{marginBottom:18}}>LET'S BUILD SOMETHING</div>
+          <h2 className="display">
+            Got a <em>mechanism</em> in mind? Let's talk about it.
+          </h2>
+
+          <div style={{marginTop:28}} onClick={() => setPressed(true)}>
+            <PulleyLever progress={progress} pressed={pressed} />
           </div>
-          <button
-            className="btn-primary"
-            style={{ height: 48, borderRadius: '0 4px 4px 0', width: 120, fontSize: 14, boxShadow: isSending ? 'inset 0 4px 8px rgba(0,0,0,0.4)' : 'inset 0 1px 0 rgba(255,255,255,0.2)' }}
-            onClick={handleSend}
-          >
-            [ SEND ]
-          </button>
-        </div>
-      </div>
 
-      {/* 3D Tube Container - absolutely positioned on the right */}
-      <div ref={mountRef} style={{ position: 'absolute', right: '5%', top: '15%', width: '30%', height: '70%', pointerEvents: 'none' }} />
+          <div className="cta-row">
+            <a className="cta primary" href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noreferrer">
+              Connect on LinkedIn →
+            </a>
+            <a className="cta" href="mailto:hello@beckettmazeau.com">
+              hello@beckettmazeau.com
+            </a>
+          </div>
+        </div>
 
-      <div style={{ position: 'absolute', bottom: 40, left: 40, right: 40, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--ink)' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ color: 'var(--ink-dim)' }}>LINKEDIN</span>
-          <a href="#" style={{ color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--steel-dark)' }}>in/beckett</a>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ color: 'var(--ink-dim)' }}>GITHUB</span>
-          <a href="#" style={{ color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--steel-dark)' }}>github.com/BeckettMazeau</a>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ color: 'var(--ink-dim)' }}>EMAIL</span>
-          <a href="#" style={{ color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--steel-dark)' }}>beckett@beckett.dev</a>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ color: 'var(--ink-dim)' }}>LOCATION</span>
-          <span style={{ borderBottom: '1px solid var(--steel-dark)' }}>Houston, TX</span>
+        <div className="foot">
+          <div>
+            <h4>Elsewhere</h4>
+            <a href="https://github.com/BeckettMazeau" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://grabcad.com/beckett.mazeau-1" target="_blank" rel="noreferrer">GrabCAD</a>
+            <a href="https://www.linkedin.com/in/beckett-mazeau/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div>
+            <h4>Tools</h4>
+            <div>SolidWorks · Fusion 360</div>
+            <div>KiCad · Altium</div>
+            <div>C / C++ / Python</div>
+          </div>
+          <div>
+            <h4>Located</h4>
+            <div>Houston, TX</div>
+            <div>Open to remote</div>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <h4>Colophon</h4>
+            <div>Space Grotesk</div>
+            <div>DSEG14 Classic</div>
+            <div>Built by hand, 2026</div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 window.SceneContact = SceneContact;

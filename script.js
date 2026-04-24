@@ -7,7 +7,7 @@
   'use strict';
 
   /* ---------- Auto-fill copyright year ---------- */
-  const yearEl = document.getElementById('year');
+  var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
@@ -15,16 +15,13 @@
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
       var targetId = this.getAttribute('href');
-      if (targetId === '#') return;                     // skip bare "#" links
+      if (targetId === '#') return;
       var target = document.querySelector(targetId);
       if (!target) return;
 
       e.preventDefault();
-
-      // Close mobile nav if open
       closeMobileNav();
 
-      // Calculate offset for fixed header
       var headerOffset = parseInt(
         getComputedStyle(document.documentElement)
           .getPropertyValue('--header-h'), 10
@@ -35,8 +32,6 @@
               - headerOffset;
 
       window.scrollTo({ top: top, behavior: 'smooth' });
-
-      // Update URL hash without jumping
       history.pushState(null, '', targetId);
     });
   });
@@ -63,7 +58,6 @@
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMobileNav();
     });
@@ -71,7 +65,6 @@
 
 
   /* ---------- Scroll-triggered reveal animations ---------- */
-  // Add .reveal class to elements we want to animate in
   var revealSelectors = [
     '.about-photo-frame',
     '.about-text-col',
@@ -84,44 +77,50 @@
     '.process-step',
     '.takeaway-card',
     '.proj-nav-link',
-    '.specs-table'
+    '.specs-table',
+    '.coming-soon-card'
   ];
 
-  revealSelectors.forEach(function (sel) {
-    document.querySelectorAll(sel).forEach(function (el) {
-      el.classList.add('reveal');
+  function initRevealObserver() {
+    revealSelectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        if (!el.classList.contains('reveal')) {
+          el.classList.add('reveal');
+        }
+      });
     });
-  });
 
-  // IntersectionObserver for .reveal elements
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);        // animate once
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
 
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      observer.observe(el);
-    });
-  } else {
-    // Fallback: just show everything
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      el.classList.add('visible');
-    });
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        if (!el.classList.contains('visible')) {
+          observer.observe(el);
+        }
+      });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+    }
   }
+
+  initRevealObserver();
 
 
   /* ---------- Header background on scroll ---------- */
   var header = document.querySelector('.site-header');
   if (header) {
-    var lastScroll = 0;
     window.addEventListener('scroll', function () {
       var scrollY = window.pageYOffset;
       if (scrollY > 80) {
@@ -129,7 +128,6 @@
       } else {
         header.style.borderBottomColor = '';
       }
-      lastScroll = scrollY;
     }, { passive: true });
   }
 
@@ -141,14 +139,12 @@
   var lbClose     = lightbox ? lightbox.querySelector('.lightbox-close') : null;
 
   if (lightbox && lbImg) {
-    // Clicking any .gallery-img opens the lightbox
     document.querySelectorAll('.gallery-img').forEach(function (img) {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', function () {
         lbImg.src = this.src;
         lbImg.alt = this.alt;
 
-        // Try to find a figcaption sibling for caption text
         var fig = this.closest('figure');
         var cap = fig ? fig.querySelector('figcaption') : null;
         if (lbCaption) {
@@ -161,7 +157,6 @@
       });
     });
 
-    // Close lightbox
     function closeLightbox() {
       lightbox.classList.remove('active');
       lightbox.setAttribute('aria-hidden', 'true');
@@ -171,7 +166,6 @@
     if (lbClose) lbClose.addEventListener('click', closeLightbox);
 
     lightbox.addEventListener('click', function (e) {
-      // Close if clicking the backdrop (not the image itself)
       if (e.target === lightbox || e.target === lbClose) {
         closeLightbox();
       }
@@ -183,5 +177,230 @@
       }
     });
   }
+
+
+  /* ==========================================================================
+     DYNAMIC CONTENT LOADING — Projects & Updates
+     ==========================================================================
+
+     Reads site-manifest.json from the project root. The manifest is just
+     arrays of filenames — the order in each array is the display order.
+
+     MANIFEST FORMAT (site-manifest.json):
+     {
+       "selectedProjects": ["project-1.html", "cool-robot.html"],
+       "allProjects":      ["project-1.html", "cool-robot.html", "old-thing.html"],
+       "updates":          ["week-5-pcb-arrived.html", "week-3-first-prototype.html"]
+     }
+
+     - selectedProjects → shown in the "Selected Work" grid on the home page
+     - allProjects      → shown on the all-projects.html page
+     - updates          → shown in the "Updates" feed on the home page
+
+     Files can be named anything. The same file can appear in multiple arrays.
+     Project files live in /projects/, update files live in /updates/.
+
+     Each file needs these <meta> tags in its <head> for card content:
+       <meta name="card-title"   content="Title">
+       <meta name="card-excerpt" content="Short description.">
+       <meta name="card-image"   content="../images/photo.jpg">    (projects)
+       <meta name="card-tag"     content="Mechatronics">            (projects)
+       <meta name="card-date"    content="2026-03-17">              (updates)
+       <meta name="card-techs"   content="Arduino,KiCad,C++">      (projects, comma-sep)
+  */
+
+
+  /**
+   * Determine the base path to the site root from the current page.
+   */
+  function getBasePath() {
+    var path = window.location.pathname;
+    if (path.indexOf('/projects/') !== -1 || path.indexOf('/updates/') !== -1) {
+      return '../';
+    }
+    return '';
+  }
+
+  var BASE = getBasePath();
+
+  /**
+   * Fetch an HTML page and extract <meta name="card-*"> values.
+   */
+  function fetchMeta(url) {
+    return fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Not found');
+        return res.text();
+      })
+      .then(function (html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var meta = {};
+        doc.querySelectorAll('meta[name^="card-"]').forEach(function (tag) {
+          var key = tag.getAttribute('name').replace('card-', '');
+          meta[key] = tag.getAttribute('content') || '';
+        });
+        meta._url = url;
+        return meta;
+      })
+      .catch(function () { return null; });
+  }
+
+  /**
+   * Build HTML for a "coming soon" placeholder.
+   */
+  function comingSoonHTML(message) {
+    return '<div class="coming-soon-card">' +
+      '<div class="coming-soon-icon" aria-hidden="true">\u2699</div>' +
+      '<h3 class="coming-soon-title">More Coming Soon</h3>' +
+      '<p class="coming-soon-text">' + message + '</p>' +
+    '</div>';
+  }
+
+  /**
+   * Format YYYY-MM-DD into readable form.
+   */
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    var parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+  }
+
+  /**
+   * Build a project card from metadata.
+   */
+  function projectCardHTML(meta) {
+    var title   = meta.title   || 'Untitled Project';
+    var excerpt = meta.excerpt || '';
+    var image   = meta.image   || 'https://placehold.co/720x480/111/333?text=Project';
+    var tag     = meta.tag     || '';
+    var techs   = meta.techs   ? meta.techs.split(',') : [];
+
+    return '<article class="project-card">' +
+      '<a href="' + meta._url + '" class="project-card-link">' +
+        '<div class="project-image">' +
+          '<img src="' + image + '" alt="' + title + '" width="720" height="480" loading="lazy">' +
+          (tag ? '<span class="project-tag">' + tag + '</span>' : '') +
+        '</div>' +
+        '<div class="project-info">' +
+          '<h3>' + title + '</h3>' +
+          (excerpt ? '<p>' + excerpt + '</p>' : '') +
+          (techs.length ? '<ul class="project-tech">' + techs.map(function (t) { return '<li>' + t.trim() + '</li>'; }).join('') + '</ul>' : '') +
+          '<span class="project-link">View Case Study &rarr;</span>' +
+        '</div>' +
+      '</a>' +
+    '</article>';
+  }
+
+  /**
+   * Build an update card from metadata.
+   */
+  function updateCardHTML(meta) {
+    var title   = meta.title   || 'Untitled Update';
+    var excerpt = meta.excerpt || '';
+    var date    = meta.date    || '';
+
+    return '<article class="update-card">' +
+      '<a href="' + meta._url + '" class="update-card-link">' +
+        (date ? '<time class="update-date" datetime="' + date + '">' + formatDate(date) + '</time>' : '') +
+        '<h3 class="update-title">' + title + '</h3>' +
+        (excerpt ? '<p class="update-excerpt">' + excerpt + '</p>' : '') +
+        '<span class="update-read-more">Read more &rarr;</span>' +
+      '</a>' +
+    '</article>';
+  }
+
+
+  /**
+   * Generic loader: takes a list of filenames, a folder prefix, a card
+   * builder function, a container element, and a fallback message.
+   * Fetches metadata for each file, builds cards, injects into container.
+   */
+  function loadSection(filenames, folder, cardBuilder, container, fallbackMsg, onSuccess) {
+    if (!container) return;
+
+    if (!filenames || filenames.length === 0) {
+      container.innerHTML = comingSoonHTML(fallbackMsg);
+      initRevealObserver();
+      return;
+    }
+
+    Promise.all(
+      filenames.map(function (file) {
+        return fetchMeta(BASE + folder + file);
+      })
+    ).then(function (metas) {
+      var valid = metas.filter(function (m) { return m !== null; });
+
+      if (valid.length === 0) {
+        container.innerHTML = comingSoonHTML(fallbackMsg);
+        initRevealObserver();
+        return;
+      }
+
+      container.innerHTML = valid.map(cardBuilder).join('');
+      if (onSuccess) onSuccess();
+      initRevealObserver();
+    });
+  }
+
+
+  /* ---------- Load manifest and populate all sections ---------- */
+  fetch(BASE + 'site-manifest.json')
+    .then(function (res) {
+      if (!res.ok) throw new Error('Manifest not found');
+      return res.json();
+    })
+    .then(function (manifest) {
+
+      // Selected Projects (home page grid)
+      loadSection(
+        manifest.selectedProjects,
+        'projects/',
+        projectCardHTML,
+        document.getElementById('selected-projects-grid'),
+        'Project case studies are currently being documented. Check back soon to see detailed breakdowns of engineering work.',
+        function () {
+          var btn = document.getElementById('projects-view-all');
+          if (btn) btn.style.display = '';
+        }
+      );
+
+      // All Projects (all-projects.html page)
+      loadSection(
+        manifest.allProjects,
+        'projects/',
+        projectCardHTML,
+        document.getElementById('all-projects-grid'),
+        'Project case studies are being prepared. Check back soon for detailed engineering breakdowns.'
+      );
+
+      // Updates (home page feed)
+      loadSection(
+        manifest.updates,
+        'updates/',
+        updateCardHTML,
+        document.getElementById('updates-feed'),
+        'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
+      );
+
+    })
+    .catch(function (err) {
+      console.warn('site-manifest.json not found or invalid:', err);
+
+      var projMsg = comingSoonHTML('Project case studies are currently being documented. Check back soon.');
+      var updMsg  = comingSoonHTML('Updates are on the way. Check back soon.');
+
+      var selGrid = document.getElementById('selected-projects-grid');
+      var allGrid = document.getElementById('all-projects-grid');
+      var updFeed = document.getElementById('updates-feed');
+
+      if (selGrid) selGrid.innerHTML = projMsg;
+      if (allGrid) allGrid.innerHTML = projMsg;
+      if (updFeed) updFeed.innerHTML = updMsg;
+      initRevealObserver();
+    });
 
 })();

@@ -1,96 +1,125 @@
+/* global React, localOf, clamp, smoothstep */
+
+const { useEffect, useRef, useState } = React;
+
 const UPDATES = [
-  { date: '2026-04-18', tag: 'BUILD', body: 'STIK-eNote shell revision 4 finished. Adjusted the hinge tolerance by 0.15mm for a better snap.' },
-  { date: '2026-04-10', tag: 'CODE', body: 'Ported the menu system to LVGL 9.2. Memory footprint dropped by 40KB.' },
-  { date: '2026-03-22', tag: 'DESIGN', body: 'Initial sketches for the rotary indexer. Thinking of using a Geneva drive instead of a stepper.' },
-  { date: '2026-03-15', tag: 'BUILD', body: 'Lathe maintenance day. Cleaned the ways and trued the chuck.' },
-  { date: '2026-02-28', tag: 'NOTE', body: 'Always order 10% more M2 screws than you think you need.' },
-  { date: '2026-02-14', tag: 'DESIGN', body: 'Refining the sun-tracking array geometry to minimize wind load.' }
+  { date: '03.26.26', tag: 'BUILD', body: 'STIK-eNote V2 schematic broken out into six functional sheets. Net names replace rat-nest wiring.' },
+  { date: '03.12.26', tag: 'NOTE', body: 'Switched lid detection from reed switch to DRV5032 Hall sensor. No more contact bounce on wake.' },
+  { date: '02.28.26', tag: 'DESIGN', body: 'Added I²C level shifter pair (BSS138) so 3.3V PocketBeagle can talk to 5V CardKB without damage.' },
+  { date: '02.14.26', tag: 'TEST', body: 'Boost converter ripple under 30 mV across the 5V rail. Quiet enough for analog neighbors.' },
+  { date: '01.30.26', tag: 'IDEA', body: 'Exploring a low-profile rotary indexer for the next project — detent spring + cam profile sketches started.' },
 ];
 
-const SceneUpdates = ({ progress }) => {
-  const p = window.clamp(progress - 4, -1, 1);
-  const opacity = 1 - Math.abs(p);
-  const translateY = p * 100;
-
-  // Basic representation, the 3D marble track is highly complex for a simple handoff.
-  // We'll use CSS/HTML for the feed and a simpler visual representation or 2D overlay for the marble track if 3D is too much JSX.
-  // The spec says "3D/2D hybrid". Let's do a 2D SVG version for the solenoid + track since we don't have a physics engine.
-
-  const [marbles, setMarbles] = React.useState([]);
-
-  React.useEffect(() => {
-    // A simplified marble dropper logic based on progress + idle
-    let lastFireProgress = 0;
-
-    const interval = setInterval(() => {
-      // Fire every 4s idle
-      setMarbles(m => [...m, { id: Date.now(), y: 0, x: 50, state: 'falling' }].slice(-10));
-    }, 4000);
-
-    return () => clearInterval(interval);
+function Solenoid({ progress }) {
+  // a simple solenoid drops a little cube each time a new update "arrives"
+  const local = localOf(progress, 4);
+  const tick = useRef(0);
+  const [, setT] = useState(0);
+  useEffect(() => {
+    let raf, last = performance.now();
+    const loop = (now) => {
+      const dt = (now - last) / 1000; last = now;
+      tick.current += dt;
+      setT(tick.current);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
-  return (
-    <section className="scene" id="scene-04" style={{ opacity, transform: `translate3d(0, ${translateY}vh, 0)` }}>
-      <div className="split-layout">
-        <div className="split-left" style={{ paddingRight: 60 }}>
-          <h2 className="scene-heading" style={{ fontSize: 64 }}>FIELD NOTES</h2>
+  const phase = (tick.current % 2); // 0..2s cycle
+  const push = phase < 0.25 ? phase / 0.25 : phase < 0.6 ? 1 - (phase - 0.25) / 0.35 : 0;
+  const plungerY = 80 - push * 32;
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40, maxHeight: '60vh', overflow: 'hidden' }}>
-            {UPDATES.map(u => (
-              <div key={u.date} style={{ display: 'flex', gap: 16, borderBottom: '1px solid var(--steel-dark)', paddingBottom: 16 }}>
-                <div style={{ fontFamily: 'var(--f-dot)', fontSize: 12, color: 'var(--ink-mute)', width: 100, flexShrink: 0 }}>
-                  {u.date}
-                </div>
-                <div style={{ flex: 1, fontFamily: 'var(--f-body)', fontSize: 14, color: 'var(--ink)' }}>
-                  {u.body}
-                </div>
-                <div className="s-brass" style={{ height: 'fit-content', padding: '2px 8px', fontSize: 10, fontFamily: 'var(--f-mono)', color: '#000', fontWeight: 'bold' }}>
-                  {u.tag}
-                </div>
+  return (
+    <svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" style={{width:'100%', height:'100%'}}>
+      <g className="mech-soft">
+        <rect x="20" y="20" width="440" height="440" />
+      </g>
+      {/* solenoid body */}
+      <g transform="translate(240 120)">
+        <rect x="-48" y="-40" width="96" height="80" fill="none" stroke="var(--ink)" strokeWidth="1.25" />
+        {/* windings */}
+        {[...Array(8)].map((_, i) => (
+          <line key={i} x1="-48" y1={-30 + i*8} x2="48" y2={-30 + i*8} stroke="var(--ink)" strokeWidth=".8" />
+        ))}
+        {/* plunger */}
+        <rect x="-8" y={plungerY - 120} width="16" height="80" fill="var(--ink)" />
+        <rect x="-12" y={plungerY - 44} width="24" height="8" fill="var(--accent)" />
+        {/* leads */}
+        <path d="M -70 -40 L -80 -10 L -80 40" stroke="var(--ink)" fill="none" strokeWidth="1" />
+        <path d="M 70 -40 L 80 -10 L 80 40" stroke="var(--ink)" fill="none" strokeWidth="1" />
+        <text x="0" y="56" fontFamily="var(--f-mono)" fontSize="10" fill="var(--ink-3)" textAnchor="middle" letterSpacing="2">COIL · 12V</text>
+      </g>
+
+      {/* ball track that accepts the stamped note and rolls down to feed queue */}
+      <path d="M 240 220 L 240 280 L 380 280 L 380 420" className="mech-stroke" strokeWidth="1.5" />
+      {/* a marble rolls along periodically */}
+      <Marble progress={progress} />
+      {/* queue boxes */}
+      <g className="mech-stroke">
+        <rect x="360" y="400" width="40" height="24" />
+        <rect x="360" y="428" width="40" height="24" />
+      </g>
+
+      {/* labels */}
+      <text x="32" y="462" fontFamily="var(--f-mono)" fontSize="10" fill="var(--ink-3)" letterSpacing="2">
+        FIG-05 · LOG STAMPER
+      </text>
+    </svg>
+  );
+}
+
+function Marble({ progress }) {
+  const tick = useRef(0);
+  const [, setT] = useState(0);
+  useEffect(() => {
+    let raf, last = performance.now();
+    const loop = (now) => { const dt = (now - last) / 1000; last = now; tick.current += dt; setT(tick.current); raf = requestAnimationFrame(loop); };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const cyc = 3;
+  const p = (tick.current % cyc) / cyc; // 0..1
+  let x = 240, y = 220;
+  if (p < 0.35) { y = 220 + (p / 0.35) * 60; }
+  else if (p < 0.7) { y = 280; x = 240 + ((p - 0.35) / 0.35) * 140; }
+  else { x = 380; y = 280 + ((p - 0.7) / 0.3) * 140; }
+  const op = p > 0.97 ? 0 : 1;
+  return <circle cx={x} cy={y} r="6" fill="var(--ink)" opacity={op} />;
+}
+
+function SceneUpdates({ progress }) {
+  const local = localOf(progress, 4);
+  // cascade-in when scrolling into the scene; once in, stay in
+  const near = clamp(1.2 - Math.abs(local), 0, 1.2);
+  const visible = Math.max(0, Math.min(UPDATES.length, Math.ceil(near * (UPDATES.length + 1))));
+  return (
+    <section className="scene updates">
+      <div className="sect-label">04 · UPDATES</div>
+      <div className="frame">
+        <div className="l-col">
+          <div className="eyebrow" style={{marginBottom:12}}>FEED · WORKBENCH</div>
+          <h2 className="display">Field notes.</h2>
+          <p>Short dispatches from the workbench — progress notes, design
+             decisions, and lessons learned as they happen.</p>
+
+          <div className="feed" style={{marginTop:32}}>
+            {UPDATES.map((u, i) => (
+              <div key={i} className={'item' + (i < visible ? ' in' : '')}>
+                <span className="date">{u.date}</span>
+                <span className="body">{u.body}</span>
+                <span className="tag">{u.tag}</span>
               </div>
             ))}
           </div>
         </div>
-
-        <div className="split-right" style={{ position: 'relative' }}>
-          {/* Hybrid 2D/3D - We'll use an SVG overlay for the track for simplicity and reliability without a physics engine */}
-          <div style={{ position: 'absolute', top: '10%', left: 0, width: '100%', height: '80%' }}>
-            <svg width="100%" height="100%" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid meet">
-              {/* Solenoid */}
-              <g transform="translate(200, 50)">
-                <rect x="-30" y="0" width="60" height="80" fill="#3C4046" stroke="#14161A" strokeWidth="2" />
-                <rect x="-25" y="10" width="50" height="60" fill="#B36A3A" /> {/* Coil */}
-                {/* Plunger */}
-                <rect x="-8" y="40" width="16" height="60" fill="#8A8F97" />
-              </g>
-
-              {/* Lever */}
-              <line x1="150" y1="120" x2="300" y2="140" stroke="#8A8F97" strokeWidth="6" />
-              <circle cx="225" cy="130" r="4" fill="#000" />
-
-              {/* Track */}
-              <path d="M 50 160 L 350 240 L 50 320 L 350 400 L 50 480" fill="none" stroke="#7A5E1F" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
-
-              {/* Fake Marbles */}
-              <circle cx="150" cy="186" r="10" fill="#8A8F97" />
-              <circle cx="250" cy="213" r="10" fill="#8A8F97" />
-              <circle cx="200" cy="280" r="10" fill="#8A8F97" />
-
-              {/* Tag Queue */}
-              <g transform="translate(50, 520)">
-                <rect x="-20" y="0" width="40" height="100" fill="#14161A" stroke="#3C4046" strokeWidth="2" />
-                <rect x="-18" y="80" width="36" height="6" fill="#C8A24A" />
-                <rect x="-18" y="72" width="36" height="6" fill="#C8A24A" />
-                <rect x="-18" y="64" width="36" height="6" fill="#C8A24A" />
-                <rect x="-18" y="56" width="36" height="6" fill="#C8A24A" />
-              </g>
-            </svg>
-          </div>
+        <div className="solenoid">
+          <Solenoid progress={progress} />
         </div>
       </div>
     </section>
   );
-};
+}
 
 window.SceneUpdates = SceneUpdates;

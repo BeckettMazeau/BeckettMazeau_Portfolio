@@ -1,187 +1,169 @@
-const { useEffect, useRef } = React;
-const THREE = window.THREE;
+/* global React, localOf, clamp, lerp, smoothstep */
 
-const SceneNow = ({ progress }) => {
-  const mountRef = useRef(null);
-  const p = window.clamp(progress - 2, -1, 1);
-  const opacity = 1 - Math.abs(p);
-  const translateY = p * 100;
+const { useEffect, useRef, useState, useMemo } = React;
 
+/* Now scene: cam-driven piston. The belt from the gear train turns a cam that
+   pushes a piston which "presses" against the device body. */
+function CamPiston({ progress }) {
+  const local = localOf(progress, 2);
+  const tick = useRef(0);
+  const [, setT] = useState(0);
   useEffect(() => {
-    if (!mountRef.current) return;
-
-    const w = mountRef.current.clientWidth;
-    const h = mountRef.current.clientHeight;
-
-    const renderer = window.makeRenderer(document.createElement('canvas'), { w, h });
-    mountRef.current.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-    window.makeStandardRig(scene);
-
-    const camera = new THREE.PerspectiveCamera(35, w / h, 0.1, 100);
-    camera.position.set(2, 1, 3);
-    camera.lookAt(0, 0.2, 0);
-
-    // Stage
-    const stageGeom = new THREE.BoxGeometry(2, 0.1, 1.5);
-    const stageMesh = new THREE.Mesh(stageGeom, window.MAT.brassDark);
-    stageMesh.position.y = -0.5;
-    stageMesh.receiveShadow = true;
-    scene.add(stageMesh);
-
-    // Basic representation of STIK-eNote Device
-    const deviceGroup = new THREE.Group();
-    deviceGroup.position.set(0.2, -0.45, 0);
-    scene.add(deviceGroup);
-
-    // Base slab
-    const baseGeom = new THREE.BoxGeometry(0.8, 0.1, 0.6);
-    const base = new THREE.Mesh(baseGeom, window.MAT.steelDark);
-    base.position.y = 0.05;
-    deviceGroup.add(base);
-
-    // Lid (clamshell)
-    const lidGroup = new THREE.Group();
-    // Hinge at far edge (z = -0.3)
-    lidGroup.position.set(0, 0.1, -0.3);
-    deviceGroup.add(lidGroup);
-
-    const lidGeom = new THREE.BoxGeometry(0.8, 0.05, 0.6);
-    lidGeom.translate(0, 0.025, 0.3); // offset so it rotates around hinge
-    const lid = new THREE.Mesh(lidGeom, window.MAT.painted);
-    lidGroup.add(lid);
-
-    // Screen (simple plane on lid)
-    const screenGeom = new THREE.PlaneGeometry(0.6, 0.4);
-    const screenMat = new THREE.MeshBasicMaterial({ color: 0x222222 });
-    const screen = new THREE.Mesh(screenGeom, screenMat);
-    screen.rotation.x = -Math.PI / 2;
-    screen.position.set(0, 0.051, 0.3);
-    lidGroup.add(screen);
-
-    // Cam
-    const camShape = new THREE.Shape();
-    camShape.moveTo(0, 0.2);
-    camShape.quadraticCurveTo(0.2, 0.2, 0.25, 0);
-    camShape.quadraticCurveTo(0.2, -0.2, 0, -0.2);
-    camShape.quadraticCurveTo(-0.2, -0.2, -0.2, 0);
-    camShape.quadraticCurveTo(-0.2, 0.2, 0, 0.2);
-
-    const extrudeSettings = { depth: 0.1, bevelEnabled: false };
-    const camGeom = new THREE.ExtrudeGeometry(camShape, extrudeSettings);
-    camGeom.translate(0, 0, -0.05); // center depth
-    const cam = new THREE.Mesh(camGeom, window.MAT.steel);
-    cam.position.set(-0.6, -0.2, 0);
-    scene.add(cam);
-
-    // Follower Rod
-    const rodGeom = new THREE.CylinderGeometry(0.02, 0.02, 0.8);
-    const rod = new THREE.Mesh(rodGeom, window.MAT.steel);
-    rod.position.set(-0.6, 0.2, 0);
-    scene.add(rod);
-
-    // Connection from rod to lid (simplified)
-    const linkGeom = new THREE.BoxGeometry(0.4, 0.02, 0.02);
-    const link = new THREE.Mesh(linkGeom, window.MAT.steel);
-    link.position.set(-0.4, 0.6, 0.3);
-    scene.add(link);
-
-    let reqId;
-
-    const animate = () => {
-      // Use global progress from React closure
-      const scrollVal = document.documentElement.scrollTop / window.innerHeight; // rough fallback or we could use a ref
-
-      // Since progress is a prop, we animate it based on that
-      // For smooth idle, let's just add a small time component
-      const time = performance.now() / 1000;
-      // output of scene 01 / 27
-      const camAngle = (progress * Math.PI * 4) / 27 + time * 0.5;
-
-      cam.rotation.z = -camAngle;
-
-      // Calculate follower height based on cam profile (very simplified physics)
-      // Base radius 0.2, eccentric up to 0.25
-      const followerLift = 0.2 + 0.05 * Math.sin(camAngle);
-
-      rod.position.y = -0.2 + followerLift + 0.4; // offset + rod half height
-      link.position.y = rod.position.y + 0.4;
-
-      // Drive lid angle
-      const lidAngle = window.lerp(0, 28 * (Math.PI / 180), (followerLift - 0.2) / 0.05);
-      lidGroup.rotation.x = lidAngle;
-
-      // Snap closed logic (overshoot) could be added here if needed,
-      // but lerp gives a smooth enough motion for the prototype.
-
-      renderer.render(scene, camera);
-      reqId = requestAnimationFrame(animate);
+    let raf, last = performance.now();
+    const loop = (now) => {
+      const dt = (now - last) / 1000; last = now;
+      const speed = 90 + 60 * (1 - Math.min(1, Math.abs(local)));
+      tick.current += speed * dt;
+      setT(tick.current);
+      raf = requestAnimationFrame(loop);
     };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [local]);
 
-    reqId = requestAnimationFrame(animate);
-
-    const handleResize = () => {
-      if (!mountRef.current) return;
-      const nw = mountRef.current.clientWidth;
-      const nh = mountRef.current.clientHeight;
-      camera.aspect = nw / nh;
-      camera.updateProjectionMatrix();
-      renderer.setSize(nw, nh);
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(reqId);
-      if (mountRef.current && mountRef.current.firstChild) {
-        mountRef.current.removeChild(mountRef.current.firstChild);
-      }
-      renderer.dispose();
-    };
-  }, [progress]); // Re-bind if progress was strictly needed inside, but usually we use a ref for continuous
+  const ang = (tick.current * Math.PI) / 180;
+  const offset = Math.sin(ang) * 14; // piston travel
 
   return (
-    <section className="scene" id="scene-02" style={{ opacity, transform: `translate3d(0, ${translateY}vh, 0)` }}>
-      <div className="split-layout">
-        <div className="split-left" ref={mountRef} style={{ position: 'relative' }}>
-          {/* 3D Canvas goes here */}
-          <div style={{ position: 'absolute', top: '50%', right: '10%', transform: 'translateY(-50%)', fontFamily: 'var(--f-dot)', fontSize: 18, color: 'var(--amber)', background: 'rgba(0,0,0,0.8)', padding: '4px 8px', border: '1px solid var(--amber)' }}>
-            12 RPM
-          </div>
-        </div>
-        <div className="split-right" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <h2 className="scene-heading" style={{ fontSize: 64 }}>NOW &middot; STIK-eNote</h2>
-          <div className="scene-body" style={{ color: 'var(--amber)', fontFamily: 'var(--f-mono)', marginBottom: 24, fontSize: 14 }}>
-            Prototype rev C &middot; integrating LVGL UI
-          </div>
-          <div className="scene-body">
-            A pocketable e-paper task tracker. Clamshell housing, dual OLED + TFT display, LVGL UI on an ESP32-S3.
-            <ul style={{ listStyle: 'none', padding: 0, marginTop: 16 }}>
-              {[
-                'Custom PCB, 4-layer, 0.8mm',
-                'Lid-closed power gating via hall sensor',
-                'Li-Po + USB-C, 14 days standby',
-                'LVGL 9.2 on a 240×320 TFT',
-                'Mechanical keyboard, low-profile',
-                'Designed in SolidWorks, machined shell'
-              ].map(bullet => (
-                <li key={bullet} style={{ marginBottom: 8, paddingLeft: 16, position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: 'var(--red)' }}>&middot;</span>
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ marginTop: 32 }}>
-            <button className="btn-primary" style={{ width: 200 }}>
-              [INSPECT PROJECT] &rarr;
-            </button>
+    <svg className="cam-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+      <g className="mech-soft">
+        <rect x="30" y="30" width="540" height="540" />
+      </g>
+
+      {/* cam at bottom */}
+      <g transform={`translate(140 480)`}>
+        <g transform={`rotate(${tick.current})`}>
+          <ellipse cx="0" cy="0" rx="48" ry="36" fill="var(--ink)" />
+          <circle r="6" fill="var(--accent)" />
+        </g>
+        <circle r="8" fill="var(--bg)" stroke="var(--ink)" strokeWidth="1.25" />
+      </g>
+
+      {/* piston pushing upward */}
+      <g transform={`translate(140 ${400 - offset})`}>
+        <rect x="-16" y="0" width="32" height="60" fill="none" stroke="var(--ink)" strokeWidth="1.25" />
+        <line x1="-16" y1="0" x2="16" y2="0" stroke="var(--ink)" strokeWidth="2" />
+        <line x1="-10" y1="-30" x2="-10" y2="0" stroke="var(--ink)" strokeWidth="1" />
+        <line x1="10" y1="-30" x2="10" y2="0" stroke="var(--ink)" strokeWidth="1" />
+      </g>
+
+      {/* guide rails */}
+      <g className="mech-soft">
+        <line x1="115" y1="350" x2="115" y2="470" />
+        <line x1="165" y1="350" x2="165" y2="470" />
+      </g>
+
+      {/* drive belt coming in from the left */}
+      <path d={`M 0 500 C 60 500 80 480 140 480`} className="mech-soft" />
+
+      {/* spring above piston */}
+      <path
+        d={`M 140 ${360 - offset} q 10 -8 0 -16 q -10 -8 0 -16 q 10 -8 0 -16 q -10 -8 0 -16 q 10 -8 0 -16`}
+        className="mech-stroke" />
+
+      {/* indicator dial on the right */}
+      <g transform="translate(480 140)">
+        <circle r="56" fill="none" stroke="var(--ink)" strokeWidth="1.25" />
+        <circle r="44" fill="none" stroke="var(--rule-soft)" />
+        {[...Array(12)].map((_, i) => (
+          <line key={i} x1="0" y1="-56" x2="0" y2="-48" transform={`rotate(${i * 30})`} stroke="var(--ink)" strokeWidth="1" />
+        ))}
+        <g transform={`rotate(${tick.current * 0.25})`}>
+          <line x1="0" y1="0" x2="0" y2="-40" stroke="var(--accent)" strokeWidth="2" />
+          <circle r="3" fill="var(--ink)" />
+        </g>
+        <text x="0" y="78" fontFamily="var(--f-mono)" fontSize="9" fill="var(--ink-3)" textAnchor="middle" letterSpacing="2">
+          STROKE
+        </text>
+      </g>
+
+      <text x="30" y="20" fontFamily="var(--f-mono)" fontSize="10" fill="var(--ink-3)" letterSpacing="2">
+        FIG-03 · CAM/PISTON
+      </text>
+    </svg>
+  );
+}
+
+function NowModal({ open, onClose }) {
+  return (
+    <div className={'modal-scrim' + (open ? ' open' : '')} onClick={onClose}>
+      <div className="modal-wrap" onClick={(e) => e.stopPropagation()}>
+        <div className="modal">
+          <button className="close" onClick={onClose} aria-label="Close">✕</button>
+          <span className="eyebrow">IN PROGRESS · STIK-ENOTE</span>
+          <h3>A pocketable e-paper task tracker.</h3>
+          <p>
+            Clamshell device built around the PocketBeagle. Closed, only the
+            low-power e-paper display stays alive, persisting your task list at
+            near-zero current. Opening the lid trips a Hall-effect sensor that
+            brings up a 240×320 TFT and a mini I²C keyboard for editing.
+          </p>
+          <div className="grid2">
+            <div>
+              <h4>Dual Display</h4>
+              <p>GDEY0213B74 e-paper at rest; YT280S010 TFT when open.</p>
+            </div>
+            <div>
+              <h4>Power Gating</h4>
+              <p>Three BSS84 P-FETs high-side switch the 5V rail, TFT, and e-paper.</p>
+            </div>
+            <div>
+              <h4>Lid Sensing</h4>
+              <p>DRV5032 omnipolar Hall sensor replaces the original reed switch.</p>
+            </div>
+            <div>
+              <h4>Level Shift</h4>
+              <p>Pair of BSS138 N-FETs bridge 3.3V logic to the 5V CardKB.</p>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function SceneNow({ progress }) {
+  const local = localOf(progress, 2);
+  const press = clamp(1 - Math.abs(local), 0, 1);
+  const [open, setOpen] = useState(false);
+
+  return (
+    <section className="scene now">
+      <div className="sect-label">02 · NOW</div>
+      <div className="frame">
+        <div className="cam-col">
+          <div className="device-stage">
+            <CamPiston progress={progress} />
+            <div className="device" style={{transform: `translate(-50%, calc(-50% - ${press * 6}px))`}}>
+              <img src="images/stik-enote-render.png" alt="STIK-eNote render" />
+            </div>
+          </div>
+        </div>
+        <div className="text-col">
+          <div className="status"><span className="blink" />In Progress · Mar 2026</div>
+          <h2 className="display">STIK-eNote<span style={{color:'var(--accent)'}}>.</span></h2>
+          <p className="sub"><em>A pocketable e-paper task tracker.</em></p>
+          <p className="blurb">
+            A distraction-free, always-in-your-pocket tool that shows your
+            priorities at a glance — no phone, no laptop. Low-power e-paper at
+            rest; TFT + keyboard on lid open.
+          </p>
+          <div className="pills">
+            <span>PocketBeagle</span>
+            <span>E-Paper</span>
+            <span>KiCad</span>
+            <span>P-FET Gating</span>
+            <span>I²C</span>
+          </div>
+          <button className="expand" onClick={() => setOpen(true)}>
+            <span>Inspect project</span>
+            <span className="plus" />
+          </button>
+        </div>
+      </div>
+      <NowModal open={open} onClose={() => setOpen(false)} />
     </section>
   );
-};
+}
 
 window.SceneNow = SceneNow;
