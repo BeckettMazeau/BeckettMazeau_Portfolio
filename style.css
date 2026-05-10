@@ -1931,3 +1931,115 @@ details[open] .cp-details-icon::after,
   margin-top: var(--sp-lg);
 }
 
+
+/* ==========================================================================
+   GALLERY MODIFIERS
+   ========================================================================== */
+
+/* Natural-proportion images — no forced crop or aspect ratio.
+   Use for device screenshots, diagrams, and PCB renders where cropping
+   would hide meaningful content. */
+.proj-gallery-item--natural img {
+  aspect-ratio: unset;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-bg-raised);
+}
+
+/* Three-column gallery grid */
+.proj-gallery-grid--thirds {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .proj-gallery-grid--thirds {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .proj-gallery-grid--thirds {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   CAROUSEL
+   ========================================================================== */
+.proj-carousel {
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease-out);
+  margin-top: var(--sp-md);
+}
+.proj-carousel:hover {
+  border-color: var(--color-accent);
+}
+
+.proj-carousel-viewport {
+  overflow: hidden;
+  position: relative;
+}
+
+.proj-carousel-track {
+  display: flex;
+  transition: transform 0.4s var(--ease-out);
+  will-change: transform;
+}
+
+.proj-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.proj-carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--color-bg-raised);
+}
+.proj-carousel-slide figcaption {
+  padding: var(--sp-xs) var(--sp-sm);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.proj-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem var(--sp-sm);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.proj-carousel-btn {
+  background: none;
+  border: 1px solid var(--color-border-lite);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+.proj-carousel-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.proj-carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.proj-carousel-counter {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+

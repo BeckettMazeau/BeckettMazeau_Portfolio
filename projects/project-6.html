@@ -162,13 +162,9 @@
         the displays (where the display buffer lives as well).
       </p>
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item proj-gallery-item--wide">
+<figure class="proj-gallery-item proj-gallery-item--wide proj-gallery-item--natural">
 <img alt="Assembly diagram showing the open and closed configurations of the STIK-eNote" class="gallery-img" loading="lazy" src="../images/MechanicalDiagram.png"/>
 <figcaption>Assembly diagram showing the open and closed configurations of the STIK-eNote.</figcaption>
-</figure>
-<figure class="proj-gallery-item proj-gallery-item--wide">
-<img alt="ePaper showing the sleep display with an upcoming event and active tasks" class="gallery-img" loading="lazy" src="../images/SleepScreen.JPG"/>
-<figcaption>ePaper showing the sleep display with an upcoming event and active tasks.</figcaption>
 </figure>
 </div>
 </div>
@@ -192,23 +188,24 @@
         calendar events, both backed by fixed arrays so there's no dynamic memory allocation on the
         data path at all.
       </p>
-<div class="proj-gallery-grid">
-<figure class="proj-gallery-item proj-gallery-item--wide">
+<div class="proj-carousel" aria-label="Task list screens">
+<div class="proj-carousel-viewport">
+<div class="proj-carousel-track">
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the full task list in active mode" class="gallery-img" loading="lazy" src="../images/AllTasksManagmentScreen.JPG"/>
 <figcaption>TFT showing the full task list in active mode.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
-<img alt="TFT showing the task list filtered to uncompleted tasks" class="gallery-img" loading="lazy" src="../images/UncompletedTasksManagementScreen.JPG"/>
-<figcaption>TFT showing the task list filtered to uncompleted tasks.</figcaption>
-</figure>
-<figure class="proj-gallery-item">
-<img alt="TFT showing the task list with a due-date task visible" class="gallery-img" loading="lazy" src="../images/TaskUI.JPG"/>
-<figcaption>TFT showing the task list with a due-date task visible.</figcaption>
-</figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the new task entry form" class="gallery-img" loading="lazy" src="../images/NewTaskSetup.JPG"/>
 <figcaption>TFT showing the new task entry form.</figcaption>
 </figure>
+</div>
+</div>
+<div class="proj-carousel-controls">
+<button aria-label="Previous slide" class="proj-carousel-btn proj-carousel-btn--prev">←</button>
+<span class="proj-carousel-counter">1 / 2</span>
+<button aria-label="Next slide" class="proj-carousel-btn proj-carousel-btn--next">→</button>
+</div>
 </div>
 <!-- Calendar -->
 <h3 style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-top: var(--sp-lg); margin-bottom: var(--sp-sm);">Calendar</h3>
@@ -224,27 +221,36 @@
         Drilling into a day or event shows the full details: title, notes, location, time, duration.
         Events can be linked to tasks, so a scheduled block can point at a specific to-do.
       </p>
-<div class="proj-gallery-grid">
-<figure class="proj-gallery-item">
+<div class="proj-carousel" aria-label="Calendar screens">
+<div class="proj-carousel-viewport">
+<div class="proj-carousel-track">
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the calendar month grid" class="gallery-img" loading="lazy" src="../images/CalendarMonthView.JPG"/>
 <figcaption>TFT showing the calendar month grid.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the week view with events marked by day" class="gallery-img" loading="lazy" src="../images/CalendarWeekView.JPG"/>
 <figcaption>TFT showing the week view with events marked by day.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
-<img alt="TFT showing the event details screen" class="gallery-img" loading="lazy" src="../images/CalendarEventDetails.JPG"/>
-<figcaption>TFT showing the event details screen.</figcaption>
-</figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the day view with events listed by time" class="gallery-img" loading="lazy" src="../images/CalendarDayView.JPG"/>
 <figcaption>TFT showing the day view with events listed by time.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
+<img alt="TFT showing the event details screen" class="gallery-img" loading="lazy" src="../images/CalendarEventDetails.JPG"/>
+<figcaption>TFT showing the event details screen.</figcaption>
+</figure>
+<figure class="proj-carousel-slide">
 <img alt="TFT showing the add calendar event form" class="gallery-img" loading="lazy" src="../images/CalendarEventSetup.JPG"/>
 <figcaption>TFT showing the add calendar event form.</figcaption>
 </figure>
+</div>
+</div>
+<div class="proj-carousel-controls">
+<button aria-label="Previous slide" class="proj-carousel-btn proj-carousel-btn--prev">←</button>
+<span class="proj-carousel-counter">1 / 5</span>
+<button aria-label="Next slide" class="proj-carousel-btn proj-carousel-btn--next">→</button>
+</div>
 </div>
 <!-- Pomodoro -->
 <h3 style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-top: var(--sp-lg); margin-bottom: var(--sp-sm);">Pomodoro</h3>
@@ -254,11 +260,11 @@
         so the mid-session context is preserved if I step away from it.
       </p>
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item">
+<figure class="proj-gallery-item proj-gallery-item--natural">
 <img alt="TFT showing the focus timer setup screen" class="gallery-img" loading="lazy" src="../images/PomodoroSetup.JPG"/>
 <figcaption>TFT showing the focus timer setup screen.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-gallery-item proj-gallery-item--natural">
 <img alt="ePaper showing the pomodoro timer counting down during a work session" class="gallery-img" loading="lazy" src="../images/PomodoroScreen.JPG"/>
 <figcaption>ePaper showing the pomodoro timer counting down during a work session.</figcaption>
 </figure>
@@ -271,7 +277,7 @@
         feel, but it does add up over a day of use.
       </p>
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item">
+<figure class="proj-gallery-item proj-gallery-item--natural">
 <img alt="TFT showing the system settings screen" class="gallery-img" loading="lazy" src="../images/SettingsUI.JPG"/>
 <figcaption>TFT showing the system settings screen.</figcaption>
 </figure>
@@ -288,7 +294,7 @@
         low power state.
       </p>
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item proj-gallery-item--wide">
+<figure class="proj-gallery-item proj-gallery-item--wide proj-gallery-item--natural">
 <img alt="ePaper showing the sleep display cycling through active tasks and an upcoming event" class="gallery-img" loading="lazy" src="../images/SleepScreen.JPG"/>
 <figcaption>ePaper showing the sleep display cycling through active tasks and an upcoming event.</figcaption>
 </figure>
@@ -449,30 +455,41 @@
       </p>
 <!-- Electrical Diagram + Schematics -->
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item proj-gallery-item--wide">
+<figure class="proj-gallery-item proj-gallery-item--wide proj-gallery-item--natural">
 <img alt="Electrical block diagram showing the full system architecture" class="gallery-img" loading="lazy" src="../images/ElectricalDiagram.png"/>
 <figcaption>Electrical block diagram showing the full system architecture.</figcaption>
 </figure>
-<figure class="proj-gallery-item proj-gallery-item--wide">
+</div>
+<div class="proj-carousel" aria-label="KiCad schematics" style="margin-top: var(--sp-md);">
+<div class="proj-carousel-viewport">
+<div class="proj-carousel-track">
+<figure class="proj-carousel-slide">
 <img alt="Top-level KiCad schematic showing all subsystems and their interconnections" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0001.jpg"/>
-<figcaption>Top-level KiCad schematic showing all subsystems and their interconnections.</figcaption>
+<figcaption>Sheet 1 — Top-level overview: all subsystems and their interconnections.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="KiCad schematic showing the power circuitry: battery charging, boost converter, LDO regulator, and lid switch" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0002.jpg"/>
-<figcaption>KiCad schematic showing the power circuitry: battery charging, boost converter, LDO regulator, and lid switch.</figcaption>
+<figcaption>Sheet 2 — Power path: battery charger, boost converter, LDO regulator, lid switch.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
-<img alt="KiCad schematic showing the USB-C connector and power delivery configuration" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0005.jpg"/>
-<figcaption>KiCad schematic showing the USB-C connector and power delivery configuration.</figcaption>
-</figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="KiCad schematic showing the ESP32-S3 pin connections to all peripherals" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0003.jpg"/>
-<figcaption>KiCad schematic showing the ESP32-S3 pin connections to all peripherals.</figcaption>
+<figcaption>Sheet 3 — ESP32-S3 peripheral pin connections.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-carousel-slide">
 <img alt="KiCad schematic showing the BSS138 bidirectional I2C level shifting circuit" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0004.jpg"/>
-<figcaption>KiCad schematic showing the BSS138 bidirectional I2C level shifting circuit.</figcaption>
+<figcaption>Sheet 4 — BSS138 bidirectional I²C level shifting circuit.</figcaption>
 </figure>
+<figure class="proj-carousel-slide">
+<img alt="KiCad schematic showing the USB-C connector and power delivery configuration" class="gallery-img" loading="lazy" src="../images/StikE_Schematic_page-0005.jpg"/>
+<figcaption>Sheet 5 — USB-C connector and power delivery configuration.</figcaption>
+</figure>
+</div>
+</div>
+<div class="proj-carousel-controls">
+<button aria-label="Previous slide" class="proj-carousel-btn proj-carousel-btn--prev">←</button>
+<span class="proj-carousel-counter">1 / 5</span>
+<button aria-label="Next slide" class="proj-carousel-btn proj-carousel-btn--next">→</button>
+</div>
 </div>
 </div>
 </section>
@@ -508,15 +525,15 @@
         human has to solder this thing, and that human is me.
       </p>
 <div class="proj-gallery-grid">
-<figure class="proj-gallery-item">
+<figure class="proj-gallery-item proj-gallery-item--natural">
 <img alt="KiCad PCB front layer showing component placement" class="gallery-img" loading="lazy" src="../images/FrontPCB.png"/>
 <figcaption>KiCad PCB front layer showing component placement.</figcaption>
 </figure>
-<figure class="proj-gallery-item">
+<figure class="proj-gallery-item proj-gallery-item--natural">
 <img alt="KiCad PCB back layer showing the ground plane and antenna exclusion zone" class="gallery-img" loading="lazy" src="../images/BackPCB.png"/>
 <figcaption>KiCad PCB back layer showing the ground plane and antenna exclusion zone.</figcaption>
 </figure>
-<figure class="proj-gallery-item proj-gallery-item--wide">
+<figure class="proj-gallery-item proj-gallery-item--wide proj-gallery-item--natural">
 <img alt="Full KiCad PCB sheet showing component placement relative to the keyboard footprint and LiPo space" class="gallery-img" loading="lazy" src="../images/StikE_PCB.png"/>
 <figcaption>Full KiCad PCB sheet showing component placement relative to the keyboard footprint and LiPo space.</figcaption>
 </figure>
