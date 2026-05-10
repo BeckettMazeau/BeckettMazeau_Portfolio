@@ -132,6 +132,50 @@
   }
 
 
+  /* ---------- Image carousels ---------- */
+  function initCarousels() {
+    document.querySelectorAll('.proj-carousel').forEach(function (carousel) {
+      var track   = carousel.querySelector('.proj-carousel-track');
+      var slides  = carousel.querySelectorAll('.proj-carousel-slide');
+      var counter = carousel.querySelector('.proj-carousel-counter');
+      var btnPrev = carousel.querySelector('.proj-carousel-btn--prev');
+      var btnNext = carousel.querySelector('.proj-carousel-btn--next');
+      var total   = slides.length;
+      var current = 0;
+
+      if (!track || total < 2) return;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+      }
+
+      if (btnPrev) {
+        btnPrev.addEventListener('click', function (e) {
+          e.stopPropagation();
+          goTo(current - 1);
+        });
+      }
+      if (btnNext) {
+        btnNext.addEventListener('click', function (e) {
+          e.stopPropagation();
+          goTo(current + 1);
+        });
+      }
+
+      carousel.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+      });
+
+      goTo(0);
+    });
+  }
+
+  initCarousels();
+
+
   /* ---------- Lightbox for project gallery images ---------- */
   var lightbox    = document.getElementById('lightbox');
   var lbImg       = lightbox ? lightbox.querySelector('.lightbox-img') : null;
