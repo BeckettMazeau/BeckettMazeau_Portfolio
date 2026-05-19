@@ -226,24 +226,23 @@
   /**
    * Fetch an HTML page and extract <meta name="card-*"> values.
    */
-  function fetchMeta(url) {
-    return fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error('Not found');
-        return res.text();
-      })
-      .then(function (html) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(html, 'text/html');
-        var meta = {};
-        doc.querySelectorAll('meta[name^="card-"]').forEach(function (tag) {
-          var key = tag.getAttribute('name').replace('card-', '');
-          meta[key] = tag.getAttribute('content') || '';
-        });
-        meta._url = url;
-        return meta;
-      })
-      .catch(function () { return null; });
+  async function fetchMeta(url) {
+    try {
+      var res = await fetch(url);
+      if (!res.ok) throw new Error('Not found');
+      var html = await res.text();
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var meta = {};
+      doc.querySelectorAll('meta[name^="card-"]').forEach(function (tag) {
+        var key = tag.getAttribute('name').replace('card-', '');
+        meta[key] = tag.getAttribute('content') || '';
+      });
+      meta._url = url;
+      return meta;
+    } catch (err) {
+      return null;
+    }
   }
 
   /**
@@ -318,7 +317,7 @@
    * builder function, a container element, and a fallback message.
    * Fetches metadata for each file, builds cards, injects into container.
    */
-  function loadSection(filenames, folder, cardBuilder, container, fallbackMsg, onSuccess) {
+  async function loadSection(filenames, folder, cardBuilder, container, fallbackMsg, onSuccess) {
     if (!container) return;
 
     if (!filenames || filenames.length === 0) {
@@ -327,36 +326,35 @@
       return;
     }
 
-    Promise.all(
+    var metas = await Promise.all(
       filenames.map(function (file) {
         return fetchMeta(BASE + folder + file);
       })
-    ).then(function (metas) {
-      var valid = metas.filter(function (m) { return m !== null; });
+    );
 
-      if (valid.length === 0) {
-        container.innerHTML = comingSoonHTML(fallbackMsg);
-        initRevealObserver();
-        return;
-      }
+    var valid = metas.filter(function (m) { return m !== null; });
 
-      container.innerHTML = valid.map(cardBuilder).join('');
-      if (onSuccess) onSuccess();
+    if (valid.length === 0) {
+      container.innerHTML = comingSoonHTML(fallbackMsg);
       initRevealObserver();
-    });
+      return;
+    }
+
+    container.innerHTML = valid.map(cardBuilder).join('');
+    if (onSuccess) onSuccess();
+    initRevealObserver();
   }
 
 
   /* ---------- Load manifest and populate all sections ---------- */
-  fetch(BASE + 'site-manifest.json')
-    .then(function (res) {
+  async function initSections() {
+    try {
+      var res = await fetch(BASE + 'site-manifest.json');
       if (!res.ok) throw new Error('Manifest not found');
-      return res.json();
-    })
-    .then(function (manifest) {
+      var manifest = await res.json();
 
       // Selected Projects (home page grid)
-      loadSection(
+      await loadSection(
         manifest.selectedProjects,
         'projects/',
         projectCardHTML,
@@ -369,7 +367,7 @@
       );
 
       // All Projects (all-projects.html page)
-      loadSection(
+      await loadSection(
         manifest.allProjects,
         'projects/',
         projectCardHTML,
@@ -378,7 +376,7 @@
       );
 
       // Updates (home page feed)
-      loadSection(
+      await loadSection(
         manifest.updates,
         'updates/',
         updateCardHTML,
@@ -386,8 +384,7 @@
         'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
       );
 
-    })
-    .catch(function (err) {
+    } catch (err) {
       console.warn('site-manifest.json not found or invalid:', err);
 
       var projMsg = comingSoonHTML('Project case studies are currently being documented. Check back soon.');
@@ -401,6 +398,9 @@
       if (allGrid) allGrid.innerHTML = projMsg;
       if (updFeed) updFeed.innerHTML = updMsg;
       initRevealObserver();
-    });
+    }
+  }
+
+  initSections();
 
 })();
