@@ -1,0 +1,6 @@
+🧹 [code health] replace deprecated window.pageYOffset with window.scrollY
+
+🎯 What: Replaced occurrences of `window.pageYOffset` with `window.scrollY`.
+💡 Why: `window.pageYOffset` is deprecated. Using `window.scrollY` improves maintainability and uses modern, standard APIs without changing functionality.
+✅ Verification: Ran a playwright script to verify that smooth scrolling to sections and the header background changes on scroll still work exactly as expected.
+✨ Result: Cleaner, more modern, and maintainable codebase.

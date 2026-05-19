@@ -28,7 +28,7 @@
       ) || 64;
 
       var top = target.getBoundingClientRect().top
-              + window.pageYOffset
+              + window.scrollY
               - headerOffset;
 
       window.scrollTo({ top: top, behavior: 'smooth' });
@@ -122,7 +122,7 @@
   var header = document.querySelector('.site-header');
   if (header) {
     window.addEventListener('scroll', function () {
-      var scrollY = window.pageYOffset;
+      var scrollY = window.scrollY;
       if (scrollY > 80) {
         header.style.borderBottomColor = 'rgba(212, 149, 42, 0.15)';
       } else {
