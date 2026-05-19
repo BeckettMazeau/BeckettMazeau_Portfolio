@@ -226,8 +226,14 @@
   /**
    * Fetch an HTML page and extract <meta name="card-*"> values.
    */
+  var metaCache = {};
+
   function fetchMeta(url) {
-    return fetch(url)
+    if (metaCache[url]) {
+      return metaCache[url];
+    }
+
+    var fetchPromise = fetch(url)
       .then(function (res) {
         if (!res.ok) throw new Error('Not found');
         return res.text();
@@ -244,6 +250,9 @@
         return meta;
       })
       .catch(function () { return null; });
+
+    metaCache[url] = fetchPromise;
+    return fetchPromise;
   }
 
   /**
