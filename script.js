@@ -249,12 +249,27 @@
   /**
    * Build HTML for a "coming soon" placeholder.
    */
-  function comingSoonHTML(message) {
-    return '<div class="coming-soon-card">' +
-      '<div class="coming-soon-icon" aria-hidden="true">\u2699</div>' +
-      '<h3 class="coming-soon-title">More Coming Soon</h3>' +
-      '<p class="coming-soon-text">' + message + '</p>' +
-    '</div>';
+  function buildComingSoonNode(message) {
+    var card = document.createElement('div');
+    card.className = 'coming-soon-card';
+
+    var icon = document.createElement('div');
+    icon.className = 'coming-soon-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '\u2699';
+    card.appendChild(icon);
+
+    var title = document.createElement('h3');
+    title.className = 'coming-soon-title';
+    title.textContent = 'More Coming Soon';
+    card.appendChild(title);
+
+    var text = document.createElement('p');
+    text.className = 'coming-soon-text';
+    text.textContent = message;
+    card.appendChild(text);
+
+    return card;
   }
 
   /**
@@ -271,45 +286,113 @@
   /**
    * Build a project card from metadata.
    */
-  function projectCardHTML(meta) {
+  function buildProjectCardNode(meta) {
     var title   = meta.title   || 'Untitled Project';
     var excerpt = meta.excerpt || '';
     var image   = meta.image   || 'https://placehold.co/720x480/111/333?text=Project';
     var tag     = meta.tag     || '';
     var techs   = meta.techs   ? meta.techs.split(',') : [];
 
-    return '<article class="project-card">' +
-      '<a href="' + meta._url + '" class="project-card-link">' +
-        '<div class="project-image">' +
-          '<img src="' + image + '" alt="' + title + '" width="720" height="480" loading="lazy">' +
-          (tag ? '<span class="project-tag">' + tag + '</span>' : '') +
-        '</div>' +
-        '<div class="project-info">' +
-          '<h3>' + title + '</h3>' +
-          (excerpt ? '<p>' + excerpt + '</p>' : '') +
-          (techs.length ? '<ul class="project-tech">' + techs.map(function (t) { return '<li>' + t.trim() + '</li>'; }).join('') + '</ul>' : '') +
-          '<span class="project-link">View Case Study &rarr;</span>' +
-        '</div>' +
-      '</a>' +
-    '</article>';
+    var article = document.createElement('article');
+    article.className = 'project-card';
+
+    var link = document.createElement('a');
+    link.href = meta._url || '#';
+    link.className = 'project-card-link';
+
+    var imgContainer = document.createElement('div');
+    imgContainer.className = 'project-image';
+    var imgNode = document.createElement('img');
+    imgNode.src = image;
+    imgNode.alt = title;
+    imgNode.width = 720;
+    imgNode.height = 480;
+    imgNode.loading = 'lazy';
+    imgContainer.appendChild(imgNode);
+
+    if (tag) {
+      var tagNode = document.createElement('span');
+      tagNode.className = 'project-tag';
+      tagNode.textContent = tag;
+      imgContainer.appendChild(tagNode);
+    }
+    link.appendChild(imgContainer);
+
+    var infoContainer = document.createElement('div');
+    infoContainer.className = 'project-info';
+    var titleNode = document.createElement('h3');
+    titleNode.textContent = title;
+    infoContainer.appendChild(titleNode);
+
+    if (excerpt) {
+      var excerptNode = document.createElement('p');
+      excerptNode.textContent = excerpt;
+      infoContainer.appendChild(excerptNode);
+    }
+
+    if (techs.length) {
+      var ul = document.createElement('ul');
+      ul.className = 'project-tech';
+      techs.forEach(function(t) {
+        var li = document.createElement('li');
+        li.textContent = t.trim();
+        ul.appendChild(li);
+      });
+      infoContainer.appendChild(ul);
+    }
+
+    var caseStudy = document.createElement('span');
+    caseStudy.className = 'project-link';
+    caseStudy.innerHTML = 'View Case Study &rarr;';
+    infoContainer.appendChild(caseStudy);
+
+    link.appendChild(infoContainer);
+    article.appendChild(link);
+    return article;
   }
 
   /**
    * Build an update card from metadata.
    */
-  function updateCardHTML(meta) {
+  function buildUpdateCardNode(meta) {
     var title   = meta.title   || 'Untitled Update';
     var excerpt = meta.excerpt || '';
     var date    = meta.date    || '';
 
-    return '<article class="update-card">' +
-      '<a href="' + meta._url + '" class="update-card-link">' +
-        (date ? '<time class="update-date" datetime="' + date + '">' + formatDate(date) + '</time>' : '') +
-        '<h3 class="update-title">' + title + '</h3>' +
-        (excerpt ? '<p class="update-excerpt">' + excerpt + '</p>' : '') +
-        '<span class="update-read-more">Read more &rarr;</span>' +
-      '</a>' +
-    '</article>';
+    var article = document.createElement('article');
+    article.className = 'update-card';
+
+    var link = document.createElement('a');
+    link.href = meta._url || '#';
+    link.className = 'update-card-link';
+
+    if (date) {
+      var time = document.createElement('time');
+      time.className = 'update-date';
+      time.setAttribute('datetime', date);
+      time.textContent = formatDate(date);
+      link.appendChild(time);
+    }
+
+    var titleNode = document.createElement('h3');
+    titleNode.className = 'update-title';
+    titleNode.textContent = title;
+    link.appendChild(titleNode);
+
+    if (excerpt) {
+      var excerptNode = document.createElement('p');
+      excerptNode.className = 'update-excerpt';
+      excerptNode.textContent = excerpt;
+      link.appendChild(excerptNode);
+    }
+
+    var readMore = document.createElement('span');
+    readMore.className = 'update-read-more';
+    readMore.innerHTML = 'Read more &rarr;';
+    link.appendChild(readMore);
+
+    article.appendChild(link);
+    return article;
   }
 
 
@@ -318,11 +401,12 @@
    * builder function, a container element, and a fallback message.
    * Fetches metadata for each file, builds cards, injects into container.
    */
-  function loadSection(filenames, folder, cardBuilder, container, fallbackMsg, onSuccess) {
+  function loadSection(filenames, folder, cardBuilderNode, container, fallbackMsg, onSuccess) {
     if (!container) return;
 
     if (!filenames || filenames.length === 0) {
-      container.innerHTML = comingSoonHTML(fallbackMsg);
+      container.innerHTML = '';
+      container.appendChild(buildComingSoonNode(fallbackMsg));
       initRevealObserver();
       return;
     }
@@ -334,13 +418,17 @@
     ).then(function (metas) {
       var valid = metas.filter(function (m) { return m !== null; });
 
+      container.innerHTML = '';
       if (valid.length === 0) {
-        container.innerHTML = comingSoonHTML(fallbackMsg);
+        container.appendChild(buildComingSoonNode(fallbackMsg));
         initRevealObserver();
         return;
       }
 
-      container.innerHTML = valid.map(cardBuilder).join('');
+      valid.forEach(function (meta) {
+        container.appendChild(cardBuilderNode(meta));
+      });
+
       if (onSuccess) onSuccess();
       initRevealObserver();
     });
@@ -359,7 +447,7 @@
       loadSection(
         manifest.selectedProjects,
         'projects/',
-        projectCardHTML,
+        buildProjectCardNode,
         document.getElementById('selected-projects-grid'),
         'Project case studies are currently being documented. Check back soon to see detailed breakdowns of engineering work.',
         function () {
@@ -372,7 +460,7 @@
       loadSection(
         manifest.allProjects,
         'projects/',
-        projectCardHTML,
+        buildProjectCardNode,
         document.getElementById('all-projects-grid'),
         'Project case studies are being prepared. Check back soon for detailed engineering breakdowns.'
       );
@@ -381,7 +469,7 @@
       loadSection(
         manifest.updates,
         'updates/',
-        updateCardHTML,
+        buildUpdateCardNode,
         document.getElementById('updates-feed'),
         'Updates are on the way. Check back soon for progress notes, design decisions, and lessons from the workbench.'
       );
@@ -390,16 +478,22 @@
     .catch(function (err) {
       console.warn('site-manifest.json not found or invalid:', err);
 
-      var projMsg = comingSoonHTML('Project case studies are currently being documented. Check back soon.');
-      var updMsg  = comingSoonHTML('Updates are on the way. Check back soon.');
-
       var selGrid = document.getElementById('selected-projects-grid');
       var allGrid = document.getElementById('all-projects-grid');
       var updFeed = document.getElementById('updates-feed');
 
-      if (selGrid) selGrid.innerHTML = projMsg;
-      if (allGrid) allGrid.innerHTML = projMsg;
-      if (updFeed) updFeed.innerHTML = updMsg;
+      if (selGrid) {
+        selGrid.innerHTML = '';
+        selGrid.appendChild(buildComingSoonNode('Project case studies are currently being documented. Check back soon.'));
+      }
+      if (allGrid) {
+        allGrid.innerHTML = '';
+        allGrid.appendChild(buildComingSoonNode('Project case studies are currently being documented. Check back soon.'));
+      }
+      if (updFeed) {
+        updFeed.innerHTML = '';
+        updFeed.appendChild(buildComingSoonNode('Updates are on the way. Check back soon.'));
+      }
       initRevealObserver();
     });
 
