@@ -233,13 +233,18 @@
         return res.text();
       })
       .then(function (html) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(html, 'text/html');
         var meta = {};
-        doc.querySelectorAll('meta[name^="card-"]').forEach(function (tag) {
-          var key = tag.getAttribute('name').replace('card-', '');
-          meta[key] = tag.getAttribute('content') || '';
-        });
+        var metaTagRegex = /<meta\s+([^>]+)>/ig;
+        var match;
+        while ((match = metaTagRegex.exec(html)) !== null) {
+          var attributes = match[1];
+          var nameMatch = attributes.match(/name=["']card-([^"']+)["']/i);
+          if (nameMatch) {
+            var key = nameMatch[1];
+            var contentMatch = attributes.match(/content=["']([^"']*)["']/i);
+            meta[key] = contentMatch ? contentMatch[1] : '';
+          }
+        }
         meta._url = url;
         return meta;
       })
