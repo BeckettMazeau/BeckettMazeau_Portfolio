@@ -112,7 +112,7 @@
       "</a>"
     );
   }
-  function bySlug(slug) { return S.projects.filter(function (p) { return p.slug === slug; })[0]; }
+  function bySlug(slug) { return S.projects.find(function (p) { return p.slug === slug; }); }
 
   function updateRowHTML(u) {
     return (
@@ -194,7 +194,7 @@
 
   /* ---------------- UPDATE DETAIL ---------------- */
   function renderUpdate() {
-    var u = S.updates.filter(function (x) { return x.slug === SLUG; })[0];
+    var u = S.updates.find(function (x) { return x.slug === SLUG; });
     if (!u) return;
     document.title = u.title + " — Beckett Mazeau";
     var figs = (u.figures || []).map(function (f) {
