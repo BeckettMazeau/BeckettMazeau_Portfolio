@@ -1,0 +1,7 @@
+{
+  "slug": "update-1",
+  "title": "Portfolio Site Online and Back-Populating",
+  "date": "March 20, 2026",
+  "body": "<p>\n          Portfolio site went live on March 17th. As of today, I've got my past three completed projects plus my current\n          in-progress work all populated and ready. Started the process of bringing older projects online too \u2014 hunting down\n          old CAD files, photos, and documentation, then cleaning them up for GitHub.\n        </p>\n<p>\n          The site itself is dead simple: static HTML, no frameworks, no build step. Fast, reliable, cheap and easy to maintain. Each project gets its own page with\n          images and the full story of how it came together. Updates live in a separate section and pull from a manifest file. I have to give thanks to Netlify where due, as their provision of free hosting for low-volume sites has been incredible.\n        </p>\n<p>\n          Now the real work is going through past projects and getting them documented properly. Most of them exist only as\n          scattered files and old lab notes, so there's some digging happening. My high school google account has been deleted but I have its contents as an archive. Not so easy to search but that's fine; it's a good chance to\n          revisit the work.\n        </p>",
+  "gallery": []
+}

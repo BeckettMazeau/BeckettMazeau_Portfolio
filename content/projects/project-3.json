@@ -1,0 +1,84 @@
+{
+  "slug": "project-3",
+  "title": "Java Ray Tracer",
+  "role": "",
+  "date": "Spring 2025",
+  "summary": "A physically-based ray tracer written entirely in Java \u2014 featuring Phong shading,\n        mirror reflections, anti-aliasing, accurate shadow casting, and multi-threaded\n        rendering, all driven by an interactive Swing GUI for building and exporting 3D scenes.",
+  "thumbnail": "../Images/TestScene3_EyeOfSauron_.png",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<p>\n            Ray tracing is one of the most direct ways to understand how light physically\n            behaves \u2014 but implementing it from scratch means confronting every assumption\n            that production renderers quietly paper over. The goal of this project was to\n            build a complete, working ray tracer in Java where every lighting model, shadow,\n            reflection, and material response is implemented from first principles.\n          </p><p>\n            Rather than relying on any graphics library, the renderer casts rays per-pixel,\n            evaluates intersections against scene geometry, and computes color through the\n            full Phong reflection model \u2014 including diffuse, specular, and mirror-reflected\n            contributions. A custom multi-threaded architecture divides the image into\n            horizontal chunks distributed across CPU threads, keeping render times practical\n            even at high resolutions.\n          </p><p>\n            The accompanying Swing GUI makes the system fully interactive: users can\n            compose scenes from spheres, planes, triangles, and polygons; adjust material\n            and lighting properties; navigate a live low-resolution preview with a\n            6-DOF camera; and save full-quality renders to disk \u2014 all without touching code.\n          </p>"
+    },
+    {
+      "heading": "Render Results &amp; GUI",
+      "body": "<p class=\"proj-gallery-intro\">\n        All images below are produced entirely by the custom ray tracing engine \u2014 no\n        external graphics libraries involved. The GUI screenshots show the three panels\n        used to configure, compose, and export a scene. Click any image for a closer look.\n      </p>"
+    },
+    {
+      "heading": "Ray\u2013Scene Intersection Engine",
+      "body": "<p>\n              The core of the renderer is a per-pixel ray casting loop. For each pixel,\n              a viewing ray is constructed from the camera origin through the pixel's\n              position on the image plane. That ray is then tested against every object\n              in the scene, and the closest intersection is selected as the visible\n              surface point. From there, the material model at that point determines\n              the returned color.\n            </p><p>\n              Intersection logic is implemented separately for each geometry type \u2014\n              spheres use the quadratic ray\u2013sphere formula, planes use the dot-product\n              formulation, and triangles and polygons use barycentric coordinate tests.\n              This keeps each primitive's math self-contained and independently testable.\n            </p>"
+    },
+    {
+      "heading": "Lighting &amp; Material Models",
+      "body": "<p>\n              Four material types are supported. <strong>Lambert</strong> computes flat\n              diffuse shading based on the angle between the surface normal and each\n              light direction \u2014 simple, fast, and matte. <strong>Phong</strong> extends\n              this with a specular highlight term that varies with the half-vector between\n              the light and viewing directions, producing the characteristic shiny spot\n              on curved surfaces. <strong>Mirror Phong</strong> adds a reflected-ray\n              contribution, blending the Phong response with the color of whatever the\n              reflected ray strikes. <strong>Perfect Mirror</strong> discards the\n              material's own color entirely and returns only the reflected ray's color,\n              producing a true mirror surface.\n            </p>"
+    },
+    {
+      "heading": "Shadows &amp; Reflections",
+      "body": "<p>\n              Shadow testing is performed by casting a secondary ray from the surface\n              intersection point toward each light source. If any scene object lies\n              between that point and the light, the light's contribution is excluded\n              from the color calculation. This is repeated per light, so scenes with\n              multiple lights can produce overlapping shadow regions correctly.\n            </p><p>\n              Reflections follow the same mechanism: at a reflective surface, a new ray\n              is constructed as the mirror of the incoming viewing ray about the surface\n              normal, and the renderer evaluates what that ray hits. The returned color\n              is then composited into the current pixel's result according to the\n              material's reflectance weight.\n            </p>"
+    },
+    {
+      "heading": "Anti-aliasing",
+      "body": "<p>\n              A single ray per pixel can clip just past the edge of an object, producing\n              jagged staircase artifacts \u2014 especially visible on curved surfaces and thin\n              geometry. Anti-aliasing addresses this by subdividing each pixel into an\n              N\u00d7N grid of sub-pixels, casting one ray per sub-pixel, and averaging the\n              resulting colors into the final pixel value. The sample count is exposed\n              in the Settings panel, so the user can trade off quality against render\n              time. Even a 3\u00d73 sample grid (9 rays per pixel) substantially smooths\n              curved edges at moderate cost.\n            </p>"
+    },
+    {
+      "heading": "Multi-threaded Rendering",
+      "body": "<p>\n              Rendering a full-resolution image is computationally expensive \u2014 each\n              pixel may spawn multiple rays for shadows, reflections, and anti-aliasing\n              samples. To reduce wall-clock time, the image is partitioned into equal\n              horizontal strips and each strip is handed to a dedicated <code>Runnable</code>\n              that processes its assigned rows independently. Each <code>Runnable</code>\n              is wrapped in a <code>Thread</code> and started simultaneously. Because\n              each thread writes to a distinct region of the shared <code>ColorImage</code>,\n              no synchronization is needed during the render pass. The main thread then\n              calls <code>join()</code> on all worker threads before writing the output\n              file, ensuring a complete image.\n            </p>"
+    },
+    {
+      "heading": "Interactive GUI &amp; Scene Workflow",
+      "body": "<p>\n              The GUI is organized across three panels navigable from a top dropdown.\n              The <strong>Settings</strong> panel configures output resolution, aspect\n              ratio, FOV, anti-aliasing, and threading before any scene work begins.\n              The <strong>Scene Creator</strong> panel lets users add objects to an\n              existing or new scene \u2014 selecting object type, setting a name, and\n              clicking <em>Create New Object</em>. Update Mode opens a secondary tab\n              for modifying or removing objects by name; all objects sharing a name\n              are updated together, making named objects the recommended workflow.\n              The <strong>Viewer</strong> panel provides a live low-quality preview\n              navigable by keyboard, so users can frame their shot before committing\n              to a full-resolution save.\n            </p>"
+    },
+    {
+      "heading": "Physics First, Abstraction Second",
+      "body": "<p>\n            Implementing lighting and reflection from the underlying geometry \u2014 rather\n            than calling library routines \u2014 made every visual artifact immediately\n            traceable to a specific formula. When the Eye of Sauron scene produced\n            unexpected color banding, the source was identifiable as a missing\n            normalization step in the specular term, not a mystery inside a black-box shader.\n          </p>"
+    },
+    {
+      "heading": "Concurrency Requires Careful Data Layout",
+      "body": "<p>\n            Multi-threaded rendering is straightforward when threads write to\n            non-overlapping memory regions. Partitioning the image by row meant\n            threads never contended over the same pixel, eliminating the need for\n            locks and keeping the parallel speedup close to linear with core count.\n            Designing data structures for thread safety from the start avoided\n            retrofitting synchronization later.\n          </p>"
+    },
+    {
+      "heading": "Preview Quality as a UX Trade-off",
+      "body": "<p>\n            Rendering the viewer preview at reduced resolution keeps the GUI\n            responsive during camera navigation while still giving an accurate\n            composition preview. Separating preview quality from save quality\n            \u2014 and communicating that separation clearly in the UI \u2014 let the system\n            feel fast without misleading users about final output.\n          </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../Images/TestScene3_EyeOfSauron_.png",
+      "caption": "The \"Eye of Sauron\" test scene \u2014 nested intersecting spheres producing\n          intricate interference patterns, used to identify a normalization bug in the specular term."
+    },
+    {
+      "src": "../Images/TestScene3_EyeOfSauron_.png",
+      "caption": "<em>Eye of Sauron</em> \u2014 a perfect-mirror sphere reflecting concentric rings\n            of colored geometry. The symmetric pattern emerges entirely from recursive\n            ray reflections with no hand-authored texture."
+    },
+    {
+      "src": "../Images/TestScene1.png",
+      "caption": "Mixed-material scene \u2014 a Lambert cyan sphere nested inside a Phong magenta\n            torus-like ring, alongside a large maroon sphere, demonstrating the visual\n            difference between flat diffuse and specular shading models."
+    },
+    {
+      "src": "../Images/TestScene2.png",
+      "caption": "Mirror-floor scene \u2014 a Mirror Phong purple sphere and two Lambert green\n            spheres sit on a reflective plane. Shadow rays correctly occlude indirect\n            light from each sphere's perspective."
+    },
+    {
+      "src": "../Images/SettingsGUI.png",
+      "caption": "The <strong>Settings</strong> panel \u2014 users configure output resolution,\n            aspect ratio, field of view, anti-aliasing sample count, and multi-threading\n            before entering the scene editor."
+    },
+    {
+      "src": "../Images/SceneCreatorGUI.png",
+      "caption": "The <strong>Scene Creator</strong> panel \u2014 object type and scene selectors\n            sit alongside controls for adding new objects, creating new scenes, and\n            switching into Update Mode to edit or remove existing objects."
+    },
+    {
+      "src": "../Images/ViewerGUI.png",
+      "caption": "The <strong>Viewer</strong> panel \u2014 a live low-resolution preview lets\n            users navigate the scene with WASD and arrow keys before saving a\n            full-quality render to disk."
+    }
+  ]
+}

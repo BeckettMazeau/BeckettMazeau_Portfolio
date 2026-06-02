@@ -1,0 +1,212 @@
+{
+  "slug": "project-6",
+  "title": "STIK-eNote",
+  "role": "Lead Engineer (Solo Project)",
+  "date": "Spring 2026",
+  "summary": "A pocketable clamshell task tracker. Always-on ePaper shows your priorities without\n        waking the device. Open the lid and a color TFT and QWERTY keyboard come up for\n        editing. Built on ESP32-S3 with FreeRTOS dual-core firmware and a custom KiCad PCB.",
+  "thumbnail": "../images/stik-enote-render.png",
+  "sections": [
+    {
+      "heading": "The Problem",
+      "body": "<p>\n            I have ADHD, and I've tried most of the standard productivity systems: apps, timers,\n            alarms, sticky notes, whiteboards. The thing that actually stuck was carrying a physical\n            notebook. Writing things down, having the list right in front of me with no notifications\n            layered on top, no app to open. My productivity went up noticeably once I started doing\n            that, and it kept going up the longer I kept the habit.\n          </p><p>\n            Notebooks have their own problems, though. I always forgot a pencil. When I had a lot\n            going on, the space management on the page became its own chore. Keeping things organized\n            across days was a mess. So I started thinking about whether I could build something with\n            the parts of the notebook that worked (dedicated, distraction-free, always showing me\n            what I need to do) while handling the parts paper is bad at.\n          </p><p>\n            That's the STIK-eNote. It's a clamshell device about the size of a thick business card\n            wallet. The back face is an ePaper display that always shows the current task list, even\n            with the device closed and asleep. Open the device and a physical QWERTY keyboard and a\n            color TFT come on so you can edit things. Close it again and it goes back to sleep, with\n            the ePaper holding whatever was last pushed to it.\n          </p><p>\n            It's still a prototype. The current build is hand-wired on modules, but the PCB is fully\n            designed and the firmware runs end-to-end. This page documents how the whole thing works.\n          </p>"
+    },
+    {
+      "heading": "What It Does",
+      "body": "<p class=\"proj-gallery-intro\">\n        The two displays serve completely different purposes.\n      </p><p class=\"proj-gallery-intro\">\n        The TFT (a 1.8\u2033 ST7735S) is the active interface. It handles task editing, the calendar,\n        the pomodoro timer, and settings. Navigation feels snappy because rendering happens out of\n        a sprite buffer (a software framebuffer that holds the full frame in memory before pushing\n        it to the screen in one operation), which avoids the flicker you'd otherwise see writing\n        one element at a time over a slow SPI bus. The TFT is also only ever on while the keyboard\n        is in use, so the battery cost is manageable even though it's a backlit color display.\n      </p><p class=\"proj-gallery-intro\">\n        The ePaper (a 2.13\u2033 GDEQ0213B74) is the persistent display. It lives on the back of the\n        device and is on whether or not the rest of the device is awake, which is fine because\n        ePaper holds its image with no power. When the device wakes up, the ePaper cycles through\n        whatever tasks and upcoming events were last pushed to it. Updates are slow because of how\n        electrophoretic ink works, but the ePaper isn't being scrolled through; it's being glanced at.\n      </p><p class=\"proj-gallery-intro\">\n        The whole thing is driven by an ESP32-S3 (N16R8 variant), which has two cores and enough\n        headroom to handle display rendering and keyboard polling at the same time without one\n        stalling the other. The N16 stands for 16mb of NOR flash, where we store persistent data.\n        The R8 stands for 8mb of PSRAM where we store actively used data like what is required for\n        the displays (where the display buffer lives as well).\n      </p>"
+    },
+    {
+      "heading": "The Screens",
+      "body": "<p class=\"proj-gallery-intro\">\n        The TFT handles all interactive editing \u2014 task list, calendar, pomodoro timer, and settings.\n        Click any image for a closer look.\n      </p>"
+    },
+    {
+      "heading": "Task List",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        The main view. Tasks show up as a scrollable list with checkboxes, filterable by active,\n        completed, or both. Press <code>a</code> to add a task, navigate with the arrow keys, and\n        hit Enter to toggle completion. Tasks are stored in NVS (the ESP32's non-volatile storage)\n        as fixed-size binary blobs, so the list survives a power-off. Capacity is 20 tasks and 50\n        calendar events, both backed by fixed arrays so there's no dynamic memory allocation on the\n        data path at all.\n      </p>"
+    },
+    {
+      "heading": "Calendar",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-xs);\">\n        Press <code>fn + c</code> from anywhere to jump into the calendar. Month view shows the\n        full grid, with markers on days that have events. Navigation is the arrow keys.\n      </p><p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-xs);\">\n        Week view shows the current week with events laid out by day, which is what I usually want\n        when I'm trying to see how the next few days are loaded.\n      </p><p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        Drilling into a day or event shows the full details: title, notes, location, time, duration.\n        Events can be linked to tasks, so a scheduled block can point at a specific to-do.\n      </p>"
+    },
+    {
+      "heading": "Pomodoro",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        Press <code>fn + p</code> to start a pomodoro session. The timer counts down on screen,\n        and when a session ends the device can push a summary to the ePaper and go back to sleep,\n        so the mid-session context is preserved if I step away from it.\n      </p>"
+    },
+    {
+      "heading": "Settings",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        Settings handles display preferences and low-power mode. With low-power mode on, the CPU\n        frequency drops and the FreeRTOS polling delays increase. It isn't a dramatic change in\n        feel, but it does add up over a day of use.\n      </p>"
+    },
+    {
+      "heading": "Sleep Display (ePaper)",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        The ePaper sleep display cycles through up to ten screens of content (active tasks, upcoming\n        events) using a 10-second sleep cycle. On each wake, the firmware checks which screen is\n        supposed to be next, updates the display if anything has changed, and goes back under.\n        Average power draw across that cycle is very low because the panel itself draws nothing\n        while idle and the ESP32 is only awake briefly. We also prepare the screens themselves\n        before going to sleep so there's no related intensive calculations required while in this\n        low power state.\n      </p>"
+    },
+    {
+      "heading": "Software Architecture",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-lg);\">\n        The firmware is built with PlatformIO on the Arduino framework, with FreeRTOS handling\n        the dual-core split.\n      </p>"
+    },
+    {
+      "heading": "The Dual-Core Split",
+      "body": "<p>\n              Core 0 does one thing: poll the keyboard. It runs a dedicated FreeRTOS task that\n              continuously checks the I2C bus (address <code>0x5F</code>, the M5Stack CardKB) for\n              keystrokes. When it finds one, it packages the input into a <code>SystemEvent</code>\n              struct and pushes it onto a shared FreeRTOS queue. Core 0 doesn't touch the display\n              or the state machine.\n            </p><p>\n              Core 1 runs the main application loop. It blocks on the event queue, processes\n              whatever events arrive, updates the state machine, and triggers rendering. Because\n              keyboard polling and display rendering live on completely separate cores with a queue\n              between them, neither one can stall the other. This mattered in practice; SPI display\n              writes are slow enough that if the keyboard were competing for CPU time on the same\n              core, you would feel it in the input latency.\n            </p>"
+    },
+    {
+      "heading": "The State Machine",
+      "body": "<p>\n              Everything in the UI is a state. <code>STATE_UI_LIST</code>,\n              <code>STATE_UI_CALENDAR</code>, <code>STATE_SLEEP</code>,\n              <code>STATE_EPAPER_UPDATE</code>, and so on. Transitions go through the event queue:\n              a key press arrives, the current state handler decides what to do with it, and if a\n              transition is needed, the new state gets set and the relevant handler takes over on\n              the next loop tick.\n            </p>"
+    },
+    {
+      "heading": "The Display Manager",
+      "body": "<p>\n              The <code>DisplayManager</code> class handles both screens. For the TFT, it maintains\n              a software sprite (an in-memory framebuffer from the TFT_eSPI library) where all\n              drawing happens before being pushed to hardware in a single operation, which is what\n              removes the flickering you'd otherwise see with a dynamic UI on a slow SPI bus.\n            </p><p>\n              The ePaper side is more involved. The display manager filters the active task list\n              and upcoming calendar events, then packs them into <code>EpaperViewItem</code>\n              structs, each one representing a single screen of up to six items. On each sleep-cycle\n              wake, it works out which screen to show next and decides whether a partial or full\n              refresh is needed. Full refreshes happen less often because they take several seconds\n              and flash the panel through black-and-white a few times; partial updates are faster\n              but accumulate ghosting if done too many times in a row, so the manager forces a full\n              refresh periodically to clear the buffer.\n            </p>"
+    },
+    {
+      "heading": "Initialization Order",
+      "body": "<p>\n              One quirk worth mentioning: the ePaper has to be initialized first, then hibernated,\n              before the TFT gets initialized. Bringing both up at the same time leads to SPI bus\n              contention and both displays end up in an undefined state. The sequencing isn't\n              obvious from the documentation of either library and took a while to figure out.\n            </p>"
+    },
+    {
+      "heading": "Persistence",
+      "body": "<p>\n              Tasks and calendar events are serialized to NVS using the ESP32\n              <code>Preferences</code> library. Everything is stored as fixed-size binary blobs\n              from fixed-size arrays (<code>MAX_TASKS = 20</code>,\n              <code>MAX_CALENDAR_EVENTS = 50</code>), with no dynamic allocation anywhere. On\n              power-on, the main setup routine reads them back out and the device resumes where\n              it left off.\n            </p>"
+    },
+    {
+      "heading": "Power Path",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-xs);\">\n        Power comes from an 800mAh LiPo battery. A TPS613222ADBVR synchronous boost converter\n        steps the battery voltage up to a stable +5V rail, and from there an XC6206P332MR-G LDO\n        drops it down to +3.3V for all the logic-level peripherals. The ESP32, both displays, and\n        the keyboard all run off the 3.3V rail. The boost-then-LDO topology is not the most\n        efficient option (a switching regulator on the 3.3V step-down would waste less power),\n        but both parts have minimal auxiliary component requirements, which kept the BOM short and\n        the board easier to hand-solder on the prototype.\n      </p><p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        Battery charging is handled by a TPB4056A20-ES1R single-cell linear charger connected to\n        a USB-C input. Two 5.1k\u03a9 CC resistors on the USB-C connector configure it as a 5V sink.\n      </p>"
+    },
+    {
+      "heading": "Display Buses",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        The two displays sit on completely separate SPI buses. The ePaper uses FSPI (SPI2 on the\n        S3, pins 5/6/7/15/16/17). The TFT uses HSPI (SPI3, pins 8/9/10/11/12/13). Keeping them\n        on independent buses wasn't optional. The two libraries used to drive these displays both\n        build on the same underlying graphics infrastructure, and the timing assumptions they make\n        about bus ownership are different enough that sharing a bus caused consistent failures\n        during early bring-up. Splitting the buses fixed it cleanly.\n      </p>"
+    },
+    {
+      "heading": "Wake Circuit",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        The device wakes from deep sleep via a linear Hall effect switch (DRV5032FADBZR) in the\n        hinge. When the lid opens, the magnet moves away from the sensor and the switch output\n        changes state. An RC differentiator converts the switch's level change into a brief\n        rising-edge pulse, which is what the ESP32's wake pin actually needs. Without the\n        differentiator, the switch output would hold high the entire time the lid was open, which\n        interferes with the auto-sleep behavior; the device is supposed to be able to fall asleep\n        on its own after inactivity, and a wake pin that's already held high prevents that from\n        working cleanly.\n      </p>"
+    },
+    {
+      "heading": "I\u00b2C Level Shifting",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-md);\">\n        The M5Stack CardKB runs at 5V I2C levels, and the ESP32 is a 3.3V part. Two BSS138\n        N-channel MOSFETs handle the bidirectional level translation on SDA and SCL, with 10k\u03a9\n        pull-ups on both the low and high sides of each channel. This is a well-known reference\n        circuit for I2C level shifting and works reliably here.\n      </p>"
+    },
+    {
+      "heading": "PCB Design",
+      "body": "<p class=\"proj-gallery-intro\">\n        The PCB is the STIK-eNote V2 design, laid out in KiCad. The board target is 3.5\u2033 \u00d7 2.0\u2033,\n        constrained to that width specifically to leave room alongside it in the chassis for the\n        LiPo, since the keyboard sets the device's overall footprint.\n      </p><p class=\"proj-gallery-intro\">\n        One thing that made the layout interesting: normally with an ESP32, you'd use the\n        configurable GPIO matrix to map the MCU's pins to whatever physical pin order your\n        peripherals expect, and route traces in straight lines. In practice, the combination of\n        the two display libraries, FreeRTOS, and the specific quirks of these particular displays\n        meant that certain pins had to be the default HSPI and FSPI pins with no remapping. So\n        where traces needed to cross, they cross. There are a fair number of vias routing signals\n        up and down between layers to handle that, which is technical debt baked into the copper,\n        but it's debt the software forced the PCB to take on.\n      </p><p class=\"proj-gallery-intro\">\n        The bottom layer is a full ground plane with an exclusion zone cut out around the ESP32\n        module's antenna end. The module is designed to hang slightly off the board edge, and\n        pouring copper underneath the antenna would detune it, so the keep-out preserves signal\n        integrity in the 2.4GHz band.\n      </p><p class=\"proj-gallery-intro\">\n        Component sizing was chosen with hand soldering in mind. Passives are 0603. The ICs are\n        all standard SOIC or SOT-23 packages. Nothing is 0402 or QFN, because at some point a\n        human has to solder this thing, and that human is me.\n      </p>"
+    },
+    {
+      "heading": "Bill of Materials",
+      "body": "<p style=\"font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--sp-md); max-width: 48rem;\">\n        Full component list with reference designators, DigiKey part numbers, and sourcing notes.\n        Total quantity: 48 parts.\n      </p>"
+    },
+    {
+      "heading": "Concept and Architecture",
+      "body": "<p>\n              The starting point was the notebook problem. Physical notebooks work because they're\n              always present, always visible, and have no competing demands on your attention. But\n              they lose to apps on organization, search, and persistence across days. The STIK-eNote\n              was designed to keep everything that makes a notebook effective while fixing what paper\n              is structurally bad at.\n            </p><p>\n              The clamshell form factor followed directly from that: the ePaper display on the back\n              shows the task list whether the device is on or off, and the TFT and keyboard inside\n              only come on when you need to edit. The magnetic lid-detect mechanism ties the two\n              states together without requiring the user to press anything. Early work focused on\n              selecting the MCU (ESP32-S3 over PocketBeagle for its integrated PSRAM, dual-core\n              architecture, and deep sleep support) and confirming the peripheral assignments \u2014 two\n              independent SPI buses for the displays, I\u00b2C for the keyboard.\n            </p>"
+    },
+    {
+      "heading": "Schematic Design and Hand-Wire Prototype",
+      "body": "<p>\n              The schematic was designed from scratch in KiCad across five sheets, each covering one\n              functional subsystem: top-level pin routing, power path (boost converter, LDO, charger),\n              USB-C input, ESP32-S3 peripheral connections, and I\u00b2C level shifting. This separation\n              made the schematic readable for review and set the layout up for clean PCB routing.\n            </p><p>\n              In parallel, a hand-wired prototype using off-the-shelf modules validated the circuit\n              topology and firmware against real hardware. This is the build the firmware currently\n              runs on. The prototype confirmed that separate SPI buses were mandatory (shared bus\n              caused consistent failures during early bring-up) and that the ePaper initialization\n              sequence had to come before the TFT or both displays ended up in undefined states.\n            </p>"
+    },
+    {
+      "heading": "Firmware and PlatformIO Build",
+      "body": "<p>\n              The firmware was built with PlatformIO using the Arduino framework on FreeRTOS. The\n              dual-core split \u2014 keyboard polling on Core 0, display rendering on Core 1 \u2014 was the\n              key architectural decision. A FreeRTOS queue between them means neither core can\n              stall the other, which is essential given how slow SPI display writes are.\n            </p><p>\n              Building requires Python 3 and the PlatformIO CLI. Copy the custom board definition,\n              then compile and upload:\n            </p><pre style=\"font-family: var(--font-mono); font-size: 0.8125rem; background: var(--color-surface); padding: var(--sp-md); border-radius: 4px; overflow-x: auto; color: var(--color-text-muted); margin-top: var(--sp-sm);\">python3 -m pip install -U platformio\nmkdir -p ~/.platformio/boards &amp;&amp; cp esp32-s3-devkitc-1-n16r8v.json ~/.platformio/boards/\npython3 -m platformio run -e esp32-s3-devkitc-1-n16r8v\npython3 -m platformio run -t upload -e esp32-s3-devkitc-1-n16r8v</pre>\n<p>\n              On first boot, the device initializes both buses in sequence (ePaper first, then TFT),\n              loads any saved tasks and events from NVS, and drops into the task list view.\n              Navigation is arrow keys, Enter to select, <code>a</code> to add a task,\n              <code>c</code> for calendar, <code>p</code> for pomodoro. The device auto-sleeps\n              after inactivity and wakes on any keypress or when the lid opens.\n            </p><p>\n              The current prototype is hand-assembled from off-the-shelf modules. PCB files are in\n              the repository for anyone who wants to take it further; gerbers, schematics, BOM,\n              and KiCad project files all live in <code>project_02/hardware</code>.\n            </p>"
+    },
+    {
+      "heading": "PCB Layout in KiCad",
+      "body": "<p>\n              With the schematic finalized and the hand-wire prototype proving out the design, the\n              PCB layout consolidates everything onto a 3.5\u2033 \u00d7 2.0\u2033 board. The width was constrained\n              by the keyboard footprint, which sets the device's overall size, with the remaining\n              space alongside the board reserved for the LiPo.\n            </p><p>\n              The routing was more involved than a typical ESP32 layout because the display libraries\n              required specific HSPI and FSPI default pins with no GPIO matrix remapping. Where\n              traces would otherwise conflict, they cross layers via vias \u2014 technical debt the\n              software forced onto the PCB. The ESP32 module hangs slightly off the board edge and\n              a copper keep-out preserves the antenna's 2.4GHz performance. All passives are 0603;\n              all ICs are SOIC or SOT-23 for hand solderability.\n            </p>"
+    },
+    {
+      "heading": "What's Next",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); max-width: 48rem; margin-bottom: var(--sp-lg);\">\n        The current PCB design works, but it's a first pass at consolidating the prototype. A few\n        things I'd change in the next revision.\n      </p>"
+    },
+    {
+      "heading": "Proper Hinge Connector",
+      "body": "<p>\n            The through-hole headers connecting the displays would go. A proper board-to-board\n            connector between the main PCB and a small display adapter board on the hinged upper\n            half would be cleaner and more durable than the current ribbon of wires running through\n            the hinge, which is acceptable on a prototype but not on something you'd want to carry\n            around daily.\n          </p>"
+    },
+    {
+      "heading": "Display Sizing",
+      "body": "<p>\n            The displays themselves don't quite match the keyboard's footprint. The TFT is close,\n            but the ePaper is noticeably narrower than the keyboard below it. A future version\n            would use displays sized to match. The ePaper in particular has a lot of room to grow\n            without changing the physical concept at all.\n          </p>"
+    },
+    {
+      "heading": "Buck Converter for Efficiency",
+      "body": "<p>\n            On the power side, replacing the linear 3.3V regulator with a buck converter would\n            help battery life, especially since the ESP32 draws enough current that the LDO\n            dissipates a meaningful amount of heat at full load. It wasn't worth the PCB complexity\n            for this design pass, but it would be worth it for a polished version.\n          </p>"
+    },
+    {
+      "heading": "Repository",
+      "body": "<p style=\"font-size: 0.9375rem; color: var(--color-text); margin-bottom: var(--sp-sm);\">\n          All firmware, KiCad files, schematics, gerbers, and BOM are on GitHub.\n        </p><p style=\"font-size: 0.8125rem; color: var(--color-text-muted); margin-top: var(--sp-lg);\">Built at Rice University, Spring 2026. EDES 301.</p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../images/MechanicalDiagram.png",
+      "caption": "Assembly diagram showing the open and closed configurations of the STIK-eNote."
+    },
+    {
+      "src": "../images/AllTasksManagmentScreen.JPG",
+      "caption": "TFT showing the full task list in active mode."
+    },
+    {
+      "src": "../images/NewTaskSetup.JPG",
+      "caption": "TFT showing the new task entry form."
+    },
+    {
+      "src": "../images/CalendarMonthView.JPG",
+      "caption": "TFT showing the calendar month grid."
+    },
+    {
+      "src": "../images/CalendarWeekView.JPG",
+      "caption": "TFT showing the week view with events marked by day."
+    },
+    {
+      "src": "../images/CalendarDayView.JPG",
+      "caption": "TFT showing the day view with events listed by time."
+    },
+    {
+      "src": "../images/CalendarEventDetails.JPG",
+      "caption": "TFT showing the event details screen."
+    },
+    {
+      "src": "../images/CalendarEventSetup.JPG",
+      "caption": "TFT showing the add calendar event form."
+    },
+    {
+      "src": "../images/PomodoroSetup.JPG",
+      "caption": "TFT showing the focus timer setup screen."
+    },
+    {
+      "src": "../images/PomodoroScreen.JPG",
+      "caption": "ePaper showing the pomodoro timer counting down during a work session."
+    },
+    {
+      "src": "../images/SettingsUI.JPG",
+      "caption": "TFT showing the system settings screen."
+    },
+    {
+      "src": "../images/SleepScreen.JPG",
+      "caption": "ePaper showing the sleep display cycling through active tasks and an upcoming event."
+    },
+    {
+      "src": "../images/ElectricalDiagram.png",
+      "caption": "Electrical block diagram showing the full system architecture."
+    },
+    {
+      "src": "../images/StikE_Schematic_page-0001.jpg",
+      "caption": "Sheet 1 \u2014 Top-level overview: all subsystems and their interconnections."
+    },
+    {
+      "src": "../images/StikE_Schematic_page-0002.jpg",
+      "caption": "Sheet 2 \u2014 Power path: battery charger, boost converter, LDO regulator, lid switch."
+    },
+    {
+      "src": "../images/StikE_Schematic_page-0003.jpg",
+      "caption": "Sheet 3 \u2014 ESP32-S3 peripheral pin connections."
+    },
+    {
+      "src": "../images/StikE_Schematic_page-0004.jpg",
+      "caption": "Sheet 4 \u2014 BSS138 bidirectional I\u00b2C level shifting circuit."
+    },
+    {
+      "src": "../images/StikE_Schematic_page-0005.jpg",
+      "caption": "Sheet 5 \u2014 USB-C connector and power delivery configuration."
+    },
+    {
+      "src": "../images/FrontPCB.png",
+      "caption": "KiCad PCB front layer showing component placement."
+    },
+    {
+      "src": "../images/BackPCB.png",
+      "caption": "KiCad PCB back layer showing the ground plane and antenna exclusion zone."
+    },
+    {
+      "src": "../images/StikE_PCB.png",
+      "caption": "Full KiCad PCB sheet showing component placement relative to the keyboard footprint and LiPo space."
+    }
+  ]
+}

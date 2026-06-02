@@ -1,0 +1,64 @@
+{
+  "slug": "project-5",
+  "title": "Demonstrator of Phenomena at Lightspeed",
+  "role": "",
+  "date": "January 2025",
+  "summary": "A Processing simulation that visualizes the relativistic effects of approaching\n        lightspeed \u2014 including Lorentz\u2013FitzGerald length contraction and the relativistic\n        Doppler shift \u2014 through an interactive 2.5D star field viewed from a rocket's reference frame.",
+  "thumbnail": "../Images/lightspeed_high_v.png",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<p>\n            Lightspeed travel is far beyond the reach of our current society \u2014 the energy\n            needed to reach it is literally infinite, and thus theoretically impossible.\n            We can, however, theoretically achieve significant fractions of lightspeed. It\n            is at these significant fractions that our expectations of what reality should\n            look like breaks down. Stars would become squished along the axis of motion,\n            the Doppler effect would shift the colors we see them emit, and space itself\n            would contract \u2014 producing a perceived increase in speed that would not be\n            observable otherwise.\n          </p><p>\n            Talking about such concepts in the abstract does not accurately convey how we\n            would experience near-lightspeed travel. This demonstrator aims to aid in\n            visualizing the ways the universe's appearance and physics change as we\n            approach c \u2014 specifically length contraction and the relativistic Doppler\n            shift \u2014 through a real-time, interactive simulation.\n          </p><p>\n            While the libraries used to create this demonstration and the computer that runs\n            it are extremely modern inventions, the equations that power it are much older:\n            the Lorentz\u2013FitzGerald contraction equation and the Doppler shift equation\n            first described by Christian Doppler in 1842 (and extended to light by\n            Hippolyte Fizeau).\n          </p>"
+    },
+    {
+      "heading": "Simulation States",
+      "body": "<p class=\"proj-gallery-intro\">\n        The simulation responds in real time to the speed slider. Click any image for a closer look.\n      </p>"
+    },
+    {
+      "heading": "2.5D Rendering Approach",
+      "body": "<p>\n              While Processing's P3D engine was used to render the rocket itself, a 2.5D\n              approach was used for the star field. To simulate forward motion from the\n              reference frame of the rocket, a background of simulated stars moves across\n              the screen rather than the rocket itself. Parallax was accounted for by\n              decreasing each star's speed and displayed radius in proportion to its\n              distance. This avoided the bulk and complexity of a full 3D engine while\n              preserving the essential visual effects.\n            </p>"
+    },
+    {
+      "heading": "Length Contraction",
+      "body": "<p>\n              Length contraction is modeled using the Lorentz\u2013FitzGerald equation:\n              <em>L = L\u2080 \u221a(1 \u2212 v\u00b2/c\u00b2)</em>. Because the simulation preserves constant\n              time for the user, length contraction manifests as a perceived increase in\n              speed \u2014 space contracts, stars appear closer, and parallax becomes more\n              extreme. Stars are also visually squished along the horizontal axis, as\n              contraction only acts in the direction of motion. The same contraction\n              factor is applied to the x-component of each star's distance before it\n              is used in Doppler calculations.\n            </p>"
+    },
+    {
+      "heading": "Relativistic Doppler Shift",
+      "body": "<p>\n              Because screens cannot reproduce all spectral wavelengths in RGB, star colors\n              are first converted to HSB. The hue is mapped to a wavelength using\n              <em>\u03bb = 650 \u2212 ((250/270) \u00d7 hue)</em> (hue capped at 270 to avoid the\n              ambiguous purple region). The wavelength is then shifted using the\n              relativistic Doppler equation:\n              <em>\u03bb<sub>obs</sub> = \u03bb<sub>s</sub> \u221a((1 + v/c) / (1 \u2212 v/c))</em>.\n              The shifted wavelength is converted back to an RGB value, preserving\n              the original saturation and brilliance of the star.\n            </p>"
+    },
+    {
+      "heading": "Relative Star Velocity",
+      "body": "<p>\n              Because the Doppler effect depends on the rate of change in distance \u2014\n              not simply speed along the x-axis \u2014 a full 3D relative velocity is\n              calculated as the derivative of the distance formula with respect to time.\n              The x-component of each star's distance is passed through the\n              Lorentz contraction before being squared, ensuring the Doppler calculation\n              is consistent with length contraction.\n            </p>"
+    },
+    {
+      "heading": "Interactive GUI Controls",
+      "body": "<p>\n              The simulation is controlled via a LazyGui overlay. The primary user-facing\n              controls are: <strong>speed/dX</strong> \u2014 the rocket's speed as a fraction\n              of c; <strong>speed/timeScalar</strong> \u2014 simulation speed from 0 to 60\n              frames per second; <strong>speed/SimulatedRocketLocation</strong> \u2014 shifts\n              the simulated location to better expose redshifting; and\n              <strong>Fake Rocket Contraction</strong> \u2014 toggles a display of how the\n              rocket would appear contracted from a stationary observer's reference frame\n              (with an accuracy warning, as this situation cannot be faithfully represented\n              in the simulation).\n            </p>"
+    },
+    {
+      "heading": "Classical Equations Produce Surprising Visuals",
+      "body": "<p>\n            The Lorentz\u2013FitzGerald and relativistic Doppler equations are decades old,\n            but applying them in real time to a moving star field produces genuinely\n            counterintuitive results \u2014 stars compress into ellipses, the sky turns blue\n            ahead and red behind, and the apparent speed of travel increases nonlinearly\n            as v approaches c. The simulation makes the math visceral in a way that\n            prose cannot.\n          </p>"
+    },
+    {
+      "heading": "Color Reproduction Has Hard Physical Limits",
+      "body": "<p>\n            RGB screens cannot faithfully reproduce all spectral colors, which required\n            an indirect HSB-to-wavelength mapping rather than a direct physics-to-pixel\n            pipeline. The hue cap at 270 and the approximate conversion formula are\n            principled workarounds, not oversights \u2014 and understanding why they are\n            necessary deepens the physics of both light and display technology.\n          </p>"
+    },
+    {
+      "heading": "Acknowledge Known Inaccuracies Explicitly",
+      "body": "<p>\n            The simulation has a documented inaccuracy: stars grow unexpectedly large\n            as the rocket approaches them, because the simulated coordinate space is\n            small and the x-component dominates the distance calculation. Rather than\n            paper over it, the simulation acknowledges it directly in the write-up.\n            Transparent documentation of known limitations is as important as the\n            accuracy of what is correctly modeled.\n          </p><p style=\"font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;\">\n<strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have\n        corrupted the original source code for this simulation. The write-up and screenshots\n        above represent the full available documentation of the project.\n      </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../Images/lightspeed_high_v.png",
+      "caption": "As V approaches c, stars become squished along the x dimension. Stars far\n          ahead are blue-shifted as they approach the rocket; stars to the rear are\n          red-shifted as they recede. Stars in line with the rocket experience little\n          to no shift."
+    },
+    {
+      "src": "../Images/lightspeed_zero_v.png",
+      "caption": "At V = 0c, there is no observed shift in wavelength nor length contraction."
+    },
+    {
+      "src": "../Images/lightspeed_high_v.png",
+      "caption": "At V approaching c, stars become squished along the x dimension and shift\n            in color according to their position relative to the rocket's heading."
+    }
+  ]
+}

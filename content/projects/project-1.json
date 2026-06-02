@@ -1,0 +1,76 @@
+{
+  "slug": "project-1",
+  "title": "Rocket Body Epoxy Curing Oven",
+  "role": "Mechanical &amp; Systems Engineer",
+  "date": "Fall 2025",
+  "summary": "A custom-built, automated 120VAC curing oven designed to achieve even\n        heat distribution for high-temperature composite rocket airframes \u2014\n        built for the Rice Eclipse competitive rocketry team.",
+  "thumbnail": "../images/InternalWideShot.JPG",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<p>\n            Rice Eclipse is a competitive rocketry team at Rice University that\n            designs and fabricates high-power rockets reaching speeds of Mach 2+\n            and skin temperatures up to 300\u00b0F. At those extremes, airframe\n            integrity depends on composite tubes cured with high-temperature\n            laminating epoxies \u2014 resins that demand sustained, precisely\n            controlled heat to reach their full structural properties.\n          </p><p>\n            The team's existing oven was failing on every front: loose and\n            disorganized wiring, malfunctioning temperature controls, and a\n            broken tube-rotation mechanism that forced manual turning throughout\n            multi-hour cure cycles. Commercial replacements with the required\n            working volume (6\u2033 \u00d7 6\u2033 \u00d7 6 ft), programmable heating profiles,\n            and reliable controls start at $2,000+ \u2014 far beyond Eclipse's budget.\n            Without a functional oven, the team would be forced to use weaker\n            epoxies, producing airframes incapable of surviving their target\n            flight regime.\n          </p><p>\n            Our mandate was to design and build a new oven from scratch that\n            could reliably reach 150\u00b0F+ with even heat distribution (\u00b110\u00b0F\n            across the tube face), feature an intuitive Arduino-driven user\n            interface for setting temperatures and custom heating curves, and\n            remain lightweight enough for two people to carry (\u226475 lbs) \u2014 all\n            while running on a standard 120VAC outlet and meeting NFPA 86\n            safety guidelines.\n          </p>"
+    },
+    {
+      "heading": "Documentation",
+      "body": "<p class=\"proj-gallery-intro\">\n        From foil-lined insulation chambers to hand-soldered perfboards \u2014\n        every subsystem was designed, integrated, and validated by the team.\n        Click any image for a closer look.\n      </p>"
+    },
+    {
+      "heading": "Requirements &amp; Ideation",
+      "body": "<p>\n              We began with extensive client interviews and background research\n              to establish hard constraints: the oven had to reach at least\n              150\u00b0F on 120 VAC, fit under a storage table (\u2264 1.5 \u00d7 1.5 \u00d7 8 ft),\n              weigh under 75 lbs for a two-person carry, and comply with NFPA 86\n              industrial oven safety standards. We studied five aerospace-grade\n              epoxy systems and their cure profiles to validate the temperature\n              target, and surveyed commercial ovens to confirm that no viable\n              solution existed within Eclipse's budget.\n            </p><p>\n              With constraints locked, the team ran two structured brainstorming\n              sessions \u2014 generating 103 unique ideas across nine functional\n              categories (heating elements, heat distribution, insulation, frame,\n              UI, controls, wiring, power, and sensing). We used Pugh screening\n              to systematically reduce these to 50 partial solutions, then\n              assembled 30 complete system configurations via a morphological\n              chart before a final weighted Pugh scoring round selected our\n              winning architecture.\n            </p>"
+    },
+    {
+      "heading": "Thermal &amp; Insulation Strategy",
+      "body": "<p>\n              The heating subsystem was the highest-priority design decision.\n              After Pugh screening eight heating element concepts \u2014 from space\n              heaters to ceramic dishes \u2014 nichrome wire emerged as the clear\n              winner for its high reliability, repairability, and precise\n              thermal output. A relay-switched 120 VAC circuit powers the\n              nichrome coil directly, avoiding lossy voltage conversion.\n            </p><p>\n              For insulation, we selected foil-lined ceramic fiber blanket \u2014 a\n              combination that reflects radiant heat back into the chamber\n              while providing excellent thermal resistance. The blanket is\n              mounted to the wooden frame using custom L-bracket standoffs\n              specifically designed to minimize conductive heat transfer to the\n              plywood structure. A convection-assisted approach ensures even\n              temperature distribution across the curing tube, targeting the\n              \u00b110\u00b0F uniformity requirement critical for preventing localized\n              undercuring or overcuring of the composite.\n            </p>"
+    },
+    {
+      "heading": "Controls &amp; User Interface",
+      "body": "<p>\n              The firmware is a C++ state machine running on an Arduino Mega,\n              managing 11 distinct operational states \u2014 from mode selection and\n              parameter input through preheating, active curing, and\n              cancellation flows. Two K-type thermocouples read via MAX6675\n              amplifiers provide redundant temperature sensing; the firmware\n              averages both readings and flags connectivity errors or dangerous\n              thermal gradients (&gt; 20\u00b0F differential).\n            </p><p>\n              The user-facing interface pairs a 20\u00d74 LCD character display with\n              a 4\u00d74 membrane keypad. Two operation modes are supported: a\n              \"simple\" mode for single-temperature timed cures, and a \"heating\n              curve\" mode where users define per-hour temperature setpoints for\n              complex epoxy schedules. Our design objective was for any operator\n              to set a temperature in under 1 minute and program a full heating\n              profile in under 8 minutes \u2014 targets validated through usability\n              testing with six non-team-member participants.\n            </p>"
+    },
+    {
+      "heading": "Prototyping &amp; Iteration",
+      "body": "<p>\n              We followed a deliberate fidelity ramp. The low-fidelity prototype\n              used construction paper for the casing, aluminum foil for\n              insulation, and a pipe cleaner for the heating element \u2014 its sole\n              purpose was to validate spatial relationships and component\n              interfaces before committing to materials.\n            </p><p>\n              The medium-fidelity prototype was a miniature but fully functional\n              oven: a 12 V power supply drove 30-gauge nichrome wire, a single\n              thermocouple fed the Arduino, and the complete UI was operational.\n              This build reached 180\u00b0F and validated our control logic,\n              relay-switching behavior, and thermal response before we scaled to\n              the full 120 VAC system. Through iteration, we replaced the\n              originally planned stepper motor with a synchronous 120 VAC motor\n              for the tube rotation system \u2014 gaining better reliability and\n              inherent heat resistance \u2014 and swapped the initial button layout\n              for a number pad after user testing revealed faster input times.\n            </p>"
+    },
+    {
+      "heading": "Final Assembly &amp; Safety Integration",
+      "body": "<p>\n              Every component in the final build was selected for high-temperature\n              service \u2014 not just the insulation. Silicone heat-resistant wire\n              replaced standard PVC-jacketed cable. Zirconia bearings support the\n              tube rotation shaft. High-temperature JB Weld secures structural\n              joints. Wherever the ceramic fiber insulation interfaces with the\n              wooden frame, custom L-bracket standoffs create a thermal break\n              that keeps the plywood well below its off-gassing threshold.\n            </p><p>\n              Safety was designed in at the system level: the interior foil\n              liner is electrically grounded and the entire circuit is\n              GFCI-protected, so if the foil \u2014 or a person \u2014 ever contacts the\n              live nichrome element, the oven shuts off instantly. Ceramic\n              insulators electrically isolate the nichrome wire from its\n              supporting bolts. All low-voltage connections use WAGO lever-nut\n              connectors and are clearly labeled, achieving a repairability\n              score of 3+ on our custom UDS scale \u2014 meaning any engineering\n              student with basic tools can diagnose and replace components\n              without soldering.\n            </p>"
+    },
+    {
+      "heading": "Multi-Voltage System Integration",
+      "body": "<p>\n            Running 120 VAC power for the heating element and rotation motor\n            alongside 5 V logic for the Arduino and sensors required careful\n            isolation at every junction. Designing the relay-switching layer,\n            grounding strategy, and GFCI protection as a unified safety\n            architecture \u2014 rather than bolted-on afterthoughts \u2014 was the single\n            most important decision for both reliability and operator safety.\n          </p>"
+    },
+    {
+      "heading": "Structured Evaluation Pays Off",
+      "body": "<p>\n            Systematically screening 103 ideas through Pugh charts and\n            morphological analysis felt slow at first, but it prevented us from\n            locking onto an early favorite. The winning solution \u2014 nichrome coils\n            with ceramic-fiber insulation and relay control \u2014 wasn't anyone's\n            initial instinct; it emerged from the data. That rigor saved weeks\n            of wasted prototyping on weaker concepts.\n          </p>"
+    },
+    {
+      "heading": "Designing for Legacy &amp; Repairability",
+      "body": "<p>\n            Rice Eclipse's composites team rotates members every year. Every\n            wiring decision \u2014 WAGO connectors over solder joints, labeled\n            connections, modular sensor boards \u2014 was made so that a future\n            student who never met us can open the electronics bay, diagnose a\n            fault, and swap a component with basic tools. Building for\n            repairability is building for longevity.\n          </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../images/InternalWideShot.JPG",
+      "caption": "Internal chamber \u2014 foil-lined ceramic fiber blanket insulation with a\n            working volume accommodating rocket tubes up to 6\u2033 diameter \u00d7 5 ft 11\u2033 long.\n            The reflective foil layer is grounded and GFCI-protected for electrical safety."
+    },
+    {
+      "src": "../images/ElectronicCompartment.JPG",
+      "caption": "Control unit \u2014 Arduino with a custom perfboard shield, relay modules\n            for switching 120VAC to the nichrome element and rotation motor, WAGO\n            connectors for modular repairability, and a synchronous AC motor (left)\n            for continuous tube rotation."
+    },
+    {
+      "src": "../images/UserInterface.JPG",
+      "caption": "User interface \u2014 a 4\u00d74 membrane keypad and 20\u00d74 LCD character display\n            in a 3D-printed bezel. Supports two operation modes: simple\n            temperature/time entry and multi-step heating curve profiles."
+    },
+    {
+      "src": "../images/RotaryMech_Plus_ElementConnection.PNG",
+      "caption": "Heating element detail \u2014 nichrome wire supported by ceramic insulators\n            that electrically isolate the live element from its mounting bolts.\n            The rotary mechanism uses zirconia bearings rated for sustained high\n            temperatures."
+    },
+    {
+      "src": "../images/TeamPhoto.jpg",
+      "caption": "The engineering team \u2014 Beckett, Derrick, and Aiden \u2014 at the OEDK after\n            final integration and testing of the composite curing oven."
+    },
+    {
+      "src": "../images/Poster.jpg",
+      "caption": "Project poster \u2014 overview of the design problem, existing solutions,\n            and the final system architecture presented at the OEDK showcase."
+    }
+  ]
+}

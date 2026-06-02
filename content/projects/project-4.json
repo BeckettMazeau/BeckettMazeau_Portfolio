@@ -1,0 +1,72 @@
+{
+  "slug": "project-4",
+  "title": "Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits",
+  "role": "",
+  "date": "Fall 2024",
+  "summary": "A 3-dimensional N-Body simulation of the solar system used to analyze how orbital tilt\n        affects solar energy collection \u2014 using ray-traced sun visibility, Newton's law of\n        universal gravitation, and Stefan-Boltzmann radiation modeling.",
+  "thumbnail": "../Images/solar_nbody_simulation.png",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<p>\n            Solar energy has proven itself the most effective choice for powering the ever-growing\n            number of satellites we use. The energy captured by a craft is dependent on the\n            frequency, duration, and intensity of sunlight shining on it. To determine the most\n            appropriate orbit for future satellites, this study used a 3-dimensional N-Body\n            simulation to analyze the effects of different orbital tilts on energy collection,\n            and thus determine the optimal angle for maximum energy capture.\n          </p><p>\n            The core challenge was determining not simply whether the sun was visible from\n            the satellite at any given moment, but <em>what percentage</em> of the sun was\n            visible \u2014 accounting for full and partial eclipses as well as the incremental\n            rising and setting of the sun from the satellite's perspective. This required\n            a ray-tracing based approach built on top of a full gravitational N-Body simulation\n            incorporating all major bodies in the solar system.\n          </p><p>\n            The simulation was run across orbital tilts from 0\u00b0 (ecliptic) to 90\u00b0 (polar),\n            with results recorded and analyzed in Excel. The finding: a clear exponential\n            relationship between orbital polarity and total energy collected, with polar\n            orbits capturing significantly more energy.\n          </p>"
+    },
+    {
+      "heading": "Simulation &amp; Results",
+      "body": "<p class=\"proj-gallery-intro\">\n        Figures below include the ray-visibility model, results graphs, and a frame\n        of the 2D visual component of the N-Body simulation. Click any image for a closer look.\n      </p>"
+    },
+    {
+      "heading": "3D N-Body Gravitational Simulation",
+      "body": "<p>\n              An N-Body system modeling all major celestial bodies in the solar system was\n              built using a time-step approach, with gravity calculated every 1 simulated\n              second via Newton's Law of Universal Gravitation:\n              <em>F = Gm\u2081m\u2082 / d\u00b2</em>, where G is 6.674\u00d710\u207b\u00b9\u00b9 N\u00b7m\u00b2/kg\u00b2.\n              A full solar system model (rather than just Earth and inner planets) was used\n              to capture unique orbital resonances induced by planetary interactions.\n            </p>"
+    },
+    {
+      "heading": "Ray-Traced Sun Visibility",
+      "body": "<p>\n              To accurately determine how much of the sun was visible to the satellite at\n              any moment, 60,000 points were evenly distributed across the sun's surface\n              using a golden-angle spiral. A ray was then traced from the satellite to each\n              point, checking for body intersections. The fraction of unobstructed rays\n              directly determined the effective solar exposure used in energy calculations.\n            </p>"
+    },
+    {
+      "heading": "Power Density Formula",
+      "body": "<p>\n              Radiation density at the satellite was calculated using\n              <em>H\u2080 = (R\u00b2<sub>sun</sub> / D\u00b2) \u00d7 H<sub>sun</sub></em>, where\n              D is the distance from the sun, R<sub>sun</sub> is 695\u00d710\u2076 m, and\n              H<sub>sun</sub> is 64\u00d710\u2076 W/m\u00b2 (Stefan-Boltzmann blackbody). This was then\n              multiplied by the satellite's 4.5 m\u00b2 panel area, a 20% panel efficiency\n              factor, and the visible-point fraction to yield instantaneous power.\n            </p>"
+    },
+    {
+      "heading": "Experimental Design",
+      "body": "<p>\n              Simulations were run at orbital tilts from 0\u00b0 to 90\u00b0 at 70 km altitude\n              for 2 simulated years each. To simplify setup, all planets were initialized\n              in alignment \u2014 a physically unrealistic but experimentally neutral condition,\n              as any effect would be equal across all tests and thus produce no observable\n              difference within the dataset. Maximum watts, minimum watts, orbital tilt,\n              time elapsed, and total joules were recorded and analyzed in Excel.\n            </p>"
+    },
+    {
+      "heading": "2D Visual Component",
+      "body": "<p>\n              The visual component of the simulation is for demonstration purposes only,\n              rendered in 2D to reduce computational overhead. It represents only the x and\n              z axes of each body. The satellite itself is not rendered, as at any\n              meaningful simulation speed it would move too quickly to display usefully.\n            </p>"
+    },
+    {
+      "heading": "Polar Orbits Are Exponentially Superior",
+      "body": "<p>\n            The maximum energy collected was at 90\u00b0 (polar), totaling 4.93\u00d710\u00b9\u2070 joules,\n            versus 4.29\u00d710\u00b9\u2070 joules at 0\u00b0 (ecliptic) \u2014 a difference of 6.4\u00d710\u2079 joules,\n            or 101.5 W on average. The relationship is best modeled by a third-order polynomial,\n            with gains accelerating as tilt increases past 45\u00b0. Any mission requiring\n            high power \u2014 astronomical observation, terrestrial mapping \u2014 should use a\n            perfectly polar orbit.\n          </p>"
+    },
+    {
+      "heading": "Ray Tracing Enables Accurate Partial Eclipses",
+      "body": "<p>\n            A point-sampling ray-trace approach across 60,000 surface points gave a\n            continuous, physically grounded measure of solar exposure \u2014 capturing not just\n            total eclipses but the gradual onset and exit of partial ones. This level\n            of fidelity would be impossible with a simple line-of-sight boolean check.\n          </p>"
+    },
+    {
+      "heading": "Simplifications Must Be Justified, Not Hidden",
+      "body": "<p>\n            Several deliberate simplifications were made: modeling the satellite as a point,\n            initializing planets in alignment, and omitting the y-axis from the visual.\n            Each was explicitly reasoned through \u2014 the simulation's scale makes satellite\n            size inconsequential, and the aligned-start condition cancels out uniformly\n            across all test cases. Naming and justifying simplifications is as important\n            as the physics itself.\n          </p><p style=\"font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;\">\n<strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have\n        corrupted the original source code for this simulation. The paper and results above\n        represent the full available documentation of the project.\n      </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../Images/solar_nbody_simulation.png",
+      "caption": "A frame of the 2D visual component of the N-Body simulation. The visual represents\n          the x and z axes of the celestial bodies; the y-axis is omitted as it does not\n          contribute to the results."
+    },
+    {
+      "src": "../Images/solar_ray_visibility_diagram.png",
+      "caption": "Figure 1: A visual model illustrating sun visibility calculation. Rays are traced\n            from the satellite to points distributed across the sun's surface; any ray\n            intercepted by an occluding body reduces the visible-point count."
+    },
+    {
+      "src": "../Images/solar_energy_vs_tilt_graph.png",
+      "caption": "Figure 2: Total energy collected (joules) vs. orbital tilt relative to the\n            ecliptic plane. 90\u00b0 is a polar orbit above the north pole. Orange points are\n            from a separate comparable test, added for increased precision."
+    },
+    {
+      "src": "../Images/solar_watts_vs_tilt_graph.png",
+      "caption": "Figure 3: Average watts collected vs. orbital tilt. Maximum of 782.3 W at 90\u00b0;\n            minimum of 680.8 W at 0\u00b0, a difference of 101.5 W."
+    },
+    {
+      "src": "../Images/solar_nbody_simulation.png",
+      "caption": "Figure 4: A frame of the 2D N-Body simulation. The visual component is for\n            demonstration only, rendering the x and z axes of all major solar system bodies."
+    }
+  ]
+}

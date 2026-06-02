@@ -1,0 +1,64 @@
+{
+  "slug": "project-2",
+  "title": "Java Image Processing Application",
+  "role": "",
+  "date": "Spring 2024",
+  "summary": "A custom-built photo editor written entirely in Java \u2014 featuring a\n        pixel-manipulation engine, interactive Swing GUI, and a full suite of\n        color filters, computer-vision effects, and geometric transformations\n        engineered from the ground up.",
+  "thumbnail": "../images/GUICAPTURE.png",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<p>\n            Most image editing tools are black boxes \u2014 you apply a filter and\n            something happens, but the underlying pixel math is hidden behind\n            library calls. The goal of this project was to break that abstraction\n            entirely: build a functional photo editor in Java where every filter,\n            transformation, and color operation is implemented from first principles\n            at the individual pixel level.\n          </p><p>\n            Rather than importing image processing libraries, the application\n            models each pixel as a custom <code>Color</code> object carrying raw\n            RGB data and color arithmetic methods. A 2D array of these objects\n            forms a <code>ColorImage</code> \u2014 the core data structure that every\n            filter, crop, and rotation operates on directly. This architecture made\n            the relationship between algorithm and visual output concrete and\n            immediately testable.\n          </p><p>\n            The full filter suite \u2014 sepia, monochrome, blur, contrast, edge\n            detection, chroma keying, color-average smearing, and several\n            geometric transforms \u2014 was designed to be accessible through an\n            interactive Swing GUI, requiring no prior knowledge of image processing\n            from the user.\n          </p>"
+    },
+    {
+      "heading": "Filter Results",
+      "body": "<p class=\"proj-gallery-intro\">\n        All effects shown below are produced by the custom pixel-manipulation\n        engine \u2014 no external imaging libraries involved. Click any image for a\n        closer look.\n      </p>"
+    },
+    {
+      "heading": "Pixel-Level Architecture",
+      "body": "<p>\n              Rather than delegating color operations to a standard library, the\n              project introduces <code>Color.java</code> \u2014 a custom RGB wrapper\n              class that owns color data and exposes arithmetic for channel\n              clamping, weighted blending, and distance calculation. This made\n              every subsequent algorithm readable as a direct expression of the\n              underlying color math rather than a series of bit-shifting operations\n              on raw integers.\n            </p><p>\n<code>ColorImage.java</code> builds on this by representing an\n              entire image as a 2D <code>Color</code> array. Every filter method\n              lives here, iterating over the grid and writing new color values\n              based only on the class's own pixel data and the rules of the\n              specific algorithm \u2014 no external state, no side effects.\n            </p>"
+    },
+    {
+      "heading": "Color &amp; Artistic Filters",
+      "body": "<p>\n              The foundational filter set covers the most common photographic\n              adjustments. <strong>Sepia</strong> applies a classic warm tone\n              through a fixed RGB weighting formula on each pixel. <strong>Monochrome</strong>\n              averages the three channels to produce true grayscale. <strong>Contrast</strong>\n              accepts a user-defined factor and scales each channel relative to\n              a midpoint, with clamping to prevent overflow artifacts. The\n              <strong>3\u00d73 box blur</strong> replaces every pixel with the mean\n              of itself and its eight cardinal and diagonal neighbors \u2014 a\n              foundational convolution operation implemented without any matrix\n              library.\n            </p>"
+    },
+    {
+      "heading": "Advanced Computer Vision",
+      "body": "<p>\n              Edge detection uses a color-distance formula to compare each pixel\n              against its neighbors \u2014 when the distance exceeds a threshold, the\n              pixel is classified as an edge. The filter offers two output modes:\n              white edges on a black field, or colored edges composited over the\n              original image. Both modes required careful handling of border pixels\n              where the full 3\u00d73 neighborhood is unavailable.\n            </p><p>\n              Chroma keying accepts a target background color and user-defined\n              tolerance as <code>R,G,B,T</code> input. Any source pixel within\n              that tolerance range is replaced with the corresponding pixel from\n              a second image \u2014 enabling green-screen style compositing driven\n              entirely by the custom color-distance logic in <code>Color</code>.\n              The Color Average Shift effect creates a directional smear by\n              computing a weighted blend of a pixel and a neighbor in a specified\n              direction, producing a motion-blur-like artifact.\n            </p>"
+    },
+    {
+      "heading": "Geometric Transformations &amp; I/O",
+      "body": "<p>\n              Rotation and mirroring operate by constructing a new\n              <code>ColorImage</code> with remapped dimensions and populating it\n              by reading source pixel coordinates through a transformation function \u2014\n              keeping the original image immutable and making the coordinate math\n              explicit. Cropping trims the 2D array by the specified top, bottom,\n              right, and left pixel offsets, producing a new image of the reduced\n              dimensions.\n            </p><p>\n<code>PhotoshopDriver.java</code> handles all file I/O, converting\n              between Java's <code>BufferedImage</code> and the internal\n              <code>ColorImage</code> format on load and save. This boundary layer\n              keeps image codec concerns entirely outside the processing engine,\n              and means any JPEG-compatible image in the <code>./Images/</code>\n              directory is immediately accessible from the GUI dropdown.\n            </p>"
+    },
+    {
+      "heading": "Swing GUI &amp; User Workflow",
+      "body": "<p>\n<code>GUI.java</code> manages the complete Swing interface and\n              event-listener layer. The workflow is deliberately linear: choose a\n              source image from the left dropdown, select a filter from the main\n              dropdown, supply any required parameters in the text field that\n              conditionally appears, hit <strong>Apply Edit</strong>, and optionally\n              save the result under a new filename. Parameter fields display\n              inline formatting hints \u2014 so the user always knows whether to enter\n              a single float, an <code>R,G,B,T</code> tuple, or crop offsets \u2014\n              without needing to consult documentation.\n            </p>"
+    },
+    {
+      "heading": "Abstraction Through Custom Types",
+      "body": "<p>\n            Wrapping raw RGB integers in a dedicated <code>Color</code> class\n            paid dividends throughout the project. Every algorithm could express\n            its logic in terms of colors and distances rather than bitwise\n            arithmetic, keeping the code readable and making bugs traceable to\n            specific color operations rather than silent integer overflow.\n          </p>"
+    },
+    {
+      "heading": "Immutability Simplifies Filters",
+      "body": "<p>\n            Designing filter methods to produce new <code>ColorImage</code>\n            instances rather than mutating in place eliminated an entire class\n            of bugs where a filter's output pixel would contaminate the input\n            for a neighboring pixel in the same pass \u2014 a subtle issue that\n            would have been especially damaging in the blur and smear effects.\n          </p>"
+    },
+    {
+      "heading": "UI Feedback Reduces User Error",
+      "body": "<p>\n            Conditional parameter fields that appear only when a filter requires\n            input \u2014 and that show inline format hints \u2014 dramatically reduced\n            invalid entries during testing. Coupling UI state directly to the\n            selected filter in the event listener made the interaction model\n            self-documenting rather than relying on a separate instruction panel.\n          </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../images/GUICAPTURE.png",
+      "caption": "The application's Swing interface \u2014 source image selector (left dropdown),\n          filter selector and optional parameter field (center), and live image preview.\n          Defaults to a preview of <em>beautifulCow.jpg</em> on launch."
+    },
+    {
+      "src": "../images/beautifulCowBWEdgeDetect.jpg",
+      "caption": "Edge detection on <em>beautifulCow.jpg</em> \u2014 sharp color transitions\n            are identified using a per-pixel color-distance formula and rendered\n            in white against a black field."
+    },
+    {
+      "src": "../images/beautifulCowBlurred.jpg",
+      "caption": "3\u00d73 box blur on <em>beautifulCow.jpg</em> \u2014 each pixel is replaced with\n            the average of itself and its eight neighbors, smoothing sharp detail\n            across the image."
+    }
+  ]
+}
