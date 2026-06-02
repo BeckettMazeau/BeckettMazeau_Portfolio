@@ -1,7 +1,7 @@
 {
   "slug": "project-2",
   "title": "Java Image Processing Application",
-  "role": "",
+  "role": "Solo - Software Engineering",
   "date": "Spring 2024",
   "summary": "A custom-built photo editor written entirely in Java — featuring a pixel-manipulation engine, interactive Swing GUI, and a full suite of color filters, computer-vision effects, and geometric transformations engineered from the ground up.",
   "thumbnail": "../images/GUICAPTURE.png",

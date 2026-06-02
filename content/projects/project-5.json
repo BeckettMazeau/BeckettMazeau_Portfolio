@@ -1,7 +1,7 @@
 {
   "slug": "project-5",
   "title": "Demonstrator of Phenomena at Lightspeed",
-  "role": "",
+  "role": "Solo - Physics Simulation",
   "date": "January 2025",
   "summary": "A Processing simulation that visualizes the relativistic effects of approaching lightspeed — including Lorentz–FitzGerald length contraction and the relativistic Doppler shift — through an interactive 2.5D star field viewed from a rocket's reference frame.",
   "thumbnail": "../Images/lightspeed_high_v.png",

@@ -1,7 +1,7 @@
 {
   "slug": "project-3",
   "title": "Java Ray Tracer",
-  "role": "",
+  "role": "Solo - Software Engineering",
   "date": "Spring 2025",
   "summary": "A physically-based ray tracer written entirely in Java — featuring Phong shading, mirror reflections, anti-aliasing, accurate shadow casting, and multi-threaded rendering, all driven by an interactive Swing GUI for building and exporting 3D scenes.",
   "thumbnail": "../Images/TestScene3_EyeOfSauron_.png",
