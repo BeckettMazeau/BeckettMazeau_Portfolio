@@ -117,7 +117,7 @@ function DirB() {
             </div>
           </div>
           <aside className="spec">
-            <div className="sh mono"><span>// focus.areas</span><span>04</span></div>
+            <div className="sh mono"><span>// skills</span></div>
             <div className="srow"><span>Mechanical design</span><span className="v">CAD · FEA</span></div>
             <div className="srow"><span>Embedded systems</span><span className="v">C · RTOS</span></div>
             <div className="srow"><span>PCB + power</span><span className="v">KiCad</span></div>

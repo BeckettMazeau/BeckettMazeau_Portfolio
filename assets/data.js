@@ -30,12 +30,12 @@ window.SITE = {
         "v": "C / C++"
       },
       {
-        "k": "PCB layout",
+        "k": "PCB Manufacturing",
         "v": "KiCad"
       },
       {
         "k": "Simulation",
-        "v": "FEA / CFD"
+        "v": "MatLab"
       }
     ]
   },

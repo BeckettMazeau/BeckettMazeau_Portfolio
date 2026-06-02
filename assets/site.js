@@ -139,7 +139,7 @@
         "</div>" +
       "</div>" +
       '<aside class="spec reveal">' +
-        '<div class="sh"><span>// focus.areas</span><span>0' + p.focus.length + "</span></div>" +
+        '<div class="sh"><span>// skills</span></div>' +
         p.focus.map(function (f) { return '<div class="srow"><span>' + esc(f.k) + '</span><span class="v">' + esc(f.v) + "</span></div>"; }).join("") +
       "</aside>";
 
