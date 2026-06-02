@@ -1,0 +1,4 @@
+## 2025-06-02 - [CRITICAL] Fix Cross-Site Scripting (XSS) via Attribute Injection
+**Vulnerability:** The `esc(s)` function used to sanitize output before rendering it into the HTML structure dynamically did not escape double quotes (`"`) and single quotes (`'`). This meant user-controlled data placed within HTML attributes (e.g. `title` inside an `alt="..."` attribute) could break out of the string and execute arbitrary JavaScript using event handlers like `onerror` or `onload`.
+**Learning:** Even though basic HTML characters like `<` and `>` were escaped, omitting quote escaping in an attribute context represents an XSS vulnerability, as modern applications heavily rely on strings appended straight into attributes (e.g. via `innerHTML`).
+**Prevention:** Always escape double and single quotes (`&quot;`, `&#39;`) in addition to `<` and `>` when creating a manual string HTML escaping utility, especially if its outputs will be used inside HTML attributes.
