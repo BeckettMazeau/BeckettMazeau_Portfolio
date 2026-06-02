@@ -134,8 +134,8 @@ SITE = {
         "focus": [
             {"k": "Mechanical design", "v": "SolidWorks · Fusion 360"},
             {"k": "Embedded systems", "v": "C / C++"},
-            {"k": "PCB layout", "v": "KiCad"},
-            {"k": "Simulation", "v": "FEA / CFD"},
+            {"k": "PCB Manufacturing", "v": "KiCad"},
+            {"k": "Simulation", "v": "MatLab"},
         ],
     },
     "home": sel_proj,
