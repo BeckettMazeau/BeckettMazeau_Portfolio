@@ -1,0 +1,2020 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "portfolio_projects",
+        "label": "Portfolio Projects Collection",
+        "nodes": [
+          "project1_rocket_oven",
+          "project2_image_processing",
+          "project3_ray_tracer",
+          "project4_nbody_simulation",
+          "project5_lightspeed",
+          "project6_stik_enote"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "all-projects.html"
+      },
+      {
+        "id": "stik_enote_subsystems",
+        "label": "STIK-eNote Hardware Subsystems",
+        "nodes": [
+          "project6_esp32_firmware",
+          "project6_display_management",
+          "project6_kicad_pcb"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "projects/project-6.html"
+      },
+      {
+        "id": "software_architecture_patterns",
+        "label": "Software Architecture and Design Patterns",
+        "nodes": [
+          "project1_design_process",
+          "project2_color_abstraction",
+          "project3_multithreading",
+          "project6_display_management"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "projects/"
+      },
+      {
+        "id": "stike_hardware_ecosystem",
+        "label": "StikE eNote Hardware Design System",
+        "nodes": [
+          "images_stike_pcb",
+          "images_stike_schematic_1",
+          "images_stike_schematic_2",
+          "images_stike_schematic_3",
+          "images_stike_schematic_4",
+          "images_stike_schematic_5",
+          "concept_stike_device"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "images/StikE_PCB.png"
+      },
+      {
+        "id": "pomodoro_focus_timer_system",
+        "label": "Pomodoro Focus Timer Hardware Implementation",
+        "nodes": [
+          "images_pomodoroscreen",
+          "images_pomodorosetup",
+          "concept_pomodoro_timer"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "images/PomodoroScreen.JPG"
+      },
+      {
+        "id": "3d_graphics_application",
+        "label": "3D Graphics Rendering Application Suite",
+        "nodes": [
+          "images_scenecreatorgui",
+          "images_settingsgui",
+          "concept_3d_rendering"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "images/SceneCreatorGUI.png"
+      },
+      {
+        "id": "hyperedge_solar_analysis",
+        "label": "Solar Energy Collection Analysis",
+        "nodes": [
+          "images_solar_nbody",
+          "images_solar_energy_tilt",
+          "images_solar_watts_tilt",
+          "images_solar_ray_visibility"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.95,
+        "source_file": "images/solar_energy_vs_tilt_graph.png"
+      },
+      {
+        "id": "hyperedge_3d_graphics",
+        "label": "3D Graphics Rendering Portfolio",
+        "nodes": [
+          "images_testscene1",
+          "images_testscene2",
+          "images_testscene3"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "images/TestScene1.png"
+      },
+      {
+        "id": "hyperedge_image_processing",
+        "label": "Image Processing Pipeline",
+        "nodes": [
+          "images_beautifulcowedge",
+          "images_beautifulcowblurred"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "images/beautifulCowBWEdgeDetect.jpg"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "launch.json",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L1",
+      "id": "claude_launch",
+      "community": 9,
+      "norm_label": "launch.json"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "id": "claude_launch_version",
+      "community": 9,
+      "norm_label": "version"
+    },
+    {
+      "label": "configurations",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "id": "claude_launch_configurations",
+      "community": 9,
+      "norm_label": "configurations"
+    },
+    {
+      "label": "settings.local.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L1",
+      "id": "claude_settings_local",
+      "community": 10,
+      "norm_label": "settings.local.json"
+    },
+    {
+      "label": "permissions",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "id": "claude_settings_local_permissions",
+      "community": 10,
+      "norm_label": "permissions"
+    },
+    {
+      "label": "allow",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "id": "claude_settings_local_permissions_allow",
+      "community": 10,
+      "norm_label": "allow"
+    },
+    {
+      "label": "script.js",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L1",
+      "id": "script",
+      "community": 1,
+      "norm_label": "script.js"
+    },
+    {
+      "label": "closeMobileNav()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L44",
+      "id": "script_closemobilenav",
+      "community": 1,
+      "norm_label": "closemobilenav()"
+    },
+    {
+      "label": "initRevealObserver()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L84",
+      "id": "script_initrevealobserver",
+      "community": 1,
+      "norm_label": "initrevealobserver()"
+    },
+    {
+      "label": "closeLightbox()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L160",
+      "id": "script_closelightbox",
+      "community": 1,
+      "norm_label": "closelightbox()"
+    },
+    {
+      "label": "getBasePath()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L216",
+      "id": "script_getbasepath",
+      "community": 1,
+      "norm_label": "getbasepath()"
+    },
+    {
+      "label": "fetchMeta()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L229",
+      "id": "script_fetchmeta",
+      "community": 1,
+      "norm_label": "fetchmeta()"
+    },
+    {
+      "label": "comingSoonHTML()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L252",
+      "id": "script_comingsoonhtml",
+      "community": 1,
+      "norm_label": "comingsoonhtml()"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L263",
+      "id": "script_formatdate",
+      "community": 1,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "projectCardHTML()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L274",
+      "id": "script_projectcardhtml",
+      "community": 1,
+      "norm_label": "projectcardhtml()"
+    },
+    {
+      "label": "updateCardHTML()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L300",
+      "id": "script_updatecardhtml",
+      "community": 1,
+      "norm_label": "updatecardhtml()"
+    },
+    {
+      "label": "loadSection()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L321",
+      "id": "script_loadsection",
+      "community": 1,
+      "norm_label": "loadsection()"
+    },
+    {
+      "label": "site-manifest.json",
+      "file_type": "code",
+      "source_file": "site-manifest.json",
+      "source_location": "L1",
+      "id": "site_manifest",
+      "community": 8,
+      "norm_label": "site-manifest.json"
+    },
+    {
+      "label": "selectedProjects",
+      "file_type": "code",
+      "source_file": "site-manifest.json",
+      "source_location": "L2",
+      "id": "site_manifest_selectedprojects",
+      "community": 8,
+      "norm_label": "selectedprojects"
+    },
+    {
+      "label": "allProjects",
+      "file_type": "code",
+      "source_file": "site-manifest.json",
+      "source_location": "L5",
+      "id": "site_manifest_allprojects",
+      "community": 8,
+      "norm_label": "allprojects"
+    },
+    {
+      "label": "updates",
+      "file_type": "code",
+      "source_file": "site-manifest.json",
+      "source_location": "L8",
+      "id": "site_manifest_updates",
+      "community": 8,
+      "norm_label": "updates"
+    },
+    {
+      "label": "Beckett Mazeau Portfolio",
+      "file_type": "document",
+      "source_file": "index.html",
+      "id": "index_beckett_mazeau",
+      "community": 0,
+      "norm_label": "beckett mazeau portfolio"
+    },
+    {
+      "label": "Mechatronics Engineer",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "id": "index_mechatronics_engineer",
+      "community": 0,
+      "norm_label": "mechatronics engineer"
+    },
+    {
+      "label": "STIK-eNote Device",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "id": "index_stik_enote",
+      "community": 0,
+      "norm_label": "stik-enote device"
+    },
+    {
+      "label": "Composite Rocket Body Curing Oven",
+      "file_type": "document",
+      "source_file": "projects/project-1.html",
+      "id": "project1_rocket_oven",
+      "community": 4,
+      "norm_label": "composite rocket body curing oven"
+    },
+    {
+      "label": "Arduino-Based Thermal Control System",
+      "file_type": "concept",
+      "source_file": "projects/project-1.html",
+      "id": "project1_arduino_control",
+      "community": 4,
+      "norm_label": "arduino-based thermal control system"
+    },
+    {
+      "label": "Rice Eclipse Rocketry Team",
+      "file_type": "concept",
+      "source_file": "projects/project-1.html",
+      "id": "project1_rice_eclipse",
+      "community": 4,
+      "norm_label": "rice eclipse rocketry team"
+    },
+    {
+      "label": "Structured Design Process",
+      "file_type": "rationale",
+      "source_file": "projects/project-1.html",
+      "id": "project1_design_process",
+      "community": 4,
+      "norm_label": "structured design process"
+    },
+    {
+      "label": "Java Image Processing Application",
+      "file_type": "document",
+      "source_file": "projects/project-2.html",
+      "id": "project2_image_processing",
+      "community": 14,
+      "norm_label": "java image processing application"
+    },
+    {
+      "label": "Custom Color Class Abstraction",
+      "file_type": "concept",
+      "source_file": "projects/project-2.html",
+      "id": "project2_color_abstraction",
+      "community": 14,
+      "norm_label": "custom color class abstraction"
+    },
+    {
+      "label": "Java Swing GUI",
+      "file_type": "concept",
+      "source_file": "projects/project-2.html",
+      "id": "project2_swing_gui",
+      "community": 14,
+      "norm_label": "java swing gui"
+    },
+    {
+      "label": "Java Ray Tracer",
+      "file_type": "document",
+      "source_file": "projects/project-3.html",
+      "id": "project3_ray_tracer",
+      "community": 5,
+      "norm_label": "java ray tracer"
+    },
+    {
+      "label": "Phong Reflection Model",
+      "file_type": "concept",
+      "source_file": "projects/project-3.html",
+      "id": "project3_phong_shading",
+      "community": 5,
+      "norm_label": "phong reflection model"
+    },
+    {
+      "label": "Multi-threaded Rendering",
+      "file_type": "concept",
+      "source_file": "projects/project-3.html",
+      "id": "project3_multithreading",
+      "community": 5,
+      "norm_label": "multi-threaded rendering"
+    },
+    {
+      "label": "Solar Energy N-Body Simulation",
+      "file_type": "document",
+      "source_file": "projects/project-4.html",
+      "id": "project4_nbody_simulation",
+      "community": 5,
+      "norm_label": "solar energy n-body simulation"
+    },
+    {
+      "label": "Orbital Mechanics and Ray Tracing",
+      "file_type": "concept",
+      "source_file": "projects/project-4.html",
+      "id": "project4_orbital_mechanics",
+      "community": 5,
+      "norm_label": "orbital mechanics and ray tracing"
+    },
+    {
+      "label": "Demonstrator of Phenomena at Lightspeed",
+      "file_type": "document",
+      "source_file": "projects/project-5.html",
+      "id": "project5_lightspeed",
+      "community": 15,
+      "norm_label": "demonstrator of phenomena at lightspeed"
+    },
+    {
+      "label": "Lorentz-FitzGerald Length Contraction",
+      "file_type": "concept",
+      "source_file": "projects/project-5.html",
+      "id": "project5_lorentz_contraction",
+      "community": 15,
+      "norm_label": "lorentz-fitzgerald length contraction"
+    },
+    {
+      "label": "Relativistic Doppler Shift",
+      "file_type": "concept",
+      "source_file": "projects/project-5.html",
+      "id": "project5_doppler_shift",
+      "community": 15,
+      "norm_label": "relativistic doppler shift"
+    },
+    {
+      "label": "STIK-eNote Embedded Device",
+      "file_type": "document",
+      "source_file": "projects/project-6.html",
+      "id": "project6_stik_enote",
+      "community": 0,
+      "norm_label": "stik-enote embedded device"
+    },
+    {
+      "label": "FreeRTOS Dual-Core Firmware",
+      "file_type": "concept",
+      "source_file": "projects/project-6.html",
+      "id": "project6_esp32_firmware",
+      "community": 0,
+      "norm_label": "freertos dual-core firmware"
+    },
+    {
+      "label": "Dual Display Management System",
+      "file_type": "rationale",
+      "source_file": "projects/project-6.html",
+      "id": "project6_display_management",
+      "community": 0,
+      "norm_label": "dual display management system"
+    },
+    {
+      "label": "KiCad PCB Design",
+      "file_type": "concept",
+      "source_file": "projects/project-6.html",
+      "id": "project6_kicad_pcb",
+      "community": 0,
+      "norm_label": "kicad pcb design"
+    },
+    {
+      "label": "All Projects Archive",
+      "file_type": "document",
+      "source_file": "all-projects.html",
+      "id": "allprojects_archive",
+      "community": 18,
+      "norm_label": "all projects archive"
+    },
+    {
+      "label": "Portfolio Site Launch",
+      "file_type": "document",
+      "source_file": "updates/update-1.html",
+      "id": "update1_portfolio_launch",
+      "community": 4,
+      "norm_label": "portfolio site launch"
+    },
+    {
+      "label": "STIK-eNote Schematic V2",
+      "file_type": "document",
+      "source_file": "updates/update-2.html",
+      "id": "update2_schematic_v2",
+      "community": 0,
+      "norm_label": "stik-enote schematic v2"
+    },
+    {
+      "label": "Curing Oven Interior Chamber",
+      "file_type": "image",
+      "source_file": "images/InternalWideShot.JPG",
+      "id": "image_rocket_oven_interior",
+      "community": 4,
+      "norm_label": "curing oven interior chamber"
+    },
+    {
+      "label": "Calendar Display Screenshots",
+      "file_type": "image",
+      "source_file": "images/CalendarMonthView.JPG",
+      "id": "image_calendarviews",
+      "community": 19,
+      "norm_label": "calendar display screenshots"
+    },
+    {
+      "label": "STIK-eNote Electrical Block Diagram",
+      "file_type": "image",
+      "source_file": "images/ElectricalDiagram.png",
+      "id": "image_electrical_diagram",
+      "community": 0,
+      "norm_label": "stik-enote electrical block diagram"
+    },
+    {
+      "label": "KiCad PCB Front Layer",
+      "file_type": "image",
+      "source_file": "images/FrontPCB.png",
+      "id": "image_pcb_front",
+      "community": 0,
+      "norm_label": "kicad pcb front layer"
+    },
+    {
+      "label": "KiCad PCB Back Layer",
+      "file_type": "image",
+      "source_file": "images/BackPCB.png",
+      "id": "image_pcb_back",
+      "community": 0,
+      "norm_label": "kicad pcb back layer"
+    },
+    {
+      "label": "GUI Comparison Application",
+      "file_type": "image",
+      "source_file": "images/GUICAPTURE.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_guicapture",
+      "community": 20,
+      "norm_label": "gui comparison application"
+    },
+    {
+      "label": "Beckett Mazeau Professional Headshot",
+      "file_type": "image",
+      "source_file": "images/Headshot.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_headshot",
+      "community": 21,
+      "norm_label": "beckett mazeau professional headshot"
+    },
+    {
+      "label": "Large-Scale Hardware Build",
+      "file_type": "image",
+      "source_file": "images/InternalWideShot.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_internalwideshot",
+      "community": 22,
+      "norm_label": "large-scale hardware build"
+    },
+    {
+      "label": "Mechanical Device State Diagram",
+      "file_type": "image",
+      "source_file": "images/MechanicalDiagram.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_mechanicaldiagram",
+      "community": 23,
+      "norm_label": "mechanical device state diagram"
+    },
+    {
+      "label": "Task Configuration Interface",
+      "file_type": "image",
+      "source_file": "images/NewTaskSetup.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_newtasksetup",
+      "community": 17,
+      "norm_label": "task configuration interface"
+    },
+    {
+      "label": "Pomodoro Timer Hardware Display",
+      "file_type": "image",
+      "source_file": "images/PomodoroScreen.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_pomodoroscreen",
+      "community": 13,
+      "norm_label": "pomodoro timer hardware display"
+    },
+    {
+      "label": "Pomodoro Focus Timer Display Setup",
+      "file_type": "image",
+      "source_file": "images/PomodoroSetup.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_pomodorosetup",
+      "community": 13,
+      "norm_label": "pomodoro focus timer display setup"
+    },
+    {
+      "label": "Curing Oven for Composite Rocket Bodies Research Poster",
+      "file_type": "image",
+      "source_file": "images/Poster.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_poster",
+      "community": 16,
+      "norm_label": "curing oven for composite rocket bodies research poster"
+    },
+    {
+      "label": "Rotary Mechanism and Element Connection Diagram",
+      "file_type": "image",
+      "source_file": "images/RotaryMech_Plus_ElementConnection.PNG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_rotarymech",
+      "community": 24,
+      "norm_label": "rotary mechanism and element connection diagram"
+    },
+    {
+      "label": "3D Scene Creator Interface",
+      "file_type": "image",
+      "source_file": "images/SceneCreatorGUI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_scenecreatorgui",
+      "community": 11,
+      "norm_label": "3d scene creator interface"
+    },
+    {
+      "label": "3D Graphics Settings Configuration Panel",
+      "file_type": "image",
+      "source_file": "images/SettingsGUI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_settingsgui",
+      "community": 11,
+      "norm_label": "3d graphics settings configuration panel"
+    },
+    {
+      "label": "Embedded Device System Settings Interface",
+      "file_type": "image",
+      "source_file": "images/SettingsUI.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_settingsui",
+      "community": 3,
+      "norm_label": "embedded device system settings interface"
+    },
+    {
+      "label": "Sleep Schedule Task Display",
+      "file_type": "image",
+      "source_file": "images/SleepScreen.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_sleepscreen",
+      "community": 3,
+      "norm_label": "sleep schedule task display"
+    },
+    {
+      "label": "StikE PCB Circuit Board Layout",
+      "file_type": "image",
+      "source_file": "images/StikE_PCB.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_stike_pcb",
+      "community": 3,
+      "norm_label": "stike pcb circuit board layout"
+    },
+    {
+      "label": "StikE eNote Main Circuit Schematic",
+      "file_type": "image",
+      "source_file": "images/StikE_Schematic_page-0001.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Beckett Lyons Mazeau",
+      "contributor": "Erik Walsh",
+      "id": "images_stike_schematic_1",
+      "community": 3,
+      "norm_label": "stike enote main circuit schematic"
+    },
+    {
+      "label": "StikE Power and Charging Circuit Schematic",
+      "file_type": "image",
+      "source_file": "images/StikE_Schematic_page-0002.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Beckett Lyons Mazeau",
+      "contributor": "Erik Walsh",
+      "id": "images_stike_schematic_2",
+      "community": 3,
+      "norm_label": "stike power and charging circuit schematic"
+    },
+    {
+      "label": "StikE Microcontroller and WiFi Module Schematic",
+      "file_type": "image",
+      "source_file": "images/StikE_Schematic_page-0003.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Beckett Lyons Mazeau",
+      "contributor": "Erik Walsh",
+      "id": "images_stike_schematic_3",
+      "community": 3,
+      "norm_label": "stike microcontroller and wifi module schematic"
+    },
+    {
+      "label": "StikE Logic Level Converter Schematic",
+      "file_type": "image",
+      "source_file": "images/StikE_Schematic_page-0004.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Beckett Lyons Mazeau",
+      "contributor": "Erik Walsh",
+      "id": "images_stike_schematic_4",
+      "community": 3,
+      "norm_label": "stike logic level converter schematic"
+    },
+    {
+      "label": "StikE USB-C Connection and Power Delivery Schematic",
+      "file_type": "image",
+      "source_file": "images/StikE_Schematic_page-0005.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Beckett Lyons Mazeau",
+      "contributor": "Erik Walsh",
+      "id": "images_stike_schematic_5",
+      "community": 3,
+      "norm_label": "stike usb-c connection and power delivery schematic"
+    },
+    {
+      "label": "Task Management User Interface",
+      "file_type": "image",
+      "source_file": "images/TaskUI.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_taskui",
+      "community": 17,
+      "norm_label": "task management user interface"
+    },
+    {
+      "label": "Pomodoro Timer Technique",
+      "file_type": "concept",
+      "source_file": "images/PomodoroScreen.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_pomodoro_timer",
+      "community": 13,
+      "norm_label": "pomodoro timer technique"
+    },
+    {
+      "label": "StikE eNote IoT Device",
+      "file_type": "rationale",
+      "source_file": "images/StikE_PCB.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_stike_device",
+      "community": 3,
+      "norm_label": "stike enote iot device"
+    },
+    {
+      "label": "3D Graphics Rendering Engine",
+      "file_type": "concept",
+      "source_file": "images/SceneCreatorGUI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_3d_rendering",
+      "community": 11,
+      "norm_label": "3d graphics rendering engine"
+    },
+    {
+      "label": "Curing Oven System for Composite Rocket Bodies",
+      "file_type": "rationale",
+      "source_file": "images/Poster.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_rocket_curing_oven",
+      "community": 16,
+      "norm_label": "curing oven system for composite rocket bodies"
+    },
+    {
+      "label": "Team Photo",
+      "file_type": "image",
+      "source_file": "images/TeamPhoto.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_teamphoto",
+      "community": 25,
+      "norm_label": "team photo"
+    },
+    {
+      "label": "3D Rendered Test Scene 1 - Spheres",
+      "file_type": "image",
+      "source_file": "images/TestScene1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_testscene1",
+      "community": 6,
+      "norm_label": "3d rendered test scene 1 - spheres"
+    },
+    {
+      "label": "3D Rendered Test Scene 2 - Colorful Spheres",
+      "file_type": "image",
+      "source_file": "images/TestScene2.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_testscene2",
+      "community": 6,
+      "norm_label": "3d rendered test scene 2 - colorful spheres"
+    },
+    {
+      "label": "Eye of Sauron - Geometric Pattern",
+      "file_type": "image",
+      "source_file": "images/TestScene3_EyeOfSauron_.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_testscene3",
+      "community": 6,
+      "norm_label": "eye of sauron - geometric pattern"
+    },
+    {
+      "label": "Task Management Screen",
+      "file_type": "image",
+      "source_file": "images/UncompletedTasksManagementScreen.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_uncompletedtasks",
+      "community": 7,
+      "norm_label": "task management screen"
+    },
+    {
+      "label": "User Interface - Keypad and LCD Display",
+      "file_type": "image",
+      "source_file": "images/UserInterface.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_userinterface",
+      "community": 7,
+      "norm_label": "user interface - keypad and lcd display"
+    },
+    {
+      "label": "BlueJ Virtual Machine Viewer GUI",
+      "file_type": "image",
+      "source_file": "images/ViewerGUI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_viewergui",
+      "community": 26,
+      "norm_label": "bluej virtual machine viewer gui"
+    },
+    {
+      "label": "Image Processing - Edge Detection on Cow",
+      "file_type": "image",
+      "source_file": "images/beautifulCowBWEdgeDetect.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_beautifulcowedge",
+      "community": 12,
+      "norm_label": "image processing - edge detection on cow"
+    },
+    {
+      "label": "Image Processing - Blur Applied to Cow",
+      "file_type": "image",
+      "source_file": "images/beautifulCowBlurred.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_beautifulcowblurred",
+      "community": 12,
+      "norm_label": "image processing - blur applied to cow"
+    },
+    {
+      "label": "Lightspeed Visualization - High Velocity",
+      "file_type": "image",
+      "source_file": "images/lightspeed_high_v.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_lightspeed_high_v",
+      "community": 2,
+      "norm_label": "lightspeed visualization - high velocity"
+    },
+    {
+      "label": "Lightspeed Visualization - Zero Velocity",
+      "file_type": "image",
+      "source_file": "images/lightspeed_zero_v.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_lightspeed_zero_v",
+      "community": 2,
+      "norm_label": "lightspeed visualization - zero velocity"
+    },
+    {
+      "label": "Solar Energy Collection vs Orbital Tilt Graph",
+      "file_type": "image",
+      "source_file": "images/solar_energy_vs_tilt_graph.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_solar_energy_tilt",
+      "community": 2,
+      "norm_label": "solar energy collection vs orbital tilt graph"
+    },
+    {
+      "label": "N-Body Simulation Visualization",
+      "file_type": "image",
+      "source_file": "images/solar_nbody_simulation.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_solar_nbody",
+      "community": 2,
+      "norm_label": "n-body simulation visualization"
+    },
+    {
+      "label": "Solar Ray Visibility Diagram",
+      "file_type": "image",
+      "source_file": "images/solar_ray_visibility_diagram.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_solar_ray_visibility",
+      "community": 2,
+      "norm_label": "solar ray visibility diagram"
+    },
+    {
+      "label": "Solar Watts Output vs Orbital Tilt Graph",
+      "file_type": "image",
+      "source_file": "images/solar_watts_vs_tilt_graph.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_solar_watts_tilt",
+      "community": 2,
+      "norm_label": "solar watts output vs orbital tilt graph"
+    },
+    {
+      "label": "Stik Note Rendering - Handheld Device UI",
+      "file_type": "image",
+      "source_file": "images/stik-enote-render.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_stik_enote",
+      "community": 7,
+      "norm_label": "stik note rendering - handheld device ui"
+    },
+    {
+      "label": "Image Processing",
+      "file_type": "concept",
+      "source_file": "images/beautifulCowBWEdgeDetect.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_imageprocessing",
+      "community": 12,
+      "norm_label": "image processing"
+    },
+    {
+      "label": "3D Rendering Engine",
+      "file_type": "concept",
+      "source_file": "images/TestScene1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_3drendering",
+      "community": 6,
+      "norm_label": "3d rendering engine"
+    },
+    {
+      "label": "Physical Simulation",
+      "file_type": "concept",
+      "source_file": "images/solar_nbody_simulation.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_simulation",
+      "community": 2,
+      "norm_label": "physical simulation"
+    },
+    {
+      "label": "Data Visualization",
+      "file_type": "concept",
+      "source_file": "images/solar_energy_vs_tilt_graph.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_datavisualization",
+      "community": 2,
+      "norm_label": "data visualization"
+    },
+    {
+      "label": "Embedded User Interface",
+      "file_type": "concept",
+      "source_file": "images/UserInterface.JPG",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_embedded_ui",
+      "community": 7,
+      "norm_label": "embedded user interface"
+    },
+    {
+      "label": "Physics Simulation Domain",
+      "file_type": "concept",
+      "source_file": "images/solar_nbody_simulation.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_physics",
+      "community": 2,
+      "norm_label": "physics simulation domain"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_launch",
+      "target": "claude_launch_configurations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_launch",
+      "target": "claude_launch_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_settings_local",
+      "target": "claude_settings_local_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_allow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_closelightbox",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_closemobilenav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L252",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_comingsoonhtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_fetchmeta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_getbasepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_initrevealobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L321",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_loadsection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L274",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_projectcardhtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_updatecardhtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L326",
+      "weight": 1.0,
+      "source": "script_loadsection",
+      "target": "script_initrevealobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L332",
+      "weight": 1.0,
+      "source": "script_loadsection",
+      "target": "script_fetchmeta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L325",
+      "weight": 1.0,
+      "source": "script_loadsection",
+      "target": "script_comingsoonhtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L307",
+      "weight": 1.0,
+      "source": "script_updatecardhtml",
+      "target": "script_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site-manifest.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "site_manifest",
+      "target": "site_manifest_allprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site-manifest.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "site_manifest",
+      "target": "site_manifest_selectedprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site-manifest.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "site_manifest",
+      "target": "site_manifest_updates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_beckett_mazeau",
+      "target": "index_mechatronics_engineer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_beckett_mazeau",
+      "target": "index_stik_enote"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_stik_enote",
+      "target": "project6_stik_enote"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-1.html",
+      "source": "image_rocket_oven_interior",
+      "target": "project1_rocket_oven"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-1.html",
+      "source": "project1_rocket_oven",
+      "target": "project1_arduino_control"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "projects/project-1.html",
+      "source": "project1_rocket_oven",
+      "target": "project1_design_process"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-1.html",
+      "source": "project1_rocket_oven",
+      "target": "project1_rice_eclipse"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "updates/update-1.html",
+      "source": "update1_portfolio_launch",
+      "target": "project1_rocket_oven"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-2.html",
+      "source": "project2_image_processing",
+      "target": "project2_color_abstraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-2.html",
+      "source": "project2_image_processing",
+      "target": "project2_swing_gui"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-3.html",
+      "source": "project3_ray_tracer",
+      "target": "project3_multithreading"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-3.html",
+      "source": "project3_ray_tracer",
+      "target": "project3_phong_shading"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "projects/project-3.html",
+      "source": "project3_phong_shading",
+      "target": "project4_orbital_mechanics"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-4.html",
+      "source": "project4_nbody_simulation",
+      "target": "project4_orbital_mechanics"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-5.html",
+      "source": "project5_lightspeed",
+      "target": "project5_doppler_shift"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-5.html",
+      "source": "project5_lightspeed",
+      "target": "project5_lorentz_contraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html",
+      "source": "image_electrical_diagram",
+      "target": "project6_stik_enote"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "projects/project-6.html",
+      "source": "project6_stik_enote",
+      "target": "project6_display_management"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html",
+      "source": "project6_stik_enote",
+      "target": "project6_esp32_firmware"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html",
+      "source": "project6_stik_enote",
+      "target": "project6_kicad_pcb"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "updates/update-2.html",
+      "source": "update2_schematic_v2",
+      "target": "project6_stik_enote"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html",
+      "source": "image_pcb_back",
+      "target": "project6_kicad_pcb"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html",
+      "source": "image_pcb_front",
+      "target": "project6_kicad_pcb"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "images/NewTaskSetup.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_newtasksetup",
+      "target": "images_taskui"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/PomodoroScreen.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_pomodoroscreen",
+      "target": "concept_pomodoro_timer"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "images/PomodoroScreen.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_pomodoroscreen",
+      "target": "images_pomodorosetup"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/PomodoroSetup.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_pomodorosetup",
+      "target": "concept_pomodoro_timer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "images/Poster.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_poster",
+      "target": "concept_rocket_curing_oven"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/SceneCreatorGUI.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_scenecreatorgui",
+      "target": "concept_3d_rendering"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "images/SceneCreatorGUI.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_scenecreatorgui",
+      "target": "images_settingsgui"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/SettingsGUI.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_settingsgui",
+      "target": "concept_3d_rendering"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/SettingsUI.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_settingsui",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/SleepScreen.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_sleepscreen",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_PCB.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_pcb",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_Schematic_page-0001.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_schematic_1",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_Schematic_page-0002.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_schematic_2",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_Schematic_page-0003.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_schematic_3",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_Schematic_page-0004.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_schematic_4",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/StikE_Schematic_page-0005.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stike_schematic_5",
+      "target": "concept_stike_device"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/TestScene1.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_testscene1",
+      "target": "concept_3drendering"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/TestScene2.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_testscene2",
+      "target": "concept_3drendering"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/TestScene3_EyeOfSauron_.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_testscene3",
+      "target": "concept_3drendering"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/UncompletedTasksManagementScreen.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_uncompletedtasks",
+      "target": "concept_embedded_ui"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/UserInterface.JPG",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_userinterface",
+      "target": "concept_embedded_ui"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/beautifulCowBWEdgeDetect.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_beautifulcowedge",
+      "target": "concept_imageprocessing"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/beautifulCowBlurred.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_beautifulcowblurred",
+      "target": "concept_imageprocessing"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "images/lightspeed_high_v.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_lightspeed_high_v",
+      "target": "concept_simulation"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "images/lightspeed_zero_v.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_lightspeed_zero_v",
+      "target": "concept_simulation"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/solar_energy_vs_tilt_graph.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_energy_tilt",
+      "target": "concept_datavisualization"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/solar_energy_vs_tilt_graph.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_energy_tilt",
+      "target": "concept_physics"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/solar_nbody_simulation.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_nbody",
+      "target": "concept_physics"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/solar_nbody_simulation.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_nbody",
+      "target": "concept_simulation"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/solar_ray_visibility_diagram.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_ray_visibility",
+      "target": "concept_physics"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/solar_watts_vs_tilt_graph.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_watts_tilt",
+      "target": "concept_datavisualization"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/solar_watts_vs_tilt_graph.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_solar_watts_tilt",
+      "target": "concept_physics"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/stik-enote-render.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "images_stik_enote",
+      "target": "concept_embedded_ui"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "portfolio_projects",
+      "label": "Portfolio Projects Collection",
+      "nodes": [
+        "project1_rocket_oven",
+        "project2_image_processing",
+        "project3_ray_tracer",
+        "project4_nbody_simulation",
+        "project5_lightspeed",
+        "project6_stik_enote"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "all-projects.html"
+    },
+    {
+      "id": "stik_enote_subsystems",
+      "label": "STIK-eNote Hardware Subsystems",
+      "nodes": [
+        "project6_esp32_firmware",
+        "project6_display_management",
+        "project6_kicad_pcb"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "projects/project-6.html"
+    },
+    {
+      "id": "software_architecture_patterns",
+      "label": "Software Architecture and Design Patterns",
+      "nodes": [
+        "project1_design_process",
+        "project2_color_abstraction",
+        "project3_multithreading",
+        "project6_display_management"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "projects/"
+    },
+    {
+      "id": "stike_hardware_ecosystem",
+      "label": "StikE eNote Hardware Design System",
+      "nodes": [
+        "images_stike_pcb",
+        "images_stike_schematic_1",
+        "images_stike_schematic_2",
+        "images_stike_schematic_3",
+        "images_stike_schematic_4",
+        "images_stike_schematic_5",
+        "concept_stike_device"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "images/StikE_PCB.png"
+    },
+    {
+      "id": "pomodoro_focus_timer_system",
+      "label": "Pomodoro Focus Timer Hardware Implementation",
+      "nodes": [
+        "images_pomodoroscreen",
+        "images_pomodorosetup",
+        "concept_pomodoro_timer"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "images/PomodoroScreen.JPG"
+    },
+    {
+      "id": "3d_graphics_application",
+      "label": "3D Graphics Rendering Application Suite",
+      "nodes": [
+        "images_scenecreatorgui",
+        "images_settingsgui",
+        "concept_3d_rendering"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "images/SceneCreatorGUI.png"
+    },
+    {
+      "id": "hyperedge_solar_analysis",
+      "label": "Solar Energy Collection Analysis",
+      "nodes": [
+        "images_solar_nbody",
+        "images_solar_energy_tilt",
+        "images_solar_watts_tilt",
+        "images_solar_ray_visibility"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "images/solar_energy_vs_tilt_graph.png"
+    },
+    {
+      "id": "hyperedge_3d_graphics",
+      "label": "3D Graphics Rendering Portfolio",
+      "nodes": [
+        "images_testscene1",
+        "images_testscene2",
+        "images_testscene3"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "images/TestScene1.png"
+    },
+    {
+      "id": "hyperedge_image_processing",
+      "label": "Image Processing Pipeline",
+      "nodes": [
+        "images_beautifulcowedge",
+        "images_beautifulcowblurred"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "images/beautifulCowBWEdgeDetect.jpg"
+    }
+  ],
+  "built_at_commit": "ca62278572ddabf28090eaaa52391d9f34d1dd5f"
+}

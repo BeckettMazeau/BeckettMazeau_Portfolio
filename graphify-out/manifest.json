@@ -1,0 +1,302 @@
+{
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/.claude/launch.json": {
+    "mtime": 1779221965.0436587,
+    "ast_hash": "a9f7576d5110aecd3075d4fc8e799162",
+    "semantic_hash": "a9f7576d5110aecd3075d4fc8e799162"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/.claude/settings.local.json": {
+    "mtime": 1780359756.6530964,
+    "ast_hash": "2e722dd234455e2e9d865805a8bdb952",
+    "semantic_hash": "2e722dd234455e2e9d865805a8bdb952"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/script.js": {
+    "mtime": 1778382436.361072,
+    "ast_hash": "9e12da4dfd2a7e9c00752d1a9271075d",
+    "semantic_hash": "9e12da4dfd2a7e9c00752d1a9271075d"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/site-manifest.json": {
+    "mtime": 1778382436.3611746,
+    "ast_hash": "e7308780c53912ce7c0d18a65d1a4f23",
+    "semantic_hash": "e7308780c53912ce7c0d18a65d1a4f23"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/all-projects.html": {
+    "mtime": 1778382436.3043888,
+    "ast_hash": "d356dbe18885a9ca98b117f5910d12eb",
+    "semantic_hash": "d356dbe18885a9ca98b117f5910d12eb"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/index.html": {
+    "mtime": 1778539423.1128643,
+    "ast_hash": "c15b9e30e63f2ef798b189773d7684e8",
+    "semantic_hash": "c15b9e30e63f2ef798b189773d7684e8"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-1.html": {
+    "mtime": 1778382436.3585966,
+    "ast_hash": "08782fe012104ce3d0d75f745a5b108c",
+    "semantic_hash": "08782fe012104ce3d0d75f745a5b108c"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-2.html": {
+    "mtime": 1778382436.35974,
+    "ast_hash": "301c2593032e95df61058a9546424cd3",
+    "semantic_hash": "301c2593032e95df61058a9546424cd3"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-3.html": {
+    "mtime": 1778382436.3600314,
+    "ast_hash": "97caacb6e72a0e12ad1d0f7f29b08ed3",
+    "semantic_hash": "97caacb6e72a0e12ad1d0f7f29b08ed3"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-4.html": {
+    "mtime": 1778382436.36047,
+    "ast_hash": "543ada51d3250c1005d1b38fafdcd01e",
+    "semantic_hash": "543ada51d3250c1005d1b38fafdcd01e"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-5.html": {
+    "mtime": 1778382436.36065,
+    "ast_hash": "0508a4d6f276535c09b95d9a477a7f31",
+    "semantic_hash": "0508a4d6f276535c09b95d9a477a7f31"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/projects/project-6.html": {
+    "mtime": 1778539423.1134212,
+    "ast_hash": "c5b9c3c9f3989c2086f39bda182952f7",
+    "semantic_hash": "c5b9c3c9f3989c2086f39bda182952f7"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/updates/update-1.html": {
+    "mtime": 1778382436.3620305,
+    "ast_hash": "a8b68b6098cc531f6746e06ff9a856fa",
+    "semantic_hash": "a8b68b6098cc531f6746e06ff9a856fa"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/updates/update-2.html": {
+    "mtime": 1778382436.3622267,
+    "ast_hash": "046ea765ce805662090c9a77bbed1db1",
+    "semantic_hash": "046ea765ce805662090c9a77bbed1db1"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/AllTasksManagmentScreen.JPG": {
+    "mtime": 1778539423.053989,
+    "ast_hash": "87692bf4e47f7fc01d0a0cf61a2bf36d",
+    "semantic_hash": "87692bf4e47f7fc01d0a0cf61a2bf36d"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/BackPCB.png": {
+    "mtime": 1778539423.0547743,
+    "ast_hash": "7807a6a8b049e3a7bb8837d6743813d6",
+    "semantic_hash": "7807a6a8b049e3a7bb8837d6743813d6"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/CalendarDayView.JPG": {
+    "mtime": 1778539423.058699,
+    "ast_hash": "5c08eee31f8cf30f875df0ffcd9efe04",
+    "semantic_hash": "5c08eee31f8cf30f875df0ffcd9efe04"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/CalendarEventDetails.JPG": {
+    "mtime": 1778539423.0624516,
+    "ast_hash": "97085fd546b516e35ab22b4f771a98e8",
+    "semantic_hash": "97085fd546b516e35ab22b4f771a98e8"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/CalendarEventSetup.JPG": {
+    "mtime": 1778539423.0675266,
+    "ast_hash": "2aee3c4dff3fc644c3d131c033693725",
+    "semantic_hash": "2aee3c4dff3fc644c3d131c033693725"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/CalendarMonthView.JPG": {
+    "mtime": 1778539423.0704958,
+    "ast_hash": "962d534a3ff6d3fef53e19daea765dc2",
+    "semantic_hash": "962d534a3ff6d3fef53e19daea765dc2"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/CalendarWeekView.JPG": {
+    "mtime": 1778539423.0739274,
+    "ast_hash": "83b4c55b3a22d91713beff258828d5bc",
+    "semantic_hash": "83b4c55b3a22d91713beff258828d5bc"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/ElectricalDiagram.png": {
+    "mtime": 1778539423.0754256,
+    "ast_hash": "50a168da02b0c8f9ad4656735339485f",
+    "semantic_hash": "50a168da02b0c8f9ad4656735339485f"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/ElectronicCompartment.JPG": {
+    "mtime": 1778382436.3077517,
+    "ast_hash": "7ee88efde71cb7eeb94dc552490c3559",
+    "semantic_hash": "7ee88efde71cb7eeb94dc552490c3559"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/FrontPCB.png": {
+    "mtime": 1778539423.0760257,
+    "ast_hash": "e538bc838587a3d15407ba9546e98780",
+    "semantic_hash": "e538bc838587a3d15407ba9546e98780"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/GUICAPTURE.png": {
+    "mtime": 1778382436.3089924,
+    "ast_hash": "f4b44e98e5aad7528846f0b728d03169",
+    "semantic_hash": "f4b44e98e5aad7528846f0b728d03169"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/Headshot.JPG": {
+    "mtime": 1778382436.3311753,
+    "ast_hash": "8b8d37d7c57df0021a5aeaa200c168eb",
+    "semantic_hash": "8b8d37d7c57df0021a5aeaa200c168eb"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/InternalWideShot.JPG": {
+    "mtime": 1778382436.3364305,
+    "ast_hash": "d2ce9768d7424ec1e41411333b5cccf2",
+    "semantic_hash": "d2ce9768d7424ec1e41411333b5cccf2"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/MechanicalDiagram.png": {
+    "mtime": 1778539423.0808437,
+    "ast_hash": "e743db09fc0a86e15d8a58e4024b6f0c",
+    "semantic_hash": "e743db09fc0a86e15d8a58e4024b6f0c"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/NewTaskSetup.JPG": {
+    "mtime": 1778539423.0835779,
+    "ast_hash": "b02728cd0d7fb519ead08a64950b3bf0",
+    "semantic_hash": "b02728cd0d7fb519ead08a64950b3bf0"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/PomodoroScreen.JPG": {
+    "mtime": 1778539423.0880868,
+    "ast_hash": "300e77eaa9e0f6fd89a81fb076f3069b",
+    "semantic_hash": "300e77eaa9e0f6fd89a81fb076f3069b"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/PomodoroSetup.JPG": {
+    "mtime": 1778539423.091408,
+    "ast_hash": "2b9b9a644829b0f52001a901ddaee3aa",
+    "semantic_hash": "2b9b9a644829b0f52001a901ddaee3aa"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/Poster.jpg": {
+    "mtime": 1774815036.2203655,
+    "ast_hash": "8b4629f9c4962e44465375709fa72a9c",
+    "semantic_hash": "8b4629f9c4962e44465375709fa72a9c"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/RotaryMech_Plus_ElementConnection.PNG": {
+    "mtime": 1778382436.3436399,
+    "ast_hash": "2a57c4e42c170bceed911a681674fa19",
+    "semantic_hash": "2a57c4e42c170bceed911a681674fa19"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/SceneCreatorGUI.png": {
+    "mtime": 1778382436.3443444,
+    "ast_hash": "9e47c76bd40abad29c8f9d6813bb0162",
+    "semantic_hash": "9e47c76bd40abad29c8f9d6813bb0162"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/SettingsGUI.png": {
+    "mtime": 1778382436.3452182,
+    "ast_hash": "9c4c1303e8f118db429aba81e7b642ed",
+    "semantic_hash": "9c4c1303e8f118db429aba81e7b642ed"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/SettingsUI.JPG": {
+    "mtime": 1778539423.095173,
+    "ast_hash": "f0ff35f78813a9b98d645de17e31d519",
+    "semantic_hash": "f0ff35f78813a9b98d645de17e31d519"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/SleepScreen.JPG": {
+    "mtime": 1778539423.1012652,
+    "ast_hash": "563cd1b2fa44061b66d7b333135267be",
+    "semantic_hash": "563cd1b2fa44061b66d7b333135267be"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_PCB.png": {
+    "mtime": 1778539423.101808,
+    "ast_hash": "79123673da107ad3332e7a98d82b0e83",
+    "semantic_hash": "79123673da107ad3332e7a98d82b0e83"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_Schematic_page-0001.jpg": {
+    "mtime": 1778539423.102765,
+    "ast_hash": "a99211f214f0e5479cdffb802b395b8f",
+    "semantic_hash": "a99211f214f0e5479cdffb802b395b8f"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_Schematic_page-0002.jpg": {
+    "mtime": 1778539423.103866,
+    "ast_hash": "bd5ad732ad62e558b4a1078d6afa24bc",
+    "semantic_hash": "bd5ad732ad62e558b4a1078d6afa24bc"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_Schematic_page-0003.jpg": {
+    "mtime": 1778539423.1048183,
+    "ast_hash": "1b63ca9bff044945d107881ce27ff27e",
+    "semantic_hash": "1b63ca9bff044945d107881ce27ff27e"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_Schematic_page-0004.jpg": {
+    "mtime": 1778539423.1053813,
+    "ast_hash": "9a0aafaa8d5bc9e651d8112876cdde96",
+    "semantic_hash": "9a0aafaa8d5bc9e651d8112876cdde96"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/StikE_Schematic_page-0005.jpg": {
+    "mtime": 1778539423.1060202,
+    "ast_hash": "719262173a722d16ad43edfc0411948c",
+    "semantic_hash": "719262173a722d16ad43edfc0411948c"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/TaskUI.JPG": {
+    "mtime": 1778539423.1090288,
+    "ast_hash": "c1b1e981fe019dcd798fa3ddc17d825f",
+    "semantic_hash": "c1b1e981fe019dcd798fa3ddc17d825f"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/TeamPhoto.jpg": {
+    "mtime": 1774815036.2297766,
+    "ast_hash": "1a9caf42b688d7cda6cf1c0f9e235a1f",
+    "semantic_hash": "1a9caf42b688d7cda6cf1c0f9e235a1f"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/TestScene1.png": {
+    "mtime": 1778382436.3518567,
+    "ast_hash": "2e31611ac95003446175efd64042870f",
+    "semantic_hash": "2e31611ac95003446175efd64042870f"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/TestScene2.png": {
+    "mtime": 1778382436.3524556,
+    "ast_hash": "08596ca880bcf61757305aae8ef1b77a",
+    "semantic_hash": "08596ca880bcf61757305aae8ef1b77a"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/TestScene3_EyeOfSauron_.png": {
+    "mtime": 1778382436.3529997,
+    "ast_hash": "547b5dde9a0267d37b9178edc8ec4d72",
+    "semantic_hash": "547b5dde9a0267d37b9178edc8ec4d72"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/UncompletedTasksManagementScreen.JPG": {
+    "mtime": 1778539423.1122856,
+    "ast_hash": "02fcfe97df8660188a05a7edc13bd185",
+    "semantic_hash": "02fcfe97df8660188a05a7edc13bd185"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/UserInterface.JPG": {
+    "mtime": 1774815036.2445295,
+    "ast_hash": "59cd24dfbf35d32067647c84178791d7",
+    "semantic_hash": "59cd24dfbf35d32067647c84178791d7"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/ViewerGUI.png": {
+    "mtime": 1778382436.3534608,
+    "ast_hash": "b6da3556f151c324f916a72f133f24c3",
+    "semantic_hash": "b6da3556f151c324f916a72f133f24c3"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/beautifulCowBWEdgeDetect.jpg": {
+    "mtime": 1778382436.3537912,
+    "ast_hash": "ee8095a654e73104a5049919593baf7d",
+    "semantic_hash": "ee8095a654e73104a5049919593baf7d"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/beautifulCowBlurred.jpg": {
+    "mtime": 1778382436.3543828,
+    "ast_hash": "b1ca18c7695b51e94b1e4763b793dc88",
+    "semantic_hash": "b1ca18c7695b51e94b1e4763b793dc88"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/lightspeed_high_v.png": {
+    "mtime": 1778382436.3545735,
+    "ast_hash": "9fab30ec39551abb952768371ecfbd88",
+    "semantic_hash": "9fab30ec39551abb952768371ecfbd88"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/lightspeed_zero_v.png": {
+    "mtime": 1778382436.3547776,
+    "ast_hash": "3cfbffca9850a809967418b3c7099aed",
+    "semantic_hash": "3cfbffca9850a809967418b3c7099aed"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/solar_energy_vs_tilt_graph.png": {
+    "mtime": 1778382436.3550413,
+    "ast_hash": "d0a65c1f9ab6e1ca941cb4da80737f41",
+    "semantic_hash": "d0a65c1f9ab6e1ca941cb4da80737f41"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/solar_nbody_simulation.png": {
+    "mtime": 1778382436.355563,
+    "ast_hash": "e3078a8e20f65796bf184ea85713fea2",
+    "semantic_hash": "e3078a8e20f65796bf184ea85713fea2"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/solar_ray_visibility_diagram.png": {
+    "mtime": 1778382436.3558936,
+    "ast_hash": "b15a025c12cf047c48265bc6933b561e",
+    "semantic_hash": "b15a025c12cf047c48265bc6933b561e"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/solar_watts_vs_tilt_graph.png": {
+    "mtime": 1778382436.3561337,
+    "ast_hash": "d0a65c1f9ab6e1ca941cb4da80737f41",
+    "semantic_hash": "d0a65c1f9ab6e1ca941cb4da80737f41"
+  },
+  "/Users/blm/Documents/GitHub/BeckettMazeau_Portfolio/images/stik-enote-render.png": {
+    "mtime": 1778382436.3575652,
+    "ast_hash": "a5cc0ec63260cfdb1dbd23f28f653b60",
+    "semantic_hash": "a5cc0ec63260cfdb1dbd23f28f653b60"
+  }
+}
