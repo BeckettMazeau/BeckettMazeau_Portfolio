@@ -23,11 +23,11 @@ MANIFEST = json.loads((ROOT / "site-manifest.json").read_text())
 
 # ---------- helpers ----------
 PHOTO_KEYS = ["internalwideshot", "electroniccompartment", "teamphoto",
-              "rotarymech", "poster", "headshot", "userinterface"]
-TALL_KEYS = ["calendar", "pomodoro", "sleep", "task", "settings", "newtask",
-             "alltasks", "uncompleted", "gui", "screen"]
+              "rotarymech", "poster", "headshot"]
+TALL_KEYS = ["calendar", "pomodoro", "sleep", "task", "settingsui", "newtask",
+             "alltasks", "uncompleted", "screen"]
 WIDE_KEYS = ["graph", "diagram", "schematic", "render", "simulation",
-             "mechanical", "electrical", "lightspeed", "pcb"]
+             "mechanical", "electrical", "lightspeed", "pcb", "gui", "testscene"]
 
 def norm_img(src, prefix=""):
     """Strip ../ and force lowercase images/ folder. prefix '' for structured fields
