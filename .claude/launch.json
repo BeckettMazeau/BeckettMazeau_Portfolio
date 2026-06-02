@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "new-site",
+      "name": "portfolio",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "5180", "--directory", "new-site"],
+      "runtimeArgs": ["-m", "http.server", "5180", "--directory", "."],
       "port": 5180
     }
   ]

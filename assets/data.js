@@ -291,7 +291,7 @@ window.SITE = {
         {
           "src": "images/UserInterface.JPG",
           "caption": "User interface — a 4×4 membrane keypad and 20×4 LCD character display in a 3D-printed bezel. Supports two operation modes: simple temperature/time entry and multi-step heating curve profiles.",
-          "contain": false,
+          "contain": true,
           "span": ""
         },
         {
@@ -355,43 +355,43 @@ window.SITE = {
           "src": "images/TestScene3_EyeOfSauron_.png",
           "caption": "The \"Eye of Sauron\" test scene — nested intersecting spheres producing intricate interference patterns, used to identify a normalization bug in the specular term.",
           "contain": true,
-          "span": ""
+          "span": "wide"
         },
         {
           "src": "images/TestScene3_EyeOfSauron_.png",
           "caption": "<em>Eye of Sauron</em> — a perfect-mirror sphere reflecting concentric rings of colored geometry. The symmetric pattern emerges entirely from recursive ray reflections with no hand-authored texture.",
           "contain": true,
-          "span": ""
+          "span": "wide"
         },
         {
           "src": "images/TestScene1.png",
           "caption": "Mixed-material scene — a Lambert cyan sphere nested inside a Phong magenta torus-like ring, alongside a large maroon sphere, demonstrating the visual difference between flat diffuse and specular shading models.",
           "contain": true,
-          "span": ""
+          "span": "wide"
         },
         {
           "src": "images/TestScene2.png",
           "caption": "Mirror-floor scene — a Mirror Phong purple sphere and two Lambert green spheres sit on a reflective plane. Shadow rays correctly occlude indirect light from each sphere's perspective.",
           "contain": true,
-          "span": ""
+          "span": "wide"
         },
         {
           "src": "images/SettingsGUI.png",
           "caption": "The <strong>Settings</strong> panel — users configure output resolution, aspect ratio, field of view, anti-aliasing sample count, and multi-threading before entering the scene editor.",
           "contain": true,
-          "span": "tall"
+          "span": "wide"
         },
         {
           "src": "images/SceneCreatorGUI.png",
           "caption": "The <strong>Scene Creator</strong> panel — object type and scene selectors sit alongside controls for adding new objects, creating new scenes, and switching into Update Mode to edit or remove existing objects.",
           "contain": true,
-          "span": "tall"
+          "span": "wide"
         },
         {
           "src": "images/ViewerGUI.png",
           "caption": "The <strong>Viewer</strong> panel — a live low-resolution preview lets users navigate the scene with WASD and arrow keys before saving a full-quality render to disk.",
           "contain": true,
-          "span": "tall"
+          "span": "wide"
         }
       ]
     },
@@ -562,7 +562,7 @@ window.SITE = {
           "src": "images/GUICAPTURE.png",
           "caption": "The application's Swing interface — source image selector (left dropdown), filter selector and optional parameter field (center), and live image preview. Defaults to a preview of <em>beautifulCow.jpg</em> on launch.",
           "contain": true,
-          "span": "tall"
+          "span": "wide"
         },
         {
           "src": "images/beautifulCowBWEdgeDetect.jpg",
