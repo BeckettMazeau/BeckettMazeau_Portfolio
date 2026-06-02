@@ -1,0 +1,4 @@
+Update email address globally.
+Change text and headers on the work page.
+Modify styles for project cards to fix layout issue.
+Update titles in projects data.

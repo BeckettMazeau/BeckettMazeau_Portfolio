@@ -125,7 +125,7 @@ SITE = {
         "tagline": "Making Mechatronics",
         "blurb": "Engineer & Designer — building at the intersection of precision mechanics, embedded systems, and industrial design.",
         "status": "Mechatronics & Mechanical Engineering",
-        "email": "beckettmazeau@gmail.com",
+        "email": "Beckettmazeau.inquiries@gmail.com",
         "links": [
             {"label": "GitHub", "href": "https://github.com/BeckettMazeau"},
             {"label": "LinkedIn", "href": "https://www.linkedin.com/in/beckett-mazeau/"},

@@ -5,7 +5,7 @@ window.SITE = {
     "tagline": "Making Mechatronics",
     "blurb": "Engineer & Designer — building at the intersection of precision mechanics, embedded systems, and industrial design.",
     "status": "Mechatronics & Mechanical Engineering",
-    "email": "beckettmazeau@gmail.com",
+    "email": "Beckettmazeau.inquiries@gmail.com",
     "links": [
       {
         "label": "GitHub",
@@ -49,7 +49,7 @@ window.SITE = {
     {
       "slug": "project-6",
       "title": "STIK-eNote",
-      "role": "Lead Engineer (Solo Project)",
+      "role": "Solo - Embedded Systems",
       "year": "Spring 2026",
       "summary": "A pocketable clamshell task tracker. Always-on ePaper shows your priorities without waking the device. Open the lid and a color TFT and QWERTY keyboard come up for editing. Built on ESP32-S3 with FreeRTOS dual-core firmware and a custom KiCad PCB.",
       "thumb": "images/stik-enote-render.png",
@@ -57,7 +57,7 @@ window.SITE = {
       "meta": [
         {
           "k": "Role",
-          "v": "Lead Engineer (Solo Project)"
+          "v": "Solo - Embedded Systems"
         },
         {
           "k": "Date",
@@ -67,7 +67,7 @@ window.SITE = {
       "sections": [
         {
           "h": "The Problem",
-          "html": "<p>\n I have ADHD, and I've tried most of the standard productivity systems: apps, timers,\n alarms, sticky notes, whiteboards. The thing that actually stuck was carrying a physical\n notebook. Writing things down, having the list right in front of me with no notifications\n layered on top, no app to open. My productivity went up noticeably once I started doing\n that, and it kept going up the longer I kept the habit.\n </p>\n<p>\n Notebooks have their own problems, though. I always forgot a pencil. When I had a lot\n going on, the space management on the page became its own chore. Keeping things organized\n across days was a mess. So I started thinking about whether I could build something with\n the parts of the notebook that worked (dedicated, distraction-free, always showing me\n what I need to do) while handling the parts paper is bad at.\n </p>\n<p>\n That's the STIK-eNote. It's a clamshell device about the size of a thick business card\n wallet. The back face is an ePaper display that always shows the current task list, even\n with the device closed and asleep. Open the device and a physical QWERTY keyboard and a\n color TFT come on so you can edit things. Close it again and it goes back to sleep, with\n the ePaper holding whatever was last pushed to it.\n </p>\n<p>\n It's still a prototype. The current build is hand-wired on modules, but the PCB is fully\n designed and the firmware runs end-to-end. This page documents how the whole thing works.\n </p>\n<h3>Role</h3>\n<p>Lead Engineer (Solo Project)</p>\n<h3>Timeline</h3>\n<p>Spring 2026 — EDES 301</p>\n<h3>Course</h3>\n<p>EDES 301, Rice University</p>\n<h3>Tools & Tech</h3>\n<ul>\n<li>ESP32-S3-WROOM-1 (N16R8)</li>\n<li>Arduino Framework / FreeRTOS</li>\n<li>PlatformIO</li>\n<li>KiCad 9.0 (Schematic & PCB)</li>\n<li>GDEQ0213B74 ePaper (2.13″)</li>\n<li>ST7735S TFT (1.8″)</li>\n<li>M5Stack CardKB V1.1 (I²C)</li>\n<li>SPI / I²C Protocols</li>\n<li>Hall Effect Sensing</li>\n</ul>"
+          "html": "<p>\n I have ADHD, and I've tried most of the standard productivity systems: apps, timers,\n alarms, sticky notes, whiteboards. The thing that actually stuck was carrying a physical\n notebook. Writing things down, having the list right in front of me with no notifications\n layered on top, no app to open. My productivity went up noticeably once I started doing\n that, and it kept going up the longer I kept the habit.\n </p>\n<p>\n Notebooks have their own problems, though. I always forgot a pencil. When I had a lot\n going on, the space management on the page became its own chore. Keeping things organized\n across days was a mess. So I started thinking about whether I could build something with\n the parts of the notebook that worked (dedicated, distraction-free, always showing me\n what I need to do) while handling the parts paper is bad at.\n </p>\n<p>\n That's the STIK-eNote. It's a clamshell device about the size of a thick business card\n wallet. The back face is an ePaper display that always shows the current task list, even\n with the device closed and asleep. Open the device and a physical QWERTY keyboard and a\n color TFT come on so you can edit things. Close it again and it goes back to sleep, with\n the ePaper holding whatever was last pushed to it.\n </p>\n<p>\n It's still a prototype. The current build is hand-wired on modules, but the PCB is fully\n designed and the firmware runs end-to-end. This page documents how the whole thing works.\n </p>\n<h3>Role</h3>\n<p>Solo - Embedded Systems</p>\n<h3>Timeline</h3>\n<p>Spring 2026 — EDES 301</p>\n<h3>Course</h3>\n<p>EDES 301, Rice University</p>\n<h3>Tools & Tech</h3>\n<ul>\n<li>ESP32-S3-WROOM-1 (N16R8)</li>\n<li>Arduino Framework / FreeRTOS</li>\n<li>PlatformIO</li>\n<li>KiCad 9.0 (Schematic & PCB)</li>\n<li>GDEQ0213B74 ePaper (2.13″)</li>\n<li>ST7735S TFT (1.8″)</li>\n<li>M5Stack CardKB V1.1 (I²C)</li>\n<li>SPI / I²C Protocols</li>\n<li>Hall Effect Sensing</li>\n</ul>"
         },
         {
           "h": "What It Does",
@@ -317,12 +317,16 @@ window.SITE = {
     {
       "slug": "project-3",
       "title": "Java Ray Tracer",
-      "role": "—",
+      "role": "Solo - Software Engineering",
       "year": "Spring 2025",
       "summary": "A physically-based ray tracer written entirely in Java — featuring Phong shading, mirror reflections, anti-aliasing, accurate shadow casting, and multi-threaded rendering, all driven by an interactive Swing GUI for building and exporting 3D scenes.",
       "thumb": "images/TestScene3_EyeOfSauron_.png",
       "contain": true,
       "meta": [
+        {
+          "k": "Role",
+          "v": "Solo - Software Engineering"
+        },
         {
           "k": "Date",
           "v": "Spring 2025"
@@ -398,12 +402,16 @@ window.SITE = {
     {
       "slug": "project-4",
       "title": "Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits",
-      "role": "—",
+      "role": "Solo - Physics Simulation",
       "year": "Fall 2024",
       "summary": "A 3-dimensional N-Body simulation of the solar system used to analyze how orbital tilt affects solar energy collection — using ray-traced sun visibility, Newton's law of universal gravitation, and Stefan-Boltzmann radiation modeling.",
       "thumb": "images/solar_nbody_simulation.png",
       "contain": true,
       "meta": [
+        {
+          "k": "Role",
+          "v": "Solo - Physics Simulation"
+        },
         {
           "k": "Date",
           "v": "Fall 2024"
@@ -467,12 +475,16 @@ window.SITE = {
     {
       "slug": "project-5",
       "title": "Demonstrator of Phenomena at Lightspeed",
-      "role": "—",
+      "role": "Solo - Physics Simulation",
       "year": "January 2025",
       "summary": "A Processing simulation that visualizes the relativistic effects of approaching lightspeed — including Lorentz–FitzGerald length contraction and the relativistic Doppler shift — through an interactive 2.5D star field viewed from a rocket's reference frame.",
       "thumb": "images/lightspeed_high_v.png",
       "contain": true,
       "meta": [
+        {
+          "k": "Role",
+          "v": "Solo - Physics Simulation"
+        },
         {
           "k": "Date",
           "v": "January 2025"
@@ -524,12 +536,16 @@ window.SITE = {
     {
       "slug": "project-2",
       "title": "Java Image Processing Application",
-      "role": "—",
+      "role": "Solo - Software Engineering",
       "year": "Spring 2024",
       "summary": "A custom-built photo editor written entirely in Java — featuring a pixel-manipulation engine, interactive Swing GUI, and a full suite of color filters, computer-vision effects, and geometric transformations engineered from the ground up.",
       "thumb": "images/GUICAPTURE.png",
       "contain": true,
       "meta": [
+        {
+          "k": "Role",
+          "v": "Solo - Software Engineering"
+        },
         {
           "k": "Date",
           "v": "Spring 2024"

@@ -171,7 +171,7 @@ a { color: inherit; text-decoration: none; }
 .card.contain .frame { background: var(--frame-light); }
 .card.contain .frame img { object-fit: contain; padding: 22px; transform: none !important; }
 .card .body { padding: 20px 22px 24px; flex: 1; display: flex; flex-direction: column; }
-.card .top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 12px; margin-bottom: 12px; font-family: var(--mono); }
+.card .top { display: flex; justify-content: flex-start; gap: 8px; align-items: center; color: var(--muted); font-size: 12px; margin-bottom: 12px; font-family: var(--mono); }
 .card .top .num { color: var(--accent); }
 .card h3 { margin: 0 0 8px; font-size: 23px; font-weight: 600; letter-spacing: -0.02em; }
 .card .desc { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }

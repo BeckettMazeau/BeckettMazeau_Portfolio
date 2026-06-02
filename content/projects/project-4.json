@@ -1,7 +1,7 @@
 {
   "slug": "project-4",
   "title": "Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits",
-  "role": "",
+  "role": "Solo - Physics Simulation",
   "date": "Fall 2024",
   "summary": "A 3-dimensional N-Body simulation of the solar system used to analyze how orbital tilt affects solar energy collection — using ray-traced sun visibility, Newton's law of universal gravitation, and Stefan-Boltzmann radiation modeling.",
   "thumbnail": "../Images/solar_nbody_simulation.png",
