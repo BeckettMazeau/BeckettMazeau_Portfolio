@@ -1,0 +1,52 @@
+{
+  "slug": "project-4",
+  "title": "Exponentially Greater Solar Energy Gained by Satellites in Polar Orbits",
+  "role": "",
+  "date": "Fall 2024",
+  "summary": "A 3-dimensional N-Body simulation of the solar system used to analyze how orbital tilt affects solar energy collection — using ray-traced sun visibility, Newton's law of universal gravitation, and Stefan-Boltzmann radiation modeling.",
+  "thumbnail": "../Images/solar_nbody_simulation.png",
+  "sections": [
+    {
+      "heading": "The Challenge",
+      "body": "<div class=\"proj-overview-grid\">\n<div class=\"proj-overview-text\">\n\n\n<p>\n            Solar energy has proven itself the most effective choice for powering the ever-growing\n            number of satellites we use. The energy captured by a craft is dependent on the\n            frequency, duration, and intensity of sunlight shining on it. To determine the most\n            appropriate orbit for future satellites, this study used a 3-dimensional N-Body\n            simulation to analyze the effects of different orbital tilts on energy collection,\n            and thus determine the optimal angle for maximum energy capture.\n          </p>\n<p>\n            The core challenge was determining not simply whether the sun was visible from\n            the satellite at any given moment, but <em>what percentage</em> of the sun was\n            visible — accounting for full and partial eclipses as well as the incremental\n            rising and setting of the sun from the satellite's perspective. This required\n            a ray-tracing based approach built on top of a full gravitational N-Body simulation\n            incorporating all major bodies in the solar system.\n          </p>\n<p>\n            The simulation was run across orbital tilts from 0° (ecliptic) to 90° (polar),\n            with results recorded and analyzed in Excel. The finding: a clear exponential\n            relationship between orbital polarity and total energy collected, with polar\n            orbits capturing significantly more energy.\n          </p>\n</div>\n<aside class=\"proj-sidebar\">\n<div class=\"proj-sidebar-block\">\n<h3>Course</h3>\n<p>Advanced Astrophysics in Simulation<br/>\n               taught by Benjamin Farrar,<br/>\n               Poly Prep Country Day School</p>\n</div>\n<div class=\"proj-sidebar-block\">\n<h3>Timeline</h3>\n<p>Fall 2024 — October 21, 2024</p>\n</div>\n<div class=\"proj-sidebar-block\">\n<h3>Tools &amp; Tech</h3>\n<ul class=\"proj-tools-list\">\n<li>Java / Processing</li>\n<li>3D N-Body Simulation</li>\n<li>Ray Tracing (Sun Visibility)</li>\n<li>Newton's Law of Gravitation</li>\n<li>Stefan-Boltzmann Radiation</li>\n<li>Excel (Graphical Analysis)</li>\n</ul>\n</div>\n</aside>\n</div>"
+    },
+    {
+      "heading": "Simulation & Results",
+      "body": "<p class=\"proj-gallery-intro\">\n        Figures below include the ray-visibility model, results graphs, and a frame\n        of the 2D visual component of the N-Body simulation. Click any image for a closer look.\n      </p>\n<div class=\"proj-gallery-grid\">\n\n\n\n\n</div>"
+    },
+    {
+      "heading": "Methodology",
+      "body": "<div class=\"proj-process-steps\">\n<article class=\"process-step\">\n<div class=\"process-step-num\">01</div>\n<div class=\"process-step-content\">\n<h3>3D N-Body Gravitational Simulation</h3>\n<p>\n              An N-Body system modeling all major celestial bodies in the solar system was\n              built using a time-step approach, with gravity calculated every 1 simulated\n              second via Newton's Law of Universal Gravitation:\n              <em>F = Gm₁m₂ / d²</em>, where G is 6.674×10⁻¹¹ N·m²/kg².\n              A full solar system model (rather than just Earth and inner planets) was used\n              to capture unique orbital resonances induced by planetary interactions.\n            </p>\n</div>\n</article>\n<article class=\"process-step\">\n<div class=\"process-step-num\">02</div>\n<div class=\"process-step-content\">\n<h3>Ray-Traced Sun Visibility</h3>\n<p>\n              To accurately determine how much of the sun was visible to the satellite at\n              any moment, 60,000 points were evenly distributed across the sun's surface\n              using a golden-angle spiral. A ray was then traced from the satellite to each\n              point, checking for body intersections. The fraction of unobstructed rays\n              directly determined the effective solar exposure used in energy calculations.\n            </p>\n</div>\n</article>\n<article class=\"process-step\">\n<div class=\"process-step-num\">03</div>\n<div class=\"process-step-content\">\n<h3>Power Density Formula</h3>\n<p>\n              Radiation density at the satellite was calculated using\n              <em>H₀ = (R²<sub>sun</sub> / D²) × H<sub>sun</sub></em>, where\n              D is the distance from the sun, R<sub>sun</sub> is 695×10⁶ m, and\n              H<sub>sun</sub> is 64×10⁶ W/m² (Stefan-Boltzmann blackbody). This was then\n              multiplied by the satellite's 4.5 m² panel area, a 20% panel efficiency\n              factor, and the visible-point fraction to yield instantaneous power.\n            </p>\n</div>\n</article>\n<article class=\"process-step\">\n<div class=\"process-step-num\">04</div>\n<div class=\"process-step-content\">\n<h3>Experimental Design</h3>\n<p>\n              Simulations were run at orbital tilts from 0° to 90° at 70 km altitude\n              for 2 simulated years each. To simplify setup, all planets were initialized\n              in alignment — a physically unrealistic but experimentally neutral condition,\n              as any effect would be equal across all tests and thus produce no observable\n              difference within the dataset. Maximum watts, minimum watts, orbital tilt,\n              time elapsed, and total joules were recorded and analyzed in Excel.\n            </p>\n</div>\n</article>\n<article class=\"process-step\">\n<div class=\"process-step-num\">05</div>\n<div class=\"process-step-content\">\n<h3>2D Visual Component</h3>\n<p>\n              The visual component of the simulation is for demonstration purposes only,\n              rendered in 2D to reduce computational overhead. It represents only the x and\n              z axes of each body. The satellite itself is not rendered, as at any\n              meaningful simulation speed it would move too quickly to display usefully.\n            </p>\n</div>\n</article>\n</div>"
+    },
+    {
+      "heading": "Key Takeaways",
+      "body": "<div class=\"proj-takeaways-grid\">\n<div class=\"takeaway-card\">\n<span class=\"takeaway-num\">01</span>\n<h3>Polar Orbits Are Exponentially Superior</h3>\n<p>\n            The maximum energy collected was at 90° (polar), totaling 4.93×10¹⁰ joules,\n            versus 4.29×10¹⁰ joules at 0° (ecliptic) — a difference of 6.4×10⁹ joules,\n            or 101.5 W on average. The relationship is best modeled by a third-order polynomial,\n            with gains accelerating as tilt increases past 45°. Any mission requiring\n            high power — astronomical observation, terrestrial mapping — should use a\n            perfectly polar orbit.\n          </p>\n</div>\n<div class=\"takeaway-card\">\n<span class=\"takeaway-num\">02</span>\n<h3>Ray Tracing Enables Accurate Partial Eclipses</h3>\n<p>\n            A point-sampling ray-trace approach across 60,000 surface points gave a\n            continuous, physically grounded measure of solar exposure — capturing not just\n            total eclipses but the gradual onset and exit of partial ones. This level\n            of fidelity would be impossible with a simple line-of-sight boolean check.\n          </p>\n</div>\n<div class=\"takeaway-card\">\n<span class=\"takeaway-num\">03</span>\n<h3>Simplifications Must Be Justified, Not Hidden</h3>\n<p>\n            Several deliberate simplifications were made: modeling the satellite as a point,\n            initializing planets in alignment, and omitting the y-axis from the visual.\n            Each was explicitly reasoned through — the simulation's scale makes satellite\n            size inconsequential, and the aligned-start condition cancels out uniformly\n            across all test cases. Naming and justifying simplifications is as important\n            as the physics itself.\n          </p>\n</div>\n</div>"
+    },
+    {
+      "heading": "",
+      "body": "<p style=\"font-style: italic; color: var(--color-muted, #888); font-size: 0.9rem;\">\n<strong>Note:</strong> Unfortunately, the archives for this Astrophysics class have\n        corrupted the original source code for this simulation. The paper and results above\n        represent the full available documentation of the project.\n      </p>"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "../Images/solar_nbody_simulation.png",
+      "caption": "A frame of the 2D visual component of the N-Body simulation. The visual represents the x and z axes of the celestial bodies; the y-axis is omitted as it does not contribute to the results."
+    },
+    {
+      "src": "../Images/solar_ray_visibility_diagram.png",
+      "caption": "Figure 1: A visual model illustrating sun visibility calculation. Rays are traced from the satellite to points distributed across the sun's surface; any ray intercepted by an occluding body reduces the visible-point count."
+    },
+    {
+      "src": "../Images/solar_energy_vs_tilt_graph.png",
+      "caption": "Figure 2: Total energy collected (joules) vs. orbital tilt relative to the ecliptic plane. 90° is a polar orbit above the north pole. Orange points are from a separate comparable test, added for increased precision."
+    },
+    {
+      "src": "../Images/solar_watts_vs_tilt_graph.png",
+      "caption": "Figure 3: Average watts collected vs. orbital tilt. Maximum of 782.3 W at 90°; minimum of 680.8 W at 0°, a difference of 101.5 W."
+    },
+    {
+      "src": "../Images/solar_nbody_simulation.png",
+      "caption": "Figure 4: A frame of the 2D N-Body simulation. The visual component is for demonstration only, rendering the x and z axes of all major solar system bodies."
+    }
+  ]
+}
