@@ -224,8 +224,9 @@ PROJ_STUB = '''<!DOCTYPE html>
 <link rel="stylesheet" href="../assets/site.css"/>
 </head>
 <body data-page="project" data-root="../" data-slug="{slug}">
+<a class="skip-link" href="#main">Skip to main content</a>
 <div id="nav"></div>
-<main>
+<main id="main">
   <section class="wrap"><div class="pagehead" id="ph"></div></section>
   <section class="wrap"><div class="body-sections" id="bodySections"></div></section>
   <section class="wrap">
@@ -255,8 +256,9 @@ UPD_STUB = '''<!DOCTYPE html>
 <link rel="stylesheet" href="../assets/site.css"/>
 </head>
 <body data-page="update" data-root="../" data-slug="{slug}">
+<a class="skip-link" href="#main">Skip to main content</a>
 <div id="nav"></div>
-<main>
+<main id="main">
   <section class="wrap"><article class="post" id="post"></article></section>
 </main>
 <div id="foot"></div>
