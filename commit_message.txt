@@ -1,4 +1,7 @@
-Update email address globally.
-Change text and headers on the work page.
-Modify styles for project cards to fix layout issue.
-Update titles in projects data.
+🛡️ Sentinel: [HIGH] Fix XSS vulnerability in HTML sanitizer
+
+* Severity: HIGH
+* Vulnerability: The custom HTML sanitizer in redesign/build_site.py did not validate URL schemes for a tag href attributes, allowing javascript:, data:, and vbscript: URIs.
+* Impact: An attacker who can modify the JSON content files could inject persistent XSS payloads.
+* Fix: Added scheme validation to reject javascript:, data:, and vbscript: URIs when sanitizing href attributes.
+* Verification: Verified with a local test that malicious schemes are stripped from generated links.
