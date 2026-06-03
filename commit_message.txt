@@ -1,4 +1,6 @@
-Update email address globally.
-Change text and headers on the work page.
-Modify styles for project cards to fix layout issue.
-Update titles in projects data.
+⚡ Bolt: O(1) hash map lookup for project references
+
+💡 What: Replaced an O(N) array lookup (`S.projects.find()`) with an O(1) lazily-initialized hash map inside the `bySlug` utility function.
+🎯 Why: `bySlug` is used in array mapping operations like `S.home.map(bySlug)`. Using `find` inside `map` results in O(N*M) runtime complexity. The hash map reduces this to O(N+M) complexity, ensuring O(1) performance per lookup.
+📊 Impact: Eliminates O(N²) nested loops when mapping over project subsets or finding individual projects, reducing processing time during rendering.
+🔬 Measurement: Verify by measuring rendering performance on pages utilizing `bySlug` (e.g., Home page work grid, individual project pages).
