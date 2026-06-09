@@ -64,6 +64,10 @@ class Sanitizer(HTMLParser):
         for a in KEEP_ATTR.get(tag, set()):
             if a in ad and ad[a] is not None:
                 v = ad[a]
+                if tag == "a" and a == "href":
+                    v_lower = v.lower().strip()
+                    if v_lower.startswith("javascript:") or v_lower.startswith("data:") or v_lower.startswith("vbscript:"):
+                        continue
                 if tag == "img" and a == "src":
                     v = norm_img(v, prefix="../")
                 kept += f' {a}="{html.escape(v, quote=True)}"'

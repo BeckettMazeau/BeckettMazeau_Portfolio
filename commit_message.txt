@@ -4,3 +4,10 @@
 🎯 Why: `bySlug` is used in array mapping operations like `S.home.map(bySlug)`. Using `find` inside `map` results in O(N*M) runtime complexity. The hash map reduces this to O(N+M) complexity, ensuring O(1) performance per lookup.
 📊 Impact: Eliminates O(N²) nested loops when mapping over project subsets or finding individual projects, reducing processing time during rendering.
 🔬 Measurement: Verify by measuring rendering performance on pages utilizing `bySlug` (e.g., Home page work grid, individual project pages).
+🛡️ Sentinel: [HIGH] Fix XSS vulnerability in HTML sanitizer
+
+* Severity: HIGH
+* Vulnerability: The custom HTML sanitizer in redesign/build_site.py did not validate URL schemes for a tag href attributes, allowing javascript:, data:, and vbscript: URIs.
+* Impact: An attacker who can modify the JSON content files could inject persistent XSS payloads.
+* Fix: Added scheme validation to reject javascript:, data:, and vbscript: URIs when sanitizing href attributes.
+* Verification: Verified with a local test that malicious schemes are stripped from generated links.
