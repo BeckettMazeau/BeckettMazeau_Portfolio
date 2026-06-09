@@ -112,7 +112,17 @@
       "</a>"
     );
   }
-  function bySlug(slug) { return S.projects.find(function (p) { return p.slug === slug; }); }
+  /* ⚡ Bolt: O(1) hash map lookup for project references */
+  var _projMap = null;
+  function bySlug(slug) {
+    if (!_projMap) {
+      _projMap = {};
+      for (var i = 0; i < S.projects.length; i++) {
+        _projMap[S.projects[i].slug] = S.projects[i];
+      }
+    }
+    return _projMap[slug];
+  }
 
   function updateRowHTML(u) {
     return (
