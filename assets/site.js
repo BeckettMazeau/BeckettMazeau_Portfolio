@@ -88,8 +88,7 @@
     var links = p.links.map(function (l) { return '<a href="' + l.href + '">' + l.label + " ↗</a>"; }).join(" · ");
     var foot = el(
       '<footer class="foot"><div class="inner wrap">' +
-        '<div class="big">Let\u2019s build something <span class="em">real.</span><br/>' +
-          '<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + " →</a></div>" +
+        '<div class="big"><a href="mailto:' + esc(p.email) + '">' + esc(p.email) + " →</a></div>" +
         '<div class="c"><a href="mailto:' + esc(p.email) + '">' + esc(p.email) + "</a><br/>" + links + "<br/>© 2026 " + esc(p.name) + "</div>" +
       "</div></footer>"
     );
@@ -141,8 +140,7 @@
     hero.innerHTML =
       "<div>" +
         '<span class="status mono"><span class="led"></span>' + esc(p.status) + "</span>" +
-        "<h1>" + esc(p.name) + '<span class="tag">' + esc(p.tagline) + "</span></h1>" +
-        "<p>" + esc(p.blurb) + "</p>" +
+        "<h1>" + esc(p.name) + "</h1>" +
         '<div class="actions">' +
           '<a class="btn primary" href="' + r("projects.html") + '">View work →</a>' +
           '<a class="btn ghost" href="mailto:' + esc(p.email) + '">Get in touch</a>' +

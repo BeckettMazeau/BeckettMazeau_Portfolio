@@ -30,7 +30,7 @@
   --accent-soft: rgba(255,90,42,0.14);
   --frame-photo: #1c1e22;
   --frame-light: #f4f4f2;
-  --led: #36d07f;
+  --led: #f97316;
   color-scheme: dark;
 }
 /* ---- LIGHT ---- */
@@ -48,7 +48,7 @@
   --accent-soft: rgba(255,77,31,0.10);
   --frame-photo: #ece9e2;
   --frame-light: #ffffff;
-  --led: #1c9c5c;
+  --led: #ea580c;
   color-scheme: light;
 }
 
@@ -128,9 +128,7 @@ a { color: inherit; text-decoration: none; }
 .hero .status { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); margin-bottom: 28px; font-size: 12px; }
 .hero .status .led { width: 8px; height: 8px; border-radius: 50%; background: var(--led); box-shadow: 0 0 0 3px color-mix(in srgb, var(--led) 22%, transparent); }
 .hero h1 { margin: 0; font-size: clamp(48px, 7vw, 92px); line-height: 0.94; font-weight: 600; letter-spacing: -0.035em; }
-.hero h1 .tag { color: var(--accent); display: block; }
-.hero p { margin: 30px 0 0; font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 460px; }
-.hero .actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .actions { margin-top: 48px; display: flex; gap: 14px; flex-wrap: wrap; }
 .btn { font-size: 14px; padding: 12px 20px; border-radius: 9px; font-weight: 500; transition: transform .2s, filter .2s; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .btn.primary { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); }
 .btn.primary:hover { filter: brightness(1.08); }
@@ -246,7 +244,6 @@ a { color: inherit; text-decoration: none; }
 .foot { border-top: 1px solid var(--line); margin-top: 80px; }
 .foot .inner { display: flex; justify-content: space-between; align-items: flex-end; padding: 72px 0 56px; gap: 40px; flex-wrap: wrap; }
 .foot .big { font-size: clamp(28px, 4vw, 40px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; }
-.foot .big .em { color: var(--accent); }
 .foot .big a:hover { color: var(--accent); }
 .foot .c { color: var(--muted); font-size: 13px; text-align: right; line-height: 1.9; font-family: var(--mono); }
 .foot .c a:hover { color: var(--accent); }
